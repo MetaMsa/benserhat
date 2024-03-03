@@ -7,6 +7,6 @@ app.use("/", function(req, res) {
     res.render("index");
 });
 
-app.use(express.static("views"));
+app.use(express.static("public"));
 
 app.listen(process.env.PORT || 5000);
