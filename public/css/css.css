@@ -29,7 +29,6 @@ body{
     left: 48%;
     align-items:center;
     justify-content:center;
-    background-color: #fff;
     z-index: 999;
     animation-name: load;
     animation-duration: 1s;
