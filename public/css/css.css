@@ -33,7 +33,7 @@
     }
 
     .linkimg{
-        width: 200%;
+        width: 500%;
     }
 }
 
@@ -73,7 +73,7 @@ body{
     width: 2rem; 
     height: 2rem;
     background-color:#ff000000;
-    border: 15px solid rgb(255, 0, 0);
+    border: 10px solid rgb(255, 0, 0);
     z-index: 1;
 }
 @keyframes load {
