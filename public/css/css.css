@@ -32,12 +32,12 @@
     }
 
     .linkimg{
-        width: 100%;
+        width: 80%;
     }
 
     footer{
-        top: 60%;
-        margin-left:70%;
+        left: 80%;
+        top: 74%;
     }
 }
 
