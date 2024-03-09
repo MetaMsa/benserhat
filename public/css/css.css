@@ -16,7 +16,6 @@
 
 [class*="col-"] {
     float: left;
-    border: 1px solid red;
 }
 
 .row::after {
@@ -34,6 +33,10 @@
 
     .linkimg{
         width: 100%;
+    }
+
+    footer{
+        top: 85%;
     }
 }
 
@@ -54,13 +57,16 @@
     .linkimg{
         width: 60%;
     }
+
+    footer{
+        top:75%;
+    }
 }
 
 body{
-    background-image: url(/images/pexels-기승-ki-19329504.png);
-    background-size: 100%;
+    background-image: url(/images/pexels-rok-romih-3312671.jpg);
+    background-size: 100rem;
     background-repeat: no-repeat;
-    box-sizing: border-box;
 }
 
 .loader{
@@ -80,4 +86,13 @@ body{
     0% {transform: rotate(0deg);}
     50% {top: 30%; border-radius: 100%;}
     100% {transform: rotate(360deg);}
+}
+
+.btn{
+    width: 3rem;
+    height: 3rem;
+    background-color: rgba(0, 0, 0, 0);
+    position: fixed;
+    top:0%;
+    background-image: url(/images/menu.png); background-repeat: no-repeat; background-size: 100%;
 }
