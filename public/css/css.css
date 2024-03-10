@@ -1,6 +1,7 @@
 *{
     box-sizing: border-box;
 }
+<<<<<<< HEAD
 
 [class*="col-"]{
     float: left;
@@ -32,6 +33,78 @@ body{
     left: -5%;
 }
 
+=======
+.col-1 {width: 8.33;}
+.col-2 {width: 16.66%;}
+.col-3 {width: 25%;}
+.col-4 {width: 33.33%;}
+.col-5 {width: 41.66%;}
+.col-6 {width: 50%;}
+.col-7 {width: 58.33%;}
+.col-8 {width: 66.66%;}
+.col-9 {width: 75%;}
+.col-10 {width: 83.33%;}
+.col-11 {width: 91.66%;}
+.col-12 {width: 100%;}
+
+[class*="col-"] {
+    float: left;
+}
+
+.row::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+@media screen and (max-width: 768px){
+    
+    [class*="col-"] {
+        width: 100%;
+        float: left;
+    }
+
+    .linkimg{
+        width: 80%;
+    }
+
+    footer{
+        left: 80%;
+        top: 74%;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .col-s-1 {width: 8.33%;}
+    .col-s-2 {width: 16.66%;}
+    .col-s-3 {width: 25%;}
+    .col-s-4 {width: 33.33%;}
+    .col-s-5 {width: 41.66%;}
+    .col-s-6 {width: 50%;}
+    .col-s-7 {width: 58.33%;}
+    .col-s-8 {width: 66.66%;}
+    .col-s-9 {width: 75%;}
+    .col-s-10 {width: 83.33%;}
+    .col-s-11 {width: 91.66%;}
+    .col-s-12 {width: 100%;}     
+
+    .linkimg{
+        width: 60%;
+    }
+
+    footer{
+        top:75%;
+        margin-left:93%;
+    }
+}
+
+body{
+    background-image: url(/images/pexels-rok-romih-3312671.jpg);
+    background-size: 100rem;
+    background-repeat: no-repeat;
+}
+
+>>>>>>> main
 .loader{
     position: fixed;
     top: 45%;
@@ -52,6 +125,7 @@ body{
     100% {transform: rotate(360deg);}
 }
 
+<<<<<<< HEAD
 footer{
     position: relative;
     float: left;
@@ -64,4 +138,14 @@ main{
 #me{
     width: 5rem;
     box-shadow: 1px 1px 1px 1px;
+=======
+.btn{
+    width: 3rem;
+    height: 3rem;
+    background-color: rgba(0, 0, 0, 0);
+    border-color: transparent;
+    position: fixed;
+    top:0%;
+    background-image: url(/images/menu.png); background-repeat: no-repeat; background-size: 100%;
+>>>>>>> main
 }
