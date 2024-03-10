@@ -10,7 +10,7 @@ getJSON('https://youtube.googleapis.com/youtube/v3/channels?part=statistics&id=U
 });
 
 app.use("/gdpr", function(req, res) {
-    res.render("gdpr.ejs");
+    res.render("gdpr");
 });
 
 app.use("/", function(req, res) {

@@ -1,4 +1,5 @@
 *{
+*{
     box-sizing: border-box;
 }
 
@@ -31,26 +32,24 @@ body{
     position: relative;
     left: -5%;
 }
+
 .loader{
-    display:flex; 
-    background-color:#ff0000; 
-    width:4rem; 
-    height: 4rem;
-    border-radius: 100%;
     position: fixed;
     top: 45%;
     left: 48%;
-    align-items:center;
-    justify-content:center;
-    z-index: 999;
     animation-name: load;
-    animation-duration: 1s;
+    animation-duration: 3s;
     animation-iteration-count: infinite;
+    width: 2rem; 
+    height: 2rem;
+    background-color:#ff000000;
+    border: 10px solid rgb(255, 0, 0);
+    z-index: 1;
 }
 
 @keyframes load {
     0% {transform: rotate(0deg);}
-    50% {top: 30%; border-radius: 0%;}
+    50% {top: 30%; border-radius: 100%;}
     100% {transform: rotate(360deg);}
 }
 
