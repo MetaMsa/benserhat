@@ -7,6 +7,7 @@ export default function Form() {
   const inputRef = useRef<HTMLInputElement>(null);
   const divRef = useRef<HTMLDivElement>(null);
   const modalRef = useRef<HTMLButtonElement>(null);
+  const copyRef = useRef<HTMLButtonElement>(null);
 
   const yearRef = useRef<HTMLDivElement>(null);
   const compiledRef = useRef<HTMLDivElement>(null);
@@ -121,15 +122,19 @@ export default function Form() {
             Yeni dil için yarını bekleyin. <br />
             Paylaşmak için: <br />
             <button
-              className="btn"
+              className="btn btn-"
               onClick={() => {
-                const copyText = "#Codle#" 
+                const copyText = "#Codle# " 
                   + "Ben " +
                   tried + 
                   " denemede doğru cevaba ulaştım. Peki sen kaç denemede ulaşacaksın? Hemen tıkla ve dene: " + "https://benserhat.live/";
-
+                
                 navigator.clipboard.writeText(copyText);
+
+                if(copyRef.current)
+                  copyRef.current.innerHTML = "Kopyalandı";
               }}
+              ref={copyRef}
             >
               Paylaş
               <i className="fa fa-share"></i>
