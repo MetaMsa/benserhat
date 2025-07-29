@@ -1,0 +1,100 @@
+[
+    {
+        "name": "c++",
+        "year": 1985,
+        "compiled": "Derlenen",
+        "c": "Evet",
+        "image": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/cplusplus/cplusplus-plain.svg"
+    },
+    {
+        "name": "python",
+        "year": 1991,
+        "compiled": "Yorumlanan",
+        "c": "Hayır",
+        "image": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-plain.svg"
+    },
+    {
+        "name": "java",
+        "year": 1995,
+        "compiled": "Hem derlenen hem yorumlanan",
+        "c": "Evet",
+        "image": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-plain.svg"
+    },
+    {
+        "name": "swift",
+        "year": 2014,
+        "compiled": "Derlenen",
+        "c": "Evet",
+        "image": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/swift/swift-original.svg"
+    },
+    {
+        "name": "perl",
+        "year": 1987,
+        "compiled": "Yorumlanan",
+        "c": "Evet",
+        "image": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/perl/perl-original.svg"
+    },
+    {
+        "name": "ruby",
+        "year": 1995,
+        "compiled": "Yorumlanan",
+        "c": "Evet",
+        "image": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/ruby/ruby-plain.svg"
+    },
+    {
+        "name": "r",
+        "year": 1993,
+        "compiled": "Yorumlanan",
+        "c": "Hayır",
+        "image": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/r/r-plain.svg"
+    },
+    {
+        "name": "c#",
+        "year": 2000,
+        "compiled": "Derlenen",
+        "c": "Evet",
+        "image": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/csharp/csharp-plain.svg"
+    },
+    {
+        "name": "kotlin",
+        "year": 2011,
+        "compiled": "Derlenen",
+        "c": "Evet",
+        "image": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/kotlin/kotlin-plain.svg"
+    },
+    {
+        "name": "rust",
+        "year": 2010,
+        "compiled": "Derlenen",
+        "c": "Evet",
+        "image": "../public/rust-original.svg"
+    },
+    {
+        "name": "go",
+        "year": 2009,
+        "compiled": "Derlenen",
+        "c": "Evet",
+        "image": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/go/go-original.svg"
+    },
+    {
+        "name": "php",
+        "year": 1995,
+        "compiled": "Yorumlanan",
+        "c": "Evet",
+        "image": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/php/php-original.svg"
+    },
+    {
+        "name": "javascript",
+        "year": 1995,
+        "compiled": "Yorumlanan",
+        "c": "Evet",
+        "image": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-plain.svg"
+    },
+    {
+        "name": "c",
+        "year": 1972,
+        "compiled": "Derlenen",
+        "c": "Evet",
+        "image": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/c/c-original.svg"
+    }
+]
