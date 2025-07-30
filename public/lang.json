@@ -45,7 +45,7 @@
         "name": "r",
         "year": 1993,
         "compiled": "Yorumlanan",
-        "c": "Hayır",
+        "c": "Evet",
         "image": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/r/r-plain.svg"
     },
     {
@@ -59,7 +59,7 @@
         "name": "kotlin",
         "year": 2011,
         "compiled": "Derlenen",
-        "c": "Evet",
+        "c": "Hayır",
         "image": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/kotlin/kotlin-plain.svg"
     },
     {
