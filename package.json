@@ -10,7 +10,6 @@
     "build:css": "postcss ./src/app/globals.css -o public/output.css"
   },
   "dependencies": {
-    "@cursorify/react": "^0.0.43",
     "axios": "^1.11.0",
     "daisyui": "^5.0.47",
     "next": "15.4.4",

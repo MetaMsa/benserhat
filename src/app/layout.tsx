@@ -4,7 +4,6 @@ import "./globals.css";
 import Image from "next/image";
 import Link from "next/link";
 import NavText from "./navText";
-import AnimatedCursor from "react-animated-cursor";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -44,24 +43,6 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col min-h-screen`}
       >
-        <AnimatedCursor
-          innerSize={8}
-          outerSize={32}
-          color="255, 255, 255"
-          outerAlpha={0.2}
-          innerScale={0.7}
-          outerScale={5}
-          clickables={[
-            "a",
-            "summary",
-            "input",
-            "label[for]",
-            "select",
-            "textarea",
-            "button",
-            ".link",
-          ]}
-        ></AnimatedCursor>
         <header className="bg-gray-900">
           <nav
             aria-label="Global"
