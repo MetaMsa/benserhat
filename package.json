@@ -10,6 +10,7 @@
     "build:css": "postcss ./src/app/globals.css -o public/output.css"
   },
   "dependencies": {
+    "@vercel/analytics": "^1.5.0",
     "axios": "^1.11.0",
     "daisyui": "^5.0.47",
     "next": "15.4.4",
