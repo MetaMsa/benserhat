@@ -4,6 +4,7 @@ import "./globals.css";
 import Image from "next/image";
 import Link from "next/link";
 import NavText from "./navText";
+import AnimatedCursor from "react-animated-cursor";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -35,11 +36,32 @@ export default function RootLayout({
           crossOrigin="anonymous"
           referrerPolicy="no-referrer"
         />
-        <meta name="google-adsense-account" content="ca-pub-2573992278913198"></meta>
+        <meta
+          name="google-adsense-account"
+          content="ca-pub-2573992278913198"
+        ></meta>
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col min-h-screen`}
       >
+        <AnimatedCursor
+          innerSize={8}
+          outerSize={32}
+          color="255, 255, 255"
+          outerAlpha={0.2}
+          innerScale={0.7}
+          outerScale={5}
+          clickables={[
+            "a",
+            "summary",
+            "input",
+            "label[for]",
+            "select",
+            "textarea",
+            "button",
+            ".link",
+          ]}
+        ></AnimatedCursor>
         <header className="bg-gray-900">
           <nav
             aria-label="Global"
@@ -62,13 +84,19 @@ export default function RootLayout({
                     <summary className="text-center">MENÜ</summary>
                     <ul className="bg-base-100 rounded-t-none p-2">
                       <li>
-                        <Link href={"/"} className="m-auto"><i className="fa fa-house"></i></Link>
+                        <Link href={"/"} className="m-auto">
+                          <i className="fa fa-house"></i>
+                        </Link>
                       </li>
                       <li>
-                        <Link href={"/blog"} className="m-auto">Blog</Link>
+                        <Link href={"/blog"} className="m-auto">
+                          Blog
+                        </Link>
                       </li>
                       <li>
-                        <Link href={"/codle"} className="m-auto">CoDle</Link>
+                        <Link href={"/codle"} className="m-auto">
+                          CoDle
+                        </Link>
                       </li>
                     </ul>
                   </details>
@@ -79,9 +107,18 @@ export default function RootLayout({
         </header>
         <main className="text-center">{children}</main>
         <footer className="flex items-center justify-center footer footer-center bg-gray-900 mt-auto p-5 text-2xl">
-            <Link className="mx-5" href={"https://www.youtube.com/@metamsa"}><i className="fa-brands fa-youtube"></i></Link>
-            <Link className="mx-5" href={"https://github.com/MetaMsa"}><i className="fa-brands fa-github"></i></Link>
-            <Link className="mx-5" href={"https://www.linkedin.com/in/mehmet-serhat-aslan-58272b28a"}><i className="fa-brands fa-linkedin"></i></Link>
+          <Link className="mx-5" href={"https://www.youtube.com/@metamsa"}>
+            <i className="fa-brands fa-youtube"></i>
+          </Link>
+          <Link className="mx-5" href={"https://github.com/MetaMsa"}>
+            <i className="fa-brands fa-github"></i>
+          </Link>
+          <Link
+            className="mx-5"
+            href={"https://www.linkedin.com/in/mehmet-serhat-aslan-58272b28a"}
+          >
+            <i className="fa-brands fa-linkedin"></i>
+          </Link>
         </footer>
       </body>
     </html>
