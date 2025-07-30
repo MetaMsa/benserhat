@@ -25,8 +25,8 @@ export default function Codle() {
         ></Image>
       </div>
       <ClientForm></ClientForm>
-      <div className="flex flex-col items-center justify-center bg-gray-900 m-5 rounded-xl">
-        <div className="mb-1">
+      <div className="flex flex-col items-center justify-center bg-gray-900 mx-auto mb-5 rounded-xl w-30">
+        <div className="my-1">
           <Image
           src={image}
           className="h-10"
@@ -37,7 +37,7 @@ export default function Codle() {
 
           </Image>
         </div>
-        <div>ÖNCEKİ GÜNÜN DİLİ</div>
+        <div>Önceki Günün Dili</div>
       </div>
     </div>
   );
