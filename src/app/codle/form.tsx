@@ -123,16 +123,17 @@ export default function Form() {
             Paylaşmak için: <br />
             <button
               className="btn btn-"
-              onClick={() => {
-                const copyText = "#Codle# " 
-                  + "Ben " +
-                  tried + 
-                  " denemede doğru cevaba ulaştım. Peki sen kaç denemede ulaşacaksın? Hemen tıkla ve dene: " + "https://benserhat.live/codle";
-                
-                navigator.clipboard.writeText(copyText);
+              onClick={ async () => {
 
-                if(copyRef.current)
-                  copyRef.current.innerHTML = "Kopyalandı";
+                const shareData = {
+                  title: "CoDle",
+                  text: "#Codle# " +
+                  "Ben " +
+                  tried +
+                  " denemede doğru cevaba ulaştım. Peki sen kaç denemede ulaşacaksın? Hemen tıkla ve dene: " +
+                  "https://benserhat.live/codle"
+                };
+                await navigator.share(shareData);
               }}
               ref={copyRef}
             >
