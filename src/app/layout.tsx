@@ -4,7 +4,8 @@ import "./globals.css";
 import Image from "next/image";
 import Link from "next/link";
 import NavText from "./navText";
-import { Analytics } from "@vercel/analytics/next"
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -45,6 +46,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col min-h-screen`}
       >
         <Analytics/>
+        <SpeedInsights/>
         <header className="bg-gray-900">
           <nav
             aria-label="Global"
