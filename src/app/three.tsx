@@ -7,7 +7,7 @@ export default function Three() {
   const mountRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    const mount = mountRef.current
+    const mount = mountRef.current;
     if (!mount) return;
 
     const scene = new THREE.Scene();
@@ -21,10 +21,7 @@ export default function Three() {
     camera.position.z = 100;
 
     const renderer = new THREE.WebGLRenderer({ antialias: true });
-    renderer.setSize(
-      mount.clientWidth,
-      mount.clientHeight
-    );
+    renderer.setSize(mount.clientWidth, mount.clientHeight);
     mount.appendChild(renderer.domElement);
 
     const light = new THREE.DirectionalLight(0xffffff, 1);
@@ -53,7 +50,7 @@ export default function Three() {
         textMesh = new THREE.Mesh(textGeometry, textMaterial);
 
         textGeometry.computeBoundingBox();
-        if(!textGeometry.boundingBox) return;
+        if (!textGeometry.boundingBox) return;
         const centerOffset =
           -0.5 *
           (textGeometry.boundingBox.max.x - textGeometry.boundingBox.min.x);
@@ -62,6 +59,59 @@ export default function Three() {
         textMesh.position.z = 0;
 
         scene.add(textMesh);
+
+        let mouseDown = false;
+        let lastY = 0;
+
+        mountRef.current?.addEventListener("mousedown", () => {
+          mouseDown = true;
+        });
+
+        document.addEventListener("mouseup", () => {
+          mouseDown = false;
+        });
+
+        document.addEventListener("mousemove", (e) => {
+          if (mouseDown) {
+            const currentY = e.clientY;
+
+            if (currentY < lastY) {
+              textMesh.rotateX(-0.1);
+            } else if (currentY > lastY) {
+              textMesh.rotateX(0.1);
+            }
+
+            lastY = currentY;
+          }
+        });
+
+        let lastYmobile:number;
+        let mouseDownMobile:boolean;
+
+        mountRef.current?.addEventListener("touchstart", (e) => {
+          e.preventDefault();
+          mouseDownMobile = true;
+
+          lastYmobile = e.touches[0].clientY;
+        }, {passive: false});
+
+        document.addEventListener("tocuhend", () => {
+          mouseDownMobile = false;
+        });
+
+        document.addEventListener("touchmove", (e) => {
+          if (mouseDownMobile) {
+            const currentYmobile = e.touches[0].clientY;
+
+            if (currentYmobile < lastYmobile) {
+              textMesh.rotateX(-0.1);
+            } else if (currentYmobile > lastYmobile) {
+              textMesh.rotateX(0.1);
+            }
+
+            lastYmobile = currentYmobile;
+          }
+        });
 
         const animate = () => {
           requestAnimationFrame(animate);
@@ -75,22 +125,15 @@ export default function Three() {
 
     const handleResize = () => {
       if (!mount) return;
-      renderer.setSize(
-        mount.clientWidth,
-        mount.clientHeight
-      );
-      camera.aspect =
-        mount.clientWidth / mount.clientHeight;
+      renderer.setSize(mount.clientWidth, mount.clientHeight);
+      camera.aspect = mount.clientWidth / mount.clientHeight;
       camera.updateProjectionMatrix();
     };
     window.addEventListener("resize", handleResize);
 
     return () => {
       window.removeEventListener("resize", handleResize);
-      if (
-        mount &&
-        renderer.domElement.parentNode === mount
-      ) {
+      if (mount && renderer.domElement.parentNode === mount) {
         mount.removeChild(renderer.domElement);
       }
       renderer.dispose();
