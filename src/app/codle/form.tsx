@@ -21,8 +21,15 @@ export default function Form() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    if(divRef.current)
+      divRef.current.innerHTML = "Yükleniyor...";
+
     const langName = inputRef.current?.value.toLocaleLowerCase().trim();
-    const res = await axios.post("/api/langApi", { name: langName });
+    const res = await axios.post("/api/langApi", { name: langName }).finally(() => {
+      if(divRef.current)
+        divRef.current.innerHTML = "";
+    });
 
     tried++;
 
