@@ -65,9 +65,13 @@ export default function Three() {
 
         mountRef.current?.addEventListener("mousedown", () => {
           mouseDown = true;
+          mount.classList.remove("cursor-grab");
+          mount.classList.add("cursor-grabbing");
         });
 
         document.addEventListener("mouseup", () => {
+          mount.classList.remove("cursor-grabbing");
+          mount.classList.add("cursor-grab");
           mouseDown = false;
         });
 
@@ -140,5 +144,5 @@ export default function Three() {
     };
   }, []);
 
-  return <div ref={mountRef} className="w-full h-50 overflow-hidden" />;
+  return <div ref={mountRef} className="w-full h-50 overflow-hidden cursor-grab" />;
 }
