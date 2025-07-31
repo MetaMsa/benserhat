@@ -46,7 +46,7 @@ export default function Three() {
           bevelSegments: 5,
         });
 
-        const textMaterial = new THREE.MeshPhongMaterial({ color: 0x00ff00 });
+        const textMaterial = new THREE.MeshPhongMaterial({ color: 0xffffff });
         textMesh = new THREE.Mesh(textGeometry, textMaterial);
 
         textGeometry.computeBoundingBox();
