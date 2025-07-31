@@ -4,7 +4,7 @@ export const metadata: Metadata = {
   title: "Blog",
 };
 
-export default function About() {
+export default function Blog() {
   return (
     <div className="flex m-auto my-30 w-52 flex-col gap-4">
       <div className="flex items-center gap-4">
