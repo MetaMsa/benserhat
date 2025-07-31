@@ -13,7 +13,7 @@ export default function Home() {
       .then((data) => (setData(data.items[0].statistics.subscriberCount)));
   }, []);
   return (
-    <div className="grid grid-cols-1 sm:grid-col-2 md:grid-cols-3 m-10 p-10 bg-gray-900 rounded-xl">
+    <div className="grid grid-cols-1 sm:grid-col-2 md:grid-cols-3 mx-10 my-20 p-10 bg-gray-900 rounded-xl">
       <div>
         <Image
           className="rounded-xl mx-auto"
