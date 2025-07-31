@@ -99,11 +99,15 @@ export default function Three() {
           lastYmobile = e.touches[0].clientY;
         }, {passive: false});
 
-        document.addEventListener("tocuhend", () => {
-          mouseDownMobile = false;
-        });
+        mountRef.current?.addEventListener("tocuhend", (e) => {
+          e.preventDefault();
 
-        document.addEventListener("touchmove", (e) => {
+          mouseDownMobile = false;
+        }, {passive: false});
+
+        mountRef.current?.addEventListener("touchmove", (e) => {
+          e.preventDefault();
+
           if (mouseDownMobile) {
             const currentYmobile = e.touches[0].clientY;
 
@@ -115,7 +119,7 @@ export default function Three() {
 
             lastYmobile = currentYmobile;
           }
-        });
+        }, {passive: false});
 
         const animate = () => {
           requestAnimationFrame(animate);
