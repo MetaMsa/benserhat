@@ -9,7 +9,7 @@ interface PageProps {
 }
 
 export default async function AdminLogin({ params }: PageProps) {
-  const resolvedParams = await params;  
+  const resolvedParams = await params;
 
   const secretSlug = process.env.URL;
 
@@ -17,5 +17,23 @@ export default async function AdminLogin({ params }: PageProps) {
     return notFound();
   }
 
-  return <div>Admin Paneline Hoşgeldin</div>;
+  return (
+    <div className="flex flex-col justify-center items-center my-50">
+      <form action="">
+        <input
+          type="text"
+          placeholder="Kullanıcı Adı"
+          className="input input-ghost text-center"
+        />
+        <input
+          type="text"
+          placeholder="Şifre"
+          className="input input-ghost text-center"
+        />  <br />
+        <button type="submit" className="btn">
+            Giriş Yap <i className="fa-solid fa-right-to-bracket"></i>
+        </button>
+      </form>
+    </div>
+  );
 }

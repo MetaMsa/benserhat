@@ -37,6 +37,7 @@ export default function RootLayout({
           crossOrigin="anonymous"
           referrerPolicy="no-referrer"
         />
+        <link rel="icon" href="/favicon.ico" type="image/x-icon"/>
         <meta
           name="google-adsense-account"
           content="ca-pub-2573992278913198"
