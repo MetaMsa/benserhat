@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /aGVyc2FiaXRkw7zFn8O8bmNlc2FoaWJpacOnaW56aW5kYW5kxLFycsSxZG5hZG5pem5pw6dpaWJpaGFzZWNuw7zFn8O8ZHRpYmFzcmVo
+
+Sitemap: http://localhost:3000/sitemap.xml

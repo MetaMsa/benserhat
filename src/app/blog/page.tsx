@@ -6,16 +6,15 @@ export const metadata: Metadata = {
 
 export default function Blog() {
   return (
-    <div className="flex flex-col m-auto my-30 w-52 gap-4">
-      <div className="flex items-center gap-4">
-        <div className="bg-gray-900 skeleton h-16 w-16 shrink-0 rounded-full"></div>
-        <div className="flex flex-col gap-4">
-          <div className="bg-gray-900 skeleton h-4 w-20"></div>
-          <div className="bg-gray-900 skeleton h-4 w-28"></div>
-        </div>
+    <div>
+      <div className="flex justify-center items-center">
+        <h1>BLOG</h1>
       </div>
-      <div className="skeleton bg-gray-900 h-32 w-full">
-        <p className="my-12">Yapım Aşamasında ...</p>
+      <div className="grid grid-flow-col grid-rows-3 gap-4 border border-amber-50">
+        <div className="row-span-3 border border-amber-50">1</div>
+        <div className="col-span-2 border border-amber-50">2</div>
+        <div className="col-span-2 border border-amber-50">3</div>
+        <div className="col-span-2 border border-amber-50">4</div>
       </div>
     </div>
   );
