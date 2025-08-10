@@ -67,7 +67,7 @@
         "year": 2010,
         "compiled": "Derlenen",
         "c": "Evet",
-        "image": "../public/rust-original.svg"
+        "image": "./rust-original.svg"
     },
     {
         "name": "go",
