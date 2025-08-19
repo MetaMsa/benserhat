@@ -1,4 +1,4 @@
-import LangJson from "../../../../public/lang.json";
+import LangJson from "../../../../lang.json";
 
 export async function POST(req: Request) {
   const body = await req.json();

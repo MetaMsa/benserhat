@@ -1,4 +1,4 @@
-import LangJson from "../../../../public/lang.json";
+import LangJson from "../../../../lang.json";
 
 export async function POST() {
   const time = new Date("2024-05-23");

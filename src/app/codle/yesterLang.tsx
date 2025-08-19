@@ -6,18 +6,22 @@ import { useState, useEffect } from "react";
 
 export default function YesterLang() {
   const [imgUrl, setImgUrl] = useState<string | null>(null);
+  const [name, setName] = useState<string | null>(null);
 
   useEffect(() => {
-    const fetchImg = async () => {
+    const fetch = async () => {
       const res = await axios.post("/api/yesterDay");
       setImgUrl(res.data.image);
+      setName(res.data.name);
     };
-    fetchImg();
+    fetch();
   }, []);
 
   if (!imgUrl) return null;
 
   return (
-    <Image src={imgUrl} className="h-10" width={300} height={200} alt="" />
+    <div className="tooltip" data-tip={name}>
+      <Image src={imgUrl} className="h-10" width={300} height={200} alt="" />
+    </div>
   );
 }
