@@ -3,10 +3,10 @@ import { _Blog } from "@/Model/Blog";
 import { _Comments } from "@/Model/Blog";
 import { notFound } from "next/navigation";
 import mongoose from "mongoose";
+import Modal from "./modal";
 
 export default async function BlogText({ params }) {
   const resolvedParams = await params;
-
   await connectDb();
 
   if (!mongoose.Types.ObjectId.isValid(resolvedParams.id)) return notFound();
@@ -29,8 +29,9 @@ export default async function BlogText({ params }) {
             text.createdAt.getFullYear()}
         </div>
       </h1>
+      <Modal></Modal>
       <div
-        className="break-words p-10 m-10 text-left bg-gray-900 rounded-xl"
+        className="break-words text-xs sm:text-sm p-5 m-5 text-left bg-gray-900 rounded-xl"
         dangerouslySetInnerHTML={{ __html: text.content }}
       ></div>
       <div className="mt-auto">
@@ -63,7 +64,7 @@ export default async function BlogText({ params }) {
           />{" "}
           <br />
           <input type="hidden" name="page" value={resolvedParams.id} />
-          <button type="submit" className="btn btn-outline mt-1">
+          <button type="submit" className="btn btn-outline rounded mt-1">
             Yorum Gönder
           </button>
         </form>
@@ -71,7 +72,7 @@ export default async function BlogText({ params }) {
       {comments.map((comment, index) => (
         <div
           key={index}
-          className="mx-50 bg-gray-900 rounded-xl mt-5 p-5 text-left"
+          className="mx-auto bg-gray-900 rounded-xl mt-5 p-5 text-left"
         >
           <div className="font-bold">{comment.author}</div>{" "}
           <div className="text-sm">

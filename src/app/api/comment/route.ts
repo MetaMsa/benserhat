@@ -19,5 +19,5 @@ export async function POST(req: Request) {
 
   await commentText.save();
 
-  return redirect("/blog/texts/" + commentData.get("page"));
+  return redirect("/blog/texts/" + commentData.get("page") + "?status=success");
 }
