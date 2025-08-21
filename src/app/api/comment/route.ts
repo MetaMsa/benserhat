@@ -8,6 +8,11 @@ const SECRET_KEY = process.env.HMAC_SECRET || "secret";
 export async function POST(req: Request) {
   const commentData = await req.formData();
 
+  if(!commentData.get("text") || !commentData.get("page") || !commentData.get("author") || !commentData.get("email"))
+  {
+    return redirect("/blog/texts/" + commentData.get("page") + "?status=error");
+  }
+
   await connectDb();
 
   const commentText = new _Comments({
