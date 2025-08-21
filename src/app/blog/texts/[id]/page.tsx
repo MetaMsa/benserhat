@@ -32,7 +32,7 @@ export default async function BlogText({ params }) {
       </h1>
       <Modal></Modal>
       <div
-        className="break-words text-xs sm:text-sm p-5 m-5 text-left bg-gray-900 rounded-xl border"
+        className="break-words text-xs sm:text-sm p-5 mx-auto my-5 text-left bg-gray-900 rounded-xl border"
         dangerouslySetInnerHTML={{ __html: text.content }}
       ></div>
       <div className="mt-auto">
