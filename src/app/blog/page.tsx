@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import { connectDb } from "@/lib/connectDb";
 import {_Blog} from "@/Model/Blog";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Blog",
@@ -17,7 +18,7 @@ export default async function Blog() {
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
         {(
           blogmodel.map((blog, index) => (
-            <a
+            <Link
               key={index}
               className={"w-50 xl:w-100 mx-auto bg-gray-900 rounded-xl m-5 p-5 border border-amber-50"
               }
@@ -26,7 +27,7 @@ export default async function Blog() {
               <h1 className="font-extrabold">{blog.title}</h1>
               <div className="truncate">{blog.content.replace(/<[^>]+>/g, "")}</div>
               <h2 className="text-sm">{blog.createdAt.getDate() + "/" + (blog.createdAt.getMonth() + 1) + "/" + blog.createdAt.getFullYear()}</h2>
-            </a>
+            </Link>
           ))
         )}
       </div>

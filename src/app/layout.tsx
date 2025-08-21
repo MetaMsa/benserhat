@@ -110,6 +110,12 @@ export default function RootLayout({
           >
             <i className="fa-brands fa-linkedin"></i>
           </Link>
+          <Link
+            className="mx-5"
+            href={"mailto:mserhataslan@hotmail.com"}
+          >
+            <i className="fa-solid fa-envelope"></i>
+          </Link>
         </footer>
       </body>
     </html>
