@@ -16,7 +16,7 @@ export default async function BlogText({ params }) {
 
   if (!text) return notFound();
 
-  const comments = await _Comments.find({ page: resolvedParams.id });
+  const comments = await _Comments.find({ page: resolvedParams.id }).sort({ createdAt: -1 });
 
   return (
     <div className="m-5 object-contain">
