@@ -34,7 +34,7 @@ export default async function AdminLogin({ params }) {
           name="password"
           required
         />  <br />
-        <button type="submit" className="btn">
+        <button type="submit" className="btn btn-outline rounded-xl">
             Giriş Yap <i className="fa-solid fa-right-to-bracket"></i>
         </button>
       </form>

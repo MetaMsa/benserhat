@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Image from "next/image";
@@ -20,6 +20,11 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Serhat",
   description: "Ben Serhat",
+};
+
+export const viewport:Viewport = {
+  width: "device-width",
+  initialScale: 1.0,
 };
 
 export default function RootLayout({
@@ -48,7 +53,7 @@ export default function RootLayout({
       >
         <Analytics/>
         <SpeedInsights/>
-        <header className="bg-gray-900">
+        <header className="bg-gray-900 border-b">
           <nav
             aria-label="Global"
             className="navbar navbar-center mx-auto flex flex-col md:flex-row max-w-7xl items-center justify-between p-3"
@@ -92,7 +97,7 @@ export default function RootLayout({
           </nav>
         </header>
         <main className="text-center">{children}</main>
-        <footer className="flex items-center justify-center footer footer-center bg-gray-900 mt-auto p-5 text-2xl">
+        <footer className="flex items-center justify-center footer footer-center bg-gray-900 mt-auto p-5 text-2xl border-t">
           <Link className="mx-5" href={"https://www.youtube.com/@metamsa"}>
             <i className="fa-brands fa-youtube"></i>
           </Link>

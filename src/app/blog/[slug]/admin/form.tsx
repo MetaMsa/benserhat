@@ -126,7 +126,7 @@ export default function Form() {
   };
 
   return (
-    <div className="m-5 bg-gray-900 rounded-xl">
+    <div className="m-5 bg-gray-900 rounded-xl border">
       <h1 className="pt-5">BLOG YÖNETİM PANELİ</h1>
       <form
         method="post"

@@ -4,6 +4,7 @@ import { _Comments } from "@/Model/Blog";
 import { notFound } from "next/navigation";
 import mongoose from "mongoose";
 import Modal from "./modal";
+import Button from "./button";
 
 export default async function BlogText({ params }) {
   const resolvedParams = await params;
@@ -19,7 +20,7 @@ export default async function BlogText({ params }) {
 
   return (
     <div className="m-5 object-contain">
-      <h1 className="text-xl font-bold m-5 p-1 mx-auto rounded-xl w-50 bg-gray-900">
+      <h1 className="text-xl font-bold m-5 p-1 mx-auto rounded-xl w-50 bg-gray-900 border">
         {text.title}{" "}
         <div className="text-sm">
           {text.createdAt.getDate() +
@@ -31,14 +32,14 @@ export default async function BlogText({ params }) {
       </h1>
       <Modal></Modal>
       <div
-        className="break-words text-xs sm:text-sm p-5 m-5 text-left bg-gray-900 rounded-xl"
+        className="break-words text-xs sm:text-sm p-5 m-5 text-left bg-gray-900 rounded-xl border"
         dangerouslySetInnerHTML={{ __html: text.content }}
       ></div>
       <div className="mt-auto">
         <form
           action="../../../api/comment"
           method="post"
-          className="bg-gray-900 w-60 py-5 mx-auto rounded-xl"
+          className="bg-gray-900 w-60 py-5 mx-auto rounded-xl border"
         >
           <textarea
             className="border text-sm w-50 rounded"
@@ -64,21 +65,19 @@ export default async function BlogText({ params }) {
           />{" "}
           <br />
           <input type="hidden" name="page" value={resolvedParams.id} />
-          <button type="submit" className="btn btn-outline rounded mt-1">
-            Yorum Gönder
-          </button>
+          <Button></Button>
         </form>
       </div>
       {comments.map((comment, index) => (
         <div
           key={index}
-          className="mx-auto bg-gray-900 rounded-xl mt-5 p-5 text-left"
+          className="mx-auto bg-gray-900 rounded-xl mt-5 p-5 text-left border"
         >
           <div className="font-bold">{comment.author}</div>{" "}
           <div className="text-sm">
             {comment.createdAt.getDate() +
               "/" +
-              comment.createdAt.getMonth() +
+              (comment.createdAt.getMonth() + 1) +
               "/" +
               comment.createdAt.getFullYear() +
               " " +

@@ -123,7 +123,7 @@ export default function Form() {
         modal
       </button>
       <dialog id="success_modal" className="modal">
-        <div className="modal-box">
+        <div className="modal-box border">
           <h3 className="font-bold text-lg">Tebrikler doğru bildiniz</h3>
           <p className="py-4">
             Yeni dil için yarını bekleyin. <br />
@@ -172,15 +172,15 @@ export default function Form() {
         <div ref={divRef}></div>
       </form>
       <div className="grid grid-cols-1 m-5 sm:grid-cols-3 gap-4">
-        <div ref={yearRef} className="bg-gray-900 rounded-xl h-20 sm:h-50">
+        <div ref={yearRef} className="bg-gray-900 rounded-xl h-20 sm:h-50 border">
           Çıkış Yılı
           <div className="my-3 sm:my-15" ref={yearRefData}></div>
         </div>
-        <div ref={compiledRef} className="bg-gray-900 rounded-xl h-20 sm:h-50">
+        <div ref={compiledRef} className="bg-gray-900 rounded-xl h-20 sm:h-50 border">
           Derlenen/Yorumlanan
           <div className="my-3 sm:my-15" ref={compiledRefData}></div>
         </div>
-        <div ref={cRef} className="bg-gray-900 rounded-xl h-20 sm:h-50">
+        <div ref={cRef} className="bg-gray-900 rounded-xl h-20 sm:h-50 border">
           C türevi mi?
           <div className="my-3 sm:my-15" ref={cRefData}></div>
         </div>
