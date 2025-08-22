@@ -10,7 +10,7 @@ export default function NavText() {
 
     if (!divRef.current) return;
 
-    divRef.current.innerText = "M"; // Başlangıç temizliği
+    divRef.current.innerText = "M"; 
 
     const myInterval = setInterval(() => {
       if (!divRef.current) return;
@@ -20,7 +20,7 @@ export default function NavText() {
 
       if (i === karsilama.length + 1) {
         i = 0;
-        divRef.current.innerText = "M"; // İstersen burayı boş yap veya istediğin metni koy
+        divRef.current.innerText = "M"; 
       }
     }, 500);
 

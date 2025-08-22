@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function Gdpr() {
   return (
-    <div className="m-5 p-5 text-xs sm:text-sm bg-gray-900 rounded-2xl">
+    <div className="m-5 p-5 border text-xs sm:text-sm bg-gray-900 rounded-2xl">
       <h1>Gizlilik Politikası</h1>
       <p>Son güncelleme: 22 Ağustos 2025</p>
       <p>
