@@ -33,7 +33,7 @@ export default function Home() {
         </p>
       </div>
       <div className="col-span-1 sm:col-span-2 md:col-span-3">
-        <p className="text-center">
+        <p className="text-center text-xs md:text-sm">
           Kocaeli Üniversitesi’nde Bilgisayar Programlama eğitimi alıyorum ve
           aynı zamanda İstanbul Üniversitesi’nde Web Tasarımı ve Kodlama
           alanlarında öğrenimime devam ediyorum. Akademik çalışmalarım sırasında

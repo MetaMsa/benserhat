@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function Gdpr() {
   return (
-    <div className="m-5 p-5 bg-gray-900 rounded-2xl">
+    <div className="m-5 p-5 text-xs sm:text-sm bg-gray-900 rounded-2xl">
       <h1>Gizlilik Politikası</h1>
       <p>Son güncelleme: 22 Ağustos 2025</p>
       <p>
@@ -17,7 +17,7 @@ export default function Gdpr() {
         toplanmasını ve kullanılmasını kabul etmiş olursunuz. Bu Gizlilik
         Politikası{" "}
         <Link
-          href="https://www.freeprivacypolicy.com/free-privacy-policy-generator/"
+          href={"https://www.freeprivacypolicy.com/free-privacy-policy-generator/"}
           target="_blank"
         >
           Free Privacy Policy Generator
@@ -97,13 +97,13 @@ export default function Gdpr() {
         <li>
           <p>
             <strong>Web Sitesi</strong> benserhat,{" "}
-            <a
-              href="https://benserhat.live/"
+            <Link
+              href={"https://benserhat.live/"}
               rel="external nofollow noopener"
               target="_blank"
             >
               https://benserhat.live/
-            </a>{" "}
+            </Link>{" "}
             adresinden erişilebilir.
           </p>
         </li>
@@ -154,7 +154,7 @@ export default function Gdpr() {
       <p>
         Çerezler &quot;Kalıcı&quot; veya &quot;Oturum&quot; çerezleri olabilir. Detaylı bilgi için{" "}
         <Link
-          href="https://www.freeprivacypolicy.com/blog/sample-privacy-policy-template/#Use_Of_Cookies_And_Tracking"
+          href={"https://www.freeprivacypolicy.com/blog/sample-privacy-policy-template/#Use_Of_Cookies_And_Tracking"}
           target="_blank"
         >
           Free Privacy Policy
@@ -306,7 +306,7 @@ export default function Gdpr() {
         Bu Gizlilik Politikası hakkında sorularınız için bize ulaşabilirsiniz:
       </p>
       <ul>
-        <li>E-posta: mehmetserhataslan955@gmail.com</li>
+        <li>E-posta: mehmetserhataslan955 @gmail.com</li>
       </ul>
     </div>
   );
