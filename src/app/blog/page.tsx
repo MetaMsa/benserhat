@@ -20,7 +20,7 @@ export default async function Blog() {
           blogmodel.map((blog, index) => (
             <Link
               key={index}
-              className={"w-50 xl:w-100 mx-auto bg-gray-900 rounded-xl m-5 p-5 border border-amber-50"
+              className={"w-50 xl:w-100 mx-auto bg-gray-900 rounded-xl border border-amber-50"
               }
               href={"/blog/texts/" + blog._id}
             >
