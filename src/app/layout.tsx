@@ -98,20 +98,20 @@ export default function RootLayout({
         </header>
         <main className="text-center">{children}</main>
         <footer className="flex items-center justify-center footer footer-center bg-gray-900 mt-auto p-5 text-2xl border-t">
-          <Link className="mx-5" href={"https://www.youtube.com/@metamsa"}>
+          <Link className="mx-1 sm:mx-5" href={"https://www.youtube.com/@metamsa"}>
             <i className="fa-brands fa-youtube"></i>
           </Link>
-          <Link className="mx-5" href={"https://github.com/MetaMsa"}>
+          <Link className="mx-1 sm:mx-5" href={"https://github.com/MetaMsa"}>
             <i className="fa-brands fa-github"></i>
           </Link>
           <Link
-            className="mx-5"
+            className="mx-1 sm:mx-5"
             href={"https://www.linkedin.com/in/mehmet-serhat-aslan-58272b28a"}
           >
             <i className="fa-brands fa-linkedin"></i>
           </Link>
           <Link
-            className="mx-5"
+            className="mx-1 sm:mx-5"
             href={"mailto:mserhataslan@hotmail.com"}
           >
             <i className="fa-solid fa-envelope"></i>
