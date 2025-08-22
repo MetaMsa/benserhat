@@ -16,7 +16,7 @@ const CustomImage = Image.extend({
     return {
       ...this.parent?.(),
       class: {
-        default: "mx-auto h-50 block",
+        default: "mx-auto block",
         parseHTML: (element) => element.getAttribute("class"),
         renderHTML: (attributes) => {
           return {
