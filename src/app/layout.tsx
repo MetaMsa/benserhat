@@ -71,7 +71,7 @@ export default function RootLayout({
             <div className="flex-none z-1">
               <ul className="menu menu-horizontal px-1">
                 <li>
-                  <details>
+                  <details className="dropdown">
                     <summary className="text-center">MENÜ</summary>
                     <ul className="bg-base-100 rounded-t-none p-2">
                       <li>
