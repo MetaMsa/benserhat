@@ -16,7 +16,7 @@ export default function Modal() {
       statusMessage.current!.innerHTML = "Yorumunuz başarıyla kaydedildi.";
       modalRef.current?.showModal();
     } else if (status === "error") {
-      statusMessage.current!.innerHTML = 'Yorumunuz kaydedilemedi! <br> Lütfen tüm alanları doldurduğunuzdan emin olun.';
+      statusMessage.current!.innerHTML = 'Yorumunuz kaydedilemedi! <br> Lütfen tüm alanları doğru doldurduğunuzdan emin olun.';
       modalRef.current?.showModal();
     }
   }, [status]);

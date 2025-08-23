@@ -23,6 +23,7 @@
     "axios": "^1.11.0",
     "daisyui": "^5.0.47",
     "jsonwebtoken": "^9.0.2",
+    "mailersend": "^2.6.0",
     "mongoose": "^8.17.1",
     "next": "15.4.4",
     "next-sitemap": "^4.2.3",

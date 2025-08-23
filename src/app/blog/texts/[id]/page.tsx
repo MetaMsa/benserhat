@@ -1,10 +1,11 @@
 import { connectDb } from "@/lib/connectDb";
-import { _Blog } from "@/Model/Blog";
+import { _Blog, _Replies } from "@/Model/Blog";
 import { _Comments } from "@/Model/Blog";
 import { notFound } from "next/navigation";
 import mongoose from "mongoose";
 import Modal from "./modal";
 import Button from "./button";
+import ReplyButton from "./replybutton";
 
 export default async function BlogText({ params }) {
   const resolvedParams = await params;
@@ -16,7 +17,13 @@ export default async function BlogText({ params }) {
 
   if (!text) return notFound();
 
-  const comments = await _Comments.find({ page: resolvedParams.id }).sort({ createdAt: -1 });
+  const comments = await _Comments
+    .find({ page: resolvedParams.id })
+    .sort({ createdAt: -1 });
+
+  const replies = await _Replies
+    .find({ page: resolvedParams.id })
+    .sort({ createdAt: -1 });
 
   return (
     <div className="m-5 object-contain">
@@ -87,6 +94,57 @@ export default async function BlogText({ params }) {
           </div>{" "}
           <br />
           {comment.text}
+          <div className="my-5">
+            <form
+              action={"../../../api/reply"}
+              className="text-left"
+              method="post"
+            >
+              <textarea
+                className="border text-sm w-50 rounded"
+                name="text"
+                placeholder="Yanıtınızı girin"
+                required
+              />{" "}
+              <br />
+              <input type="hidden" name="page" value={resolvedParams.id} />
+              <input type="hidden" name="reply" value={comment.id} />
+              <input
+                type="email"
+                className="border text-sm w-50 rounded"
+                name="email"
+                placeholder="E-Postanızı girin"
+                required
+              />{" "}
+              <br />
+              <input
+                type="text"
+                className="border text-sm w-50 rounded"
+                name="author"
+                placeholder="Kullanıcı adınızı girin"
+                required
+              />{" "}
+              <br />
+              <ReplyButton></ReplyButton>
+            </form>
+            {replies.filter((_reply) => _reply.reply.toString() === comment.id.toString()).map((_reply, index) => (
+              <div key={index} className="ml-50 border-b my-5">
+                <div className="font-bold my-5">{_reply.author}</div>{" "}
+                {_reply.text}
+                <div className="text-sm my-5">
+                  {_reply.createdAt.getDate() +
+                    "/" +
+                    (_reply.createdAt.getMonth() + 1) +
+                    "/" +
+                    _reply.createdAt.getFullYear() +
+                    " " +
+                    (_reply.createdAt.getUTCHours() + 3) +
+                    ":" +
+                    _reply.createdAt.getMinutes()}
+                </div>{" "}
+              </div>
+            ))}
+          </div>
         </div>
       ))}
     </div>
