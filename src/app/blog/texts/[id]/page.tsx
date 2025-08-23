@@ -128,7 +128,7 @@ export default async function BlogText({ params }) {
               <ReplyButton></ReplyButton>
             </form>
             {replies.filter((_reply) => _reply.reply.toString() === comment.id.toString()).map((_reply, index) => (
-              <div key={index} className="ml-50 border-b my-5">
+              <div key={index} className="mx-auto border-b my-5">
                 <div className="font-bold my-5">{_reply.author}</div>{" "}
                 {_reply.text}
                 <div className="text-sm my-5">
