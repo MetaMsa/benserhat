@@ -1,6 +1,7 @@
 import { notFound, redirect } from "next/navigation";
 import { _Blog } from "@/Model/Blog";
 import { _Comments } from "@/Model/Blog";
+import { _Replies } from "@/Model/Blog";
 import { connectDb } from "@/lib/connectDb";
 import { NewsMailSend } from "@/lib/mailSend";
 import { cookies } from "next/headers";
@@ -26,11 +27,19 @@ export async function POST(req: Request) {
 
   await connectDb();
 
-  const emails = await _Comments.find();
-  const emailList = emails.map((comment) => ({
-    email: comment.email,
-    name: comment.name || "Kullanıcı",
-  }));
+  const emailsComment = await _Comments.find();
+  const emailsReply = await _Replies.find();
+
+  const emailList = [
+    ...emailsComment.map((comment) => ({
+      email: comment.email,
+      name: comment.author
+    })),
+    ...emailsReply.map((reply) => ({
+      email: reply.email,
+      name: reply.author
+    })),
+  ];
 
   NewsMailSend(emailList);
 
