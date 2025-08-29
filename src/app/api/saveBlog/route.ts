@@ -1,4 +1,4 @@
-import { notFound, redirect } from "next/navigation";
+import { redirect } from "next/navigation";
 import { _Blog } from "@/Model/Blog";
 import { _Comments } from "@/Model/Blog";
 import { _Replies } from "@/Model/Blog";
@@ -6,6 +6,7 @@ import { connectDb } from "@/lib/connectDb";
 import { NewsMailSend } from "@/lib/mailSend";
 import { cookies } from "next/headers";
 import jwt from "jsonwebtoken";
+import { NextResponse } from "next/server";
 
 const SECRET_KEY = process.env.JWT_SECRET;
 
@@ -14,13 +15,13 @@ export async function POST(req: Request) {
   const token = (await cookieStore).get("token")?.value;
 
   if (!token) {
-    notFound();
+    return NextResponse.json({ error: "Yetkisiz Erişim" }, { status: 401 });
   }
 
   try {
     jwt.verify(token, SECRET_KEY!);
   } catch {
-    notFound();
+    return NextResponse.json({ error: "Yetkisiz Erişim" }, { status: 401 });
   }
 
   const blogData = await req.formData();
