@@ -108,6 +108,10 @@ export default function RootLayout({
             <i className="fa-brands fa-github"></i>
           </Link>
           <Link className="mx-1 sm:mx-5"
+            href={"/cv.pdf"}>
+            <i className="fa-solid fa-file"></i>
+          </Link>
+          <Link className="mx-1 sm:mx-5"
             href={"/gdpr"}>
             <i className="fa-solid fa-file-contract"></i>
           </Link>
