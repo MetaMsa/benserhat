@@ -1,4 +1,9 @@
 import Link from "next/link";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Gdpr",
+};
 
 export default function Gdpr() {
   return (

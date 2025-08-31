@@ -19,7 +19,8 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Serhat",
-  description: "Ben Serhat",
+  description: "Ben Serhat, Fullstack Developer. C++, PHP, Laravel, Node.js, ASP.NET ve modern web teknolojileriyle projeler geliştiren yazılımcı. Portföyümü inceleyin.",
+  keywords: "Serhat Yazılımcı,Fullstack Developer Türkiye,Web Developer Portföy,C++ Developer,PHP Laravel Developer,Node.js Developer Türkiye"
 };
 
 export const viewport: Viewport = {
