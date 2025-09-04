@@ -2,15 +2,25 @@ import { connectDb } from "@/lib/connectDb";
 import { _Blog, _Replies } from "@/Model/Blog";
 import { _Comments } from "@/Model/Blog";
 import { notFound } from "next/navigation";
-import { Metadata } from "next";
 import mongoose from "mongoose";
 import Modal from "./modal";
 import Button from "./button";
 import ReplyButton from "./replybutton";
 
-export const metadata: Metadata = {
-  title: "Blog",
-};
+export async function generateMetadata({ params }) {
+  const resolvedParams = await params;
+  await connectDb();
+
+  if (!mongoose.Types.ObjectId.isValid(resolvedParams.id)) return notFound();
+
+  const text = await _Blog.findById(resolvedParams.id);
+
+  if (!text) return notFound();
+
+  return{
+    title: text.title
+  }
+}
 
 export default async function BlogText({ params }) {
   const resolvedParams = await params;
@@ -45,7 +55,7 @@ export default async function BlogText({ params }) {
       <Modal></Modal>
       <div
         className="break-words text-xs sm:text-sm p-5 mx-auto my-5 text-left bg-gray-900 rounded-xl border"
-        dangerouslySetInnerHTML={{ __html: text.content }}
+        dangerouslySetInnerHTML={{ __html: text.content.replace(/<img(.*?)>/g,'<img loading="lazy"$1>') }}
       ></div>
       <div className="mt-auto">
         <form
