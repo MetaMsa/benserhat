@@ -17,9 +17,9 @@ export async function generateMetadata({ params }) {
 
   if (!text) return notFound();
 
-  return{
-    title: text.title
-  }
+  return {
+    title: text.title,
+  };
 }
 
 export default async function BlogText({ params }) {
@@ -55,7 +55,9 @@ export default async function BlogText({ params }) {
       <Modal></Modal>
       <div
         className="break-words text-xs sm:text-sm p-5 mx-auto my-5 text-left bg-gray-900 rounded-xl border"
-        dangerouslySetInnerHTML={{ __html: text.content.replace(/<img(.*?)>/g,'<img loading="lazy"$1>') }}
+        dangerouslySetInnerHTML={{
+          __html: text.content.replace(/<img(.*?)>/g, '<img loading="lazy"$1>'),
+        }}
       ></div>
       <div className="mt-auto">
         <form
@@ -149,7 +151,6 @@ export default async function BlogText({ params }) {
               .map((_reply, index) => (
                 <div key={index} className="mx-auto border-b my-5">
                   <div className="font-bold my-5">{_reply.author}</div>{" "}
-                  {_reply.text}
                   <div className="text-sm my-5">
                     {_reply.createdAt.getDate() +
                       "/" +
@@ -161,6 +162,7 @@ export default async function BlogText({ params }) {
                       ":" +
                       _reply.createdAt.getMinutes()}
                   </div>{" "}
+                  {_reply.text}
                 </div>
               ))}
           </div>
