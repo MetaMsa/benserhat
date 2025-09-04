@@ -150,7 +150,7 @@ export default async function BlogText({ params }) {
               )
               .map((_reply, index) => (
                 <div key={index} className="mx-auto border-b my-5">
-                  <div className="font-bold my-5">{_reply.author}</div>{" "}
+                  <div className="font-bold">{_reply.author}</div>{" "}
                   <div className="text-sm my-5">
                     {_reply.createdAt.getDate() +
                       "/" +
