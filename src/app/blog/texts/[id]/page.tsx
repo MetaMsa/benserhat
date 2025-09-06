@@ -1,8 +1,9 @@
 import { connectDb } from "@/lib/connectDb";
-import { _Blog, _Replies } from "@/Model/Blog";
+import { _Blog } from "@/Model/Blog";
 import { _Comments } from "@/Model/Blog";
 import { notFound } from "next/navigation";
 import mongoose from "mongoose";
+import { ObjectId } from "mongodb";
 import Modal from "./modal";
 import Button from "./button";
 import ReplyButton from "./replybutton";
@@ -32,13 +33,18 @@ export default async function BlogText({ params }) {
 
   if (!text) return notFound();
 
-  const comments = await _Comments
-    .find({ page: resolvedParams.id })
-    .sort({ createdAt: -1 });
-
-  const replies = await _Replies
-    .find({ page: resolvedParams.id })
-    .sort({ createdAt: -1 });
+  const commentsWithReplies = await _Comments.aggregate([
+    { $match: {page: new ObjectId(resolvedParams.id) } },
+    { $sort: { createdAt: -1 } },
+    {
+      $lookup: {
+        from: "replies",
+        localField: "_id",
+        foreignField: "reply",
+        as: "replies"
+      }
+    }
+  ]);
 
   return (
     <div className="m-5 object-contain">
@@ -92,22 +98,14 @@ export default async function BlogText({ params }) {
           <Button></Button>
         </form>
       </div>
-      {comments.map((comment, index) => (
+      {commentsWithReplies.map((comment, index) => (
         <div
           key={index}
           className="mx-auto bg-gray-900 rounded-xl mt-5 p-5 text-left border"
         >
           <div className="font-bold">{comment.author}</div>{" "}
           <div className="text-sm">
-            {comment.createdAt.getDate() +
-              "/" +
-              (comment.createdAt.getMonth() + 1) +
-              "/" +
-              comment.createdAt.getFullYear() +
-              " " +
-              (comment.createdAt.getUTCHours() + 3) +
-              ":" +
-              comment.createdAt.getMinutes()}
+            {new Date(comment.createdAt).toLocaleString("tr-TR")}
           </div>{" "}
           <br />
           {comment.text}
@@ -144,25 +142,14 @@ export default async function BlogText({ params }) {
               <br />
               <ReplyButton></ReplyButton>
             </form>
-            {replies
-              .filter(
-                (_reply) => _reply.reply.toString() === comment.id.toString()
-              )
-              .map((_reply, index) => (
-                <div key={index} className="mx-auto border-b my-5">
-                  <div className="font-bold">{_reply.author}</div>{" "}
+            {comment.replies
+              .map((reply, rIndex) => (
+                <div key={rIndex} className="mx-auto border-b my-5">
+                  <div className="font-bold">{reply.author}</div>{" "}
                   <div className="text-sm mb-5">
-                    {_reply.createdAt.getDate() +
-                      "/" +
-                      (_reply.createdAt.getMonth() + 1) +
-                      "/" +
-                      _reply.createdAt.getFullYear() +
-                      " " +
-                      (_reply.createdAt.getUTCHours() + 3) +
-                      ":" +
-                      _reply.createdAt.getMinutes()}
+                    {new Date(reply.createdAt).toLocaleString("tr-TR")}
                   </div>{" "}
-                  {_reply.text}
+                  {reply.text}
                 </div>
               ))}
           </div>
