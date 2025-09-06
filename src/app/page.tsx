@@ -29,7 +29,7 @@ export default function Home() {
       <div className="col-span-1 sm:col-span-2 md:col-span-1 my-10">
         <p className="text-center">
           Youtube Abone Sayacı: {data} <br />
-          <progress className="progress w-20" value={data} max="10"></progress>
+          <progress className="progress progress-accent w-20" value={data} max="10"></progress>
         </p>
       </div>
       <div className="col-span-1 sm:col-span-2 md:col-span-3">

@@ -123,13 +123,13 @@ export default function Form() {
         modal
       </button>
       <dialog id="success_modal" className="modal">
-        <div className="modal-box border">
+        <div className="modal-box border bg-gray-900">
           <h3 className="font-bold text-lg">Tebrikler doğru bildiniz</h3>
           <p className="py-4">
             Yeni dil için yarını bekleyin. <br />
             Paylaşmak için: <br />
             <button
-              className="btn btn-"
+              className="btn btn-outline rounded-xl"
               onClick={ async () => {
 
                 const shareData = {
@@ -150,7 +150,7 @@ export default function Form() {
           </p>
           <div className="modal-action">
             <form method="dialog">
-              <button className="btn" onClick={() => location.reload()}>
+              <button className="btn btn-outline rounded-xl" onClick={() => location.reload()}>
                 Tekrar Oyna
               </button>
             </form>
@@ -161,7 +161,7 @@ export default function Form() {
         <input
           type="text"
           placeholder="Bir programlama dili giriniz"
-          className="input w-50 input-neutral"
+          className="input w-50 bg-gray-900"
           ref={inputRef}
           required
         ></input>{" "}

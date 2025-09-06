@@ -74,7 +74,7 @@ export default function RootLayout({
                 <li>
                   <details className="dropdown">
                     <summary className="text-center">MENÜ</summary>
-                    <ul className="bg-base-100 rounded-t-none p-2">
+                    <ul className="bg-gray-900 rounded-t-none p-2">
                       <li>
                         <Link href={"/"} className="m-auto">
                           <i className="fa fa-house"></i>

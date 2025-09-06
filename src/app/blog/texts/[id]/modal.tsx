@@ -33,11 +33,11 @@ export default function Modal() {
   return (
     <div>
       <dialog ref={modalRef} id="status_modal" className="modal">
-        <div className="modal-box">
+        <div className="modal-box bg-gray-900">
           <p className="py-4" ref={statusMessage}></p>
           <div className="modal-action">
             <form method="dialog">
-              <button className="btn" onClick={refreshWithoutParam}>
+              <button className="btn btn-outline rounded-xl" onClick={refreshWithoutParam}>
                 Kapat
               </button>
             </form>
