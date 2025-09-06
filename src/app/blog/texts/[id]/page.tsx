@@ -34,13 +34,21 @@ export default async function BlogText({ params }) {
   if (!text) return notFound();
 
   const commentsWithReplies = await _Comments.aggregate([
-    { $match: {page: new ObjectId(resolvedParams.id) } },
+    { $match: { page: new ObjectId(resolvedParams.id) } },
     { $sort: { createdAt: -1 } },
     {
       $lookup: {
         from: "replies",
-        localField: "_id",
-        foreignField: "reply",
+        let: { commentId: "$_id" },
+        pipeline: [
+          {
+            $match: {
+              $expr: {
+                $eq: [{ $toString: "$reply" }, { $toString: "$$commentId" }]
+              }
+            }
+          }
+        ],
         as: "replies"
       }
     }
@@ -123,7 +131,7 @@ export default async function BlogText({ params }) {
               />{" "}
               <br />
               <input type="hidden" name="page" value={resolvedParams.id} />
-              <input type="hidden" name="reply" value={comment.id} />
+              <input type="hidden" name="reply" value={comment._id.toString()} />
               <input
                 type="email"
                 className="border text-sm w-50 rounded"
@@ -142,16 +150,15 @@ export default async function BlogText({ params }) {
               <br />
               <ReplyButton></ReplyButton>
             </form>
-            {comment.replies
-              .map((reply, rIndex) => (
-                <div key={rIndex} className="mx-auto border-b my-5">
-                  <div className="font-bold">{reply.author}</div>{" "}
-                  <div className="text-sm mb-5">
-                    {new Date(reply.createdAt).toLocaleString("tr-TR")}
-                  </div>{" "}
-                  {reply.text}
-                </div>
-              ))}
+            {comment.replies.map((reply, rIndex) => (
+              <div key={rIndex} className="mx-auto border-b my-5">
+                <div className="font-bold">{reply.author}</div>{" "}
+                <div className="text-sm mb-5">
+                  {new Date(reply.createdAt).toLocaleString("tr-TR")}
+                </div>{" "}
+                {reply.text}
+              </div>
+            ))}
           </div>
         </div>
       ))}
