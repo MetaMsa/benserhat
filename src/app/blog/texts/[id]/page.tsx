@@ -6,7 +6,7 @@ import mongoose from "mongoose";
 import { ObjectId } from "mongodb";
 import Modal from "./modal";
 import Button from "./button";
-import ReplyButton from "./replybutton";
+import CommentsWithReplies from "./commentswithreplies";
 
 export async function generateMetadata({ params }) {
   const resolvedParams = await params;
@@ -29,11 +29,11 @@ export default async function BlogText({ params }) {
 
   if (!mongoose.Types.ObjectId.isValid(resolvedParams.id)) return notFound();
 
-  const text = await _Blog.findById(resolvedParams.id);
+  const text = await _Blog.findById(resolvedParams.id, "title content createdAt");
 
   if (!text) return notFound();
 
-  const commentsWithReplies = await _Comments.aggregate([
+  const commentsWithRepliesRaw = await _Comments.aggregate([
     { $match: { page: new ObjectId(resolvedParams.id) } },
     { $sort: { createdAt: -1 } },
     {
@@ -53,6 +53,17 @@ export default async function BlogText({ params }) {
       }
     }
   ]);
+
+  const commentsWithReplies = commentsWithRepliesRaw.map(comment => ({
+  ...comment,
+  _id: comment._id.toString(),
+  page: comment.page.toString(),
+  replies: comment.replies.map(reply => ({
+    ...reply,
+    _id: reply._id.toString(),
+    page: reply.page?.toString()
+  }))
+}));
 
   return (
     <div className="m-5 object-contain">
@@ -106,62 +117,7 @@ export default async function BlogText({ params }) {
           <Button></Button>
         </form>
       </div>
-      {commentsWithReplies.map((comment, index) => (
-        <div
-          key={index}
-          className="mx-auto bg-gray-900 rounded-xl mt-5 p-5 text-left border"
-        >
-          <div className="font-bold">{comment.author}</div>{" "}
-          <div className="text-sm">
-            {new Date(comment.createdAt).toLocaleString("tr-TR")}
-          </div>{" "}
-          <br />
-          {comment.text}
-          <div className="my-5">
-            <form
-              action={"../../../api/reply"}
-              className="text-left"
-              method="post"
-            >
-              <textarea
-                className="border text-sm w-50 rounded"
-                name="text"
-                placeholder="Yanıtınızı girin"
-                required
-              />{" "}
-              <br />
-              <input type="hidden" name="page" value={resolvedParams.id} />
-              <input type="hidden" name="reply" value={comment._id.toString()} />
-              <input
-                type="email"
-                className="border text-sm w-50 rounded"
-                name="email"
-                placeholder="E-Postanızı girin"
-                required
-              />{" "}
-              <br />
-              <input
-                type="text"
-                className="border text-sm w-50 rounded"
-                name="author"
-                placeholder="Kullanıcı adınızı girin"
-                required
-              />{" "}
-              <br />
-              <ReplyButton></ReplyButton>
-            </form>
-            {comment.replies.map((reply, rIndex) => (
-              <div key={rIndex} className="mx-auto border-b my-5">
-                <div className="font-bold">{reply.author}</div>{" "}
-                <div className="text-sm mb-5">
-                  {new Date(reply.createdAt).toLocaleString("tr-TR")}
-                </div>{" "}
-                {reply.text}
-              </div>
-            ))}
-          </div>
-        </div>
-      ))}
+      <CommentsWithReplies comments={commentsWithReplies} pageId={resolvedParams._id}></CommentsWithReplies>
     </div>
   );
 }
