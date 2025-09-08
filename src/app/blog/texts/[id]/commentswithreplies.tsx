@@ -70,13 +70,14 @@ export default function CommentsWithReplies({ comments, pageId }) {
           </div>
         </div>
       ))}
-            {
-                visibleCount < comments.length && (
-                    <button onClick={() => setVisibleCount(visibleCount + 2)} className="btn btn-outline px-4 py-2 rounded mt-4 mx-auto">
-                        Daha fazla yükle
-                    </button>
-                )
-            }
+      {visibleCount < comments.length && (
+        <button
+          onClick={() => setVisibleCount(visibleCount + 2)}
+          className="btn btn-outline px-4 py-2 rounded mt-4 mx-auto"
+        >
+          Daha fazla yükle
+        </button>
+      )}
     </div>
   );
 }
