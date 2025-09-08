@@ -117,7 +117,7 @@ export default async function BlogText({ params }) {
           <Button></Button>
         </form>
       </div>
-      <CommentsWithReplies comments={commentsWithReplies} pageId={resolvedParams._id}></CommentsWithReplies>
+      <CommentsWithReplies comments={commentsWithReplies} pageId={resolvedParams.id}></CommentsWithReplies>
     </div>
   );
 }
