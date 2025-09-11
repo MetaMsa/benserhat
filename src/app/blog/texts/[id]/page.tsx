@@ -8,8 +8,6 @@ import Modal from "./modal";
 import Button from "./button";
 import CommentsWithReplies from "./commentswithreplies";
 
-export const revalidate = 300;
-
 export async function generateMetadata({ params }) {
   const resolvedParams = await params;
   await connectDb();
