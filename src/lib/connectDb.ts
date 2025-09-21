@@ -17,7 +17,6 @@ export async function connectDb() {
         };
 
         cached.promise = mongoose.connect(process.env.DATABASE_URL! || "mongodb://localhost:27017/benserhat", opts).then((mongoose) => {
-            console.log("bağlantı başarılı");
             return mongoose;
         });
     }
