@@ -24,7 +24,7 @@ export async function NewsMailSend(
 
   const emailParams = new EmailParams()
     .setFrom(sentFrom)
-    .setTo(recipients)
+    .setBcc(recipients)
     .setSubject("Blog sitemizde bir güncelleme var")
     .setTemplateId("z86org8o95n4ew13")
     .setPersonalization(personalization);
