@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 export default async function Blog() {
   await connectDb();
-  const blogmodel = await _Blog.find().sort({ createdAt: -1 });
+  const blogmodel = await _Blog.find().sort({ createdAt: -1 }).lean();
   return (
     <div>
       <div className="flex justify-center items-center">

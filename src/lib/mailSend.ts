@@ -13,7 +13,7 @@ export async function NewsMailSend(
     new Map(_clients.map((c) => [c.email, c])).values()
   );
 
-  const recipients = uniqueClients.map((c) => new Recipient(c.email, c.name));
+  const recipients = uniqueClients.map((c) => new Recipient(c.email));
 
   const personalization = _clients.map((client) => ({
     email: client.email,
@@ -44,7 +44,7 @@ export async function ReplyMailSend(
 
   const sentFrom = new Sender("MS_Agq6XW@benserhat.live", "benserhat");
 
-  const recipients = [new Recipient(_clientMail, _clientUserName)];
+  const recipients = [new Recipient(_clientMail)];
 
   const personalization = [
     {
