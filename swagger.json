@@ -1,0 +1,272 @@
+{
+  "openapi": "3.0.4",
+  "info": {
+    "title": "Next.Js API",
+    "version": "1.0.0",
+    "description": "Kişisel site endpointleri"
+  },
+  "paths": {
+    "/api/comment": {
+      "post": {
+        "summary": "Comment Endpoint",
+        "description": "Bir blog sayfasına yorum ekler. Başarılı veya başarısız yönlendirme ile 307 döner.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "text": { "type": "string", "description": "Yorum metni" },
+                  "page": {
+                    "type": "string",
+                    "description": "Sayfa slug veya ID"
+                  },
+                  "author": { "type": "string", "description": "Yazar adı" },
+                  "email": {
+                    "type": "string",
+                    "format": "email",
+                    "description": "Geçerli email adresi"
+                  }
+                },
+                "required": ["text", "page", "author", "email"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "307": {
+            "description": "Başarılı veya başarısız yönlendirme",
+            "content": {
+              "text/html": {
+                "schema": { "type": "string", "example": "/blog/texts/[id]" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/langApi": {
+      "post": {
+        "summary": "Dil Kontrolü",
+        "description": "Verilen dil adı ile o günün doğru dili karşılaştırır ve çeşitli status bilgilerini döner.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "Kontrol edilecek dilin adı"
+                  }
+                },
+                "required": ["name"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Dil kontrol sonucu veya dil bulunamadı",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "type": "object",
+                      "properties": {
+                        "yearStatus": { "type": "string" },
+                        "year": { "type": "number" },
+                        "compiledStatus": { "type": "boolean" },
+                        "compiled": { "type": "boolean" },
+                        "cStatus": { "type": "boolean" },
+                        "c": { "type": "boolean" },
+                        "status": { "type": "boolean" }
+                      }
+                    },
+                    {
+                      "type": "string",
+                      "example": "Böyle bir dil yok"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/reply": {
+      "post": {
+        "summary": "Yorum cevabı ekle",
+        "description": "Bir blog yorumuna cevap ekler. Başarılı veya başarısız yönlendirme ile 307 döner. Mail gönderimi yapılır.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "text": { "type": "string", "description": "Reply metni" },
+                  "page": {
+                    "type": "string",
+                    "description": "Sayfa slug veya ID"
+                  },
+                  "author": { "type": "string", "description": "Yazar adı" },
+                  "email": {
+                    "type": "string",
+                    "format": "email",
+                    "description": "Geçerli email adresi"
+                  },
+                  "reply": {
+                    "type": "string",
+                    "description": "Yanıtlanacak yorumun ID'si"
+                  }
+                },
+                "required": ["text", "page", "author", "email", "reply"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "307": {
+            "description": "Başarılı veya başarısız yönlendirme",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "/blog/texts/[page]?status=success"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/saveBlog": {
+      "post": {
+        "summary": "Yeni blog ekle veya güncelle",
+        "description": "JWT token ile yetkilendirme gerektirir. Başarılı işlemde 307 redirect ile admin sayfasına yönlendirir.",
+        "security": [{ "cookieAuth": [] }],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "title": { "type": "string", "description": "Blog başlığı" },
+                  "content": { "type": "string", "description": "Blog içeriği" }
+                },
+                "required": ["title", "content"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "307": {
+            "description": "Başarılı yönlendirme",
+            "content": {
+              "text/html": {
+                "schema": { "type": "string", "example": "/blog/[slug]/admin" }
+              }
+            }
+          },
+          "401": {
+            "description": "Yetkisiz erişim",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": { "type": "string", "example": "Yetkisiz Erişim" }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/yesterDay": {
+      "post": {
+        "summary": "Dünün dilini döner",
+        "description": "LangJson dizisinden gün sayısına göre dönen dili verir. Request body yok.",
+        "responses": {
+          "200": {
+            "description": "Dünün dili",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "example": {
+                    "name": "JavaScript",
+                    "year": 1995,
+                    "compiled": false,
+                    "c": false
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/yt": {
+      "get": {
+        "summary": "YouTube kanal istatistiklerini getirir",
+        "description": "Çevre değişkenlerinden alınan API key ve kanal ID ile YouTube Data API v3'ten kanal istatistiklerini alır.",
+        "responses": {
+          "200": {
+            "description": "Kanal istatistikleri",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "example": {
+                    "kind": "youtube#channelListResponse",
+                    "etag": "etagExample",
+                    "items": [
+                      {
+                        "kind": "youtube#channel",
+                        "id": "UCxxxx",
+                        "statistics": {
+                          "viewCount": "12345",
+                          "subscriberCount": "678",
+                          "hiddenSubscriberCount": false,
+                          "videoCount": "12"
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "API çağrısı sırasında hata",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "example": { "error": "YouTube API çağrısı başarısız" }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "cookieAuth": {
+        "type": "apiKey",
+        "in": "cookie",
+        "name": "token"
+      }
+    }
+  }
+}
