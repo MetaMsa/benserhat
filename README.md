@@ -15,3 +15,8 @@ bun dev
 ```
 
 [http://localhost:3000](http://localhost:3000) adresine git.
+
+## Swagger
+[https://github.com/MetaMsa/benserhat/blob/main/swagger.json](https://github.com/MetaMsa/benserhat/blob/main/swagger.json)
+
+Tüm endpointleri görmek ve test etmek için [http://localhost:3000/docs](http://localhost:3000/docs) kullanabilirsiniz.
