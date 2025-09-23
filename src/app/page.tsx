@@ -29,22 +29,26 @@ export default function Home() {
       <div className="col-span-1 sm:col-span-2 md:col-span-1 my-10">
         <p className="text-center">
           Youtube Abone Sayacı: {data} <br />
-          <progress className="progress progress-accent w-20" value={data} max="10"></progress>
+          <progress
+            className="progress progress-accent w-20"
+            value={data}
+            max="10"
+          ></progress>
         </p>
       </div>
       <div className="col-span-1 sm:col-span-2 md:col-span-3">
         <p className="text-center text-xs md:text-sm">
-          Kocaeli Üniversitesi’nde Bilgisayar Programlama eğitimi alıyorum ve
-          aynı zamanda İstanbul Üniversitesi’nde Web Tasarımı ve Kodlama
-          alanlarında öğrenimime devam ediyorum. Akademik çalışmalarım sırasında
-          C++, PHP, Laravel, Node.js ve Express.js gibi dillerle projeler
-          geliştirdim. Bootstrap kullanarak responsive web tasarımlar
-          oluşturmayı öğrendim ve Asp.Net MVC ile staj deneyimi yaşadım. Görüntü
-          işleme üzerine OpenCV ile çalışarak teknik becerilerimi ilerlettim ve
-          Adobe ürünleri ile Blender kullanarak 2D ve 3D tasarım alanlarında
-          uygulamalar gerçekleştirdim. Kariyerimde yazılım geliştirme ve tasarım
-          odaklı projelerde yer almayı hedefliyorum ve bu doğrultuda hem teknik
-          hem de yaratıcı becerilerimi geliştirmeye devam ediyorum.
+          Kocaeli Üniversitesi Bilgisayar Programlama Ön Lisans eğitimimi
+          tamamladım; şu anda İstanbul Üniversitesi Web Tasarımı ve Kodlama
+          programında öğrenimime devam ediyorum. Eğitim sürecimde veri mimarisi,
+          veritabanı geliştirme ve yönetimi konularında güçlü bir temel edindim.
+          TRtek Medical Software’de yaptığım stajda, ASP.NET MVC tabanlı web
+          projelerinin geliştirilmesine katkı sağladım. Proje bazlı çalışmalarda
+          C++, C#, PHP, Node.js, Next.js ve React teknolojileriyle deneyim
+          kazandım. Ayrıca OpenCV ile görüntü işleme üzerine çalışarak teknik
+          becerilerimi çeşitlendirdim. Hedefim, yazılım geliştirme ve tasarım
+          odaklı projelerde, yaratıcı bakış açımı teknik uzmanlıkla
+          birleştirerek değer üretmek.
         </p>
       </div>
     </div>
