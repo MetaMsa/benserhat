@@ -21,7 +21,7 @@ export default function YesterLang() {
 
   return (
     <div className="tooltip" data-tip={name}>
-      <Image src={imgUrl} className="h-10" width={300} height={200} alt="" />
+      <Image src={imgUrl} className="h-10" width={300} height={200} alt="Yesterday Language Logo" />
     </div>
   );
 }

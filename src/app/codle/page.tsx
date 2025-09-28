@@ -16,7 +16,7 @@ export default function Codle() {
           className="h-20"
           width={300}
           height={200}
-          alt=""
+          alt="Codle Logo"
         ></Image>
       </div>
       <ClientForm></ClientForm>
