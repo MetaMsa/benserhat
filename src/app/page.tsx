@@ -20,7 +20,7 @@ export default function Home() {
           src="/3b584ae8-d108-4483-85db-d8c79c29d2ce.jpg"
           width={100}
           height={100}
-          alt=""
+          alt="Portrait"
         ></Image>
       </div>
       <div className="w-full">

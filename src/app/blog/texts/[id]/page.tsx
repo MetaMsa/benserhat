@@ -82,7 +82,7 @@ export default async function BlogText({ params }) {
       <div
         className="break-words text-xs sm:text-sm p-5 mx-auto my-5 text-left bg-gray-900 rounded-xl border"
         dangerouslySetInnerHTML={{
-          __html: text.content.replace(/<img(.*?)>/g, '<img loading="lazy"$1>'),
+          __html: text.content.replace(/<img(.*?)>/g, '<img loading="lazy"$1 alt="Blog Image">'),
         }}
       ></div>
       <div className="mt-auto">
