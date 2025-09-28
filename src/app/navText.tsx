@@ -24,7 +24,6 @@ export default function NavText() {
       }
     }, 500);
 
-    // Cleanup
     return () => clearInterval(myInterval);
   }, []);
 
