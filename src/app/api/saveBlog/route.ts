@@ -34,11 +34,11 @@ export async function POST(req: Request) {
   const emailList = [
     ...emailsComment.map((comment) => ({
       email: comment.email,
-      name: comment.author
+      name: comment.author,
     })),
     ...emailsReply.map((reply) => ({
       email: reply.email,
-      name: reply.author
+      name: reply.author,
     })),
   ];
 

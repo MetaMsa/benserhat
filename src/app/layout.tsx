@@ -128,6 +128,11 @@ export default function RootLayout({
           >
             <i className="fa-solid fa-envelope"></i>
           </Link>
+          <Link
+            className="mx-1 sm:mx-5"
+            href={"/docs"}>
+              <i className="fa-solid fa-gear"></i>
+            </Link>
         </footer>
       </body>
     </html>
