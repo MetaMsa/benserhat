@@ -54,7 +54,7 @@ export default function Form() {
       setContent(editor.getHTML());
     },
     editorProps: {
-      handleDrop(view, event, _slice, moved) {
+      handleDrop(view, event, moved) {
         if (moved) return false;
 
         const file = event.dataTransfer?.files?.[0];
@@ -76,7 +76,6 @@ export default function Form() {
               tr.doc.resolve(coords.pos + 1)
             );
             tr = tr.setSelection(selection);
-            tr = tr.setSelection(selection);
 
             view.dispatch(tr);
             view.focus();
@@ -84,6 +83,32 @@ export default function Form() {
           reader.readAsDataURL(file);
           return true;
         }
+        return false;
+      },
+      handlePaste(view, event) {
+        const file = event.clipboardData?.files?.[0];
+
+        if (file && file.type.startsWith("image")) {
+          const reader = new FileReader();
+
+          reader.onload = () => {
+            const src = reader.result as string;
+            const { schema, tr, selection } = view.state;
+
+            const node = schema.nodes.image.create({ src });
+            const transaction = tr.insert(selection.from, node);
+
+            const resolvedPos = transaction.doc.resolve(selection.from + 1);
+            transaction.setSelection(TextSelection.near(resolvedPos));
+
+            view.dispatch(transaction);
+            view.focus();
+          };
+
+          reader.readAsDataURL(file);
+          return true;
+        }
+
         return false;
       },
     },
@@ -152,46 +177,72 @@ export default function Form() {
             data-testid="setColor"
             placeholder="Renk seçin"
             className="rounded-2xl"
-          /> <br />
+          />{" "}
+          <br />
           <button
             onClick={() => editor?.chain().focus().toggleBold().run()}
             disabled={!editorState?.canBold}
-            className={editorState?.isBold ? "is-active btn bg-transparent" : "btn bg-transparent"}
+            className={
+              editorState?.isBold
+                ? "is-active btn bg-transparent"
+                : "btn bg-transparent"
+            }
           >
             Kalın
           </button>
           <button
             onClick={() => editor?.chain().focus().toggleItalic().run()}
             disabled={!editorState?.canItalic}
-            className={editorState?.isItalic ? "is-active btn bg-transparent" : "btn bg-transparent"}
+            className={
+              editorState?.isItalic
+                ? "is-active btn bg-transparent"
+                : "btn bg-transparent"
+            }
           >
             İtalik
           </button>
           <button
             onClick={() => editor?.chain().focus().toggleStrike().run()}
             disabled={!editorState?.canStrike}
-            className={editorState?.isStrike ? "is-active btn bg-transparent" : "btn bg-transparent"}
+            className={
+              editorState?.isStrike
+                ? "is-active btn bg-transparent"
+                : "btn bg-transparent"
+            }
           >
             Üstü Çizili
           </button>
           <button
             onClick={() => editor?.chain().focus().toggleCode().run()}
             disabled={!editorState?.canCode}
-            className={editorState?.isCode ? "is-active btn bg-transparent" : "btn bg-transparent"}
+            className={
+              editorState?.isCode
+                ? "is-active btn bg-transparent"
+                : "btn bg-transparent"
+            }
           >
             Kod
           </button>
-          <button onClick={() => editor?.chain().focus().unsetAllMarks().run()} className="btn bg-transparent">
+          <button
+            onClick={() => editor?.chain().focus().unsetAllMarks().run()}
+            className="btn bg-transparent"
+          >
             Tüm Biçimleri Temizle
           </button>
-          <button onClick={() => editor?.chain().focus().clearNodes().run()} className="btn bg-transparent">
+          <button
+            onClick={() => editor?.chain().focus().clearNodes().run()}
+            className="btn bg-transparent"
+          >
             Tüm Blokları Temizle
           </button>
           <button
             onClick={() =>
               editor?.chain().focus().toggleHeading({ level: 1 }).run()
             }
-            className={editorState?.isHeading1 ? "is-active" : "" + "btn bg-transparent"}
+            className={
+              (editorState?.isHeading1 ? "is-active" : "") +
+              "btn bg-transparent"
+            }
           >
             Başlık 1
           </button>
@@ -199,7 +250,10 @@ export default function Form() {
             onClick={() =>
               editor?.chain().focus().toggleHeading({ level: 2 }).run()
             }
-            className={editorState?.isHeading2 ? "is-active" : "" + "btn bg-transparent"}
+            className={
+              (editorState?.isHeading2 ? "is-active" : "") +
+              "btn bg-transparent"
+            }
           >
             Başlık 2
           </button>
@@ -207,7 +261,10 @@ export default function Form() {
             onClick={() =>
               editor?.chain().focus().toggleHeading({ level: 3 }).run()
             }
-            className={editorState?.isHeading3 ? "is-active" : "" + "btn bg-transparent"}
+            className={
+              (editorState?.isHeading3 ? "is-active" : "") +
+              "btn bg-transparent"
+            }
           >
             Başlık 3
           </button>
@@ -215,7 +272,10 @@ export default function Form() {
             onClick={() =>
               editor?.chain().focus().toggleHeading({ level: 4 }).run()
             }
-            className={editorState?.isHeading4 ? "is-active" : "" + "btn bg-transparent"}
+            className={
+              (editorState?.isHeading4 ? "is-active" : "") +
+              "btn bg-transparent"
+            }
           >
             Başlık 4
           </button>
@@ -223,7 +283,10 @@ export default function Form() {
             onClick={() =>
               editor?.chain().focus().toggleHeading({ level: 5 }).run()
             }
-            className={editorState?.isHeading5 ? "is-active" : "" + "btn bg-transparent"}
+            className={
+              (editorState?.isHeading5 ? "is-active" : "") +
+              "btn bg-transparent"
+            }
           >
             Başlık 5
           </button>
@@ -231,23 +294,32 @@ export default function Form() {
             onClick={() =>
               editor?.chain().focus().toggleHeading({ level: 6 }).run()
             }
-            className={editorState?.isHeading6 ? "is-active" : "" + "btn bg-transparent"}
+            className={
+              (editorState?.isHeading6 ? "is-active" : "") +
+              "btn bg-transparent"
+            }
           >
             Başlık 6
           </button>
           <button
             onClick={() => editor?.chain().focus().toggleCodeBlock().run()}
-            className={editorState?.isCodeBlock ? "is-active" : "" + "btn bg-transparent"}
+            className={
+              (editorState?.isCodeBlock ? "is-active" : "") +
+              "btn bg-transparent"
+            }
           >
             Kod Bloğu
           </button>
-          <button onClick={() => editor?.chain().focus().setHardBreak().run()} className="btn bg-transparent">
+          <button
+            onClick={() => editor?.chain().focus().setHardBreak().run()}
+            className="btn bg-transparent"
+          >
             Satır Sonu
           </button>
           <button
             onClick={() => editor?.chain().focus().undo().run()}
             disabled={!editorState?.canUndo}
-             className="btn bg-transparent"
+            className="btn bg-transparent"
           >
             Geri Al
           </button>
@@ -258,7 +330,10 @@ export default function Form() {
           >
             Yinele
           </button>
-          <EditorContent className="border rounded mt-2 text-left" editor={editor} />
+          <EditorContent
+            className="border rounded mt-2 text-left"
+            editor={editor}
+          />
           <h2 className="mt-6 font-bold">HTML Çıktısı:</h2>
           <pre className="p-3 rounded text-sm overflow-x-scroll">{content}</pre>
         </div>
