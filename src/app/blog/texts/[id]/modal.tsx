@@ -1,22 +1,23 @@
 "use client";
 
 import { useRouter, usePathname, useSearchParams } from "next/navigation";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export default function Modal() {
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const status = searchParams.get("status");
   const modalRef = useRef<HTMLDialogElement>(null);
-  const statusMessage = useRef<HTMLParagraphElement>(null);
   const router = useRouter();
+
+  const [statusMessage, setStatusMessage] = useState<string|null>(null);
 
   useEffect(() => {
     if (status === "success") {
-      statusMessage.current!.innerHTML = "Yorumunuz başarıyla kaydedildi.";
+      setStatusMessage("Yorumunuz başarıyla kaydedildi.");
       modalRef.current?.showModal();
     } else if (status === "error") {
-      statusMessage.current!.innerHTML = 'Yorumunuz kaydedilemedi! <br> Lütfen tüm alanları doğru doldurduğunuzdan emin olun.';
+      setStatusMessage("Yorumunuz kaydedilemedi! Lütfen tüm alanları doğru doldurduğunuzdan emin olun.");
       modalRef.current?.showModal();
     }
   }, [status]);
@@ -34,7 +35,7 @@ export default function Modal() {
     <div>
       <dialog ref={modalRef} id="status_modal" className="modal">
         <div className="modal-box bg-gray-900">
-          <p className="py-4" ref={statusMessage}></p>
+          <p className="py-4">{statusMessage}</p>
           <div className="modal-action">
             <form method="dialog">
               <button className="btn btn-outline rounded-xl" onClick={refreshWithoutParam}>

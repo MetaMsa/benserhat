@@ -1,11 +1,10 @@
 "use client";
 
 import axios from "axios";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 
 export default function Form() {
   const inputRef = useRef<HTMLInputElement>(null);
-  const divRef = useRef<HTMLDivElement>(null);
   const modalRef = useRef<HTMLButtonElement>(null);
   const copyRef = useRef<HTMLButtonElement>(null);
 
@@ -13,98 +12,85 @@ export default function Form() {
   const compiledRef = useRef<HTMLDivElement>(null);
   const cRef = useRef<HTMLDivElement>(null);
 
-  const yearRefData = useRef<HTMLDivElement>(null);
-  const compiledRefData = useRef<HTMLDivElement>(null);
-  const cRefData = useRef<HTMLDivElement>(null);
-
-  let tried = 0;
+  const [tried, setTried] = useState<number>(0);
+  const [fetchStatus, setFetchStatus] = useState<string|null>(null);
+  const [yearData, setYearData] = useState<string|null>(null);
+  const [year, setYear] = useState<number|null>(null);
+  const [compiledData, setCompiledData] = useState<string|null>(null);
+  const [cData, setCData] = useState<string|null>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    if(divRef.current)
-      divRef.current.innerHTML = "Yükleniyor...";
+    setFetchStatus("Yükleniyor...");
 
     const langName = inputRef.current?.value.toLocaleLowerCase().trim();
     const res = await axios.post("/api/langApi", { name: langName }).finally(() => {
-      if(divRef.current)
-        divRef.current.innerHTML = "";
+      setFetchStatus(null);
     });
 
-    tried++;
+    setTried(tried + 1);
 
     if (
       yearRef.current &&
       compiledRef.current &&
-      cRef.current &&
-      yearRefData.current &&
-      compiledRefData.current &&
-      cRefData.current &&
-      divRef.current
+      cRef.current
     ) {
       yearRef.current.style.backgroundColor = "";
       compiledRef.current.style.backgroundColor = "";
       cRef.current.style.backgroundColor = "";
 
-      yearRefData.current.innerHTML = "";
-      compiledRefData.current.innerHTML = "";
-      cRefData.current.innerHTML = "";
-      divRef.current.innerHTML = "";
+      setYearData(null);
+      setCompiledData(null);
+      setCData(null);
+      setFetchStatus(null);
     }
 
     if (res.data == "Böyle bir dil yok") {
-      if (divRef.current) {
-        divRef.current.innerHTML = res.data;
-      }
+        setFetchStatus(res.data);
+        setYear(null);
     } else if (res.data.status == true) {
       if (
         yearRef.current &&
         compiledRef.current &&
-        cRef.current &&
-        yearRefData.current &&
-        compiledRefData.current &&
-        cRefData.current
+        cRef.current
       ) {
         yearRef.current.style.backgroundColor = "green";
         compiledRef.current.style.backgroundColor = "green";
         cRef.current.style.backgroundColor = "green";
 
-        yearRefData.current.innerHTML = res.data.year;
-        compiledRefData.current.innerHTML = res.data.compiled;
-        cRefData.current.innerHTML = res.data.c;
+        setYearData(null);
+        setYear(res.data.year);
+        setCompiledData(res.data.compiled);
+        setCData(res.data.c);
       }
       modalRef.current?.click();
     } else {
       if (yearRef.current) {
         if (res.data.yearStatus == "true") {
           yearRef.current.style.backgroundColor = "green";
-          if (yearRefData.current)
-            yearRefData.current.innerHTML = "Bu yıl çıkmış başka bir dil";
+            setYearData("Bu yıl çıkmış başka bir dil");
         } else if (res.data.yearStatus == "old") {
-          if (yearRefData.current)
-            yearRefData.current.innerHTML = "Daha eski bir dil";
+            setYearData("Daha eski bir dil");
         } else if (res.data.yearStatus == "new") {
-          if (yearRefData.current)
-            yearRefData.current.innerHTML = "Daha yeni bir dil";
+            setYearData("Daha yeni bir dil");
         }
 
-        if (yearRefData.current?.innerHTML)
-          yearRefData.current.innerHTML += "<br/>" + res.data.year;
+          setYear(res.data.year);
       }
       if (compiledRef.current) {
         if (res.data.compiledStatus == true)
           compiledRef.current.style.backgroundColor = "green";
         else compiledRef.current.style.backgroundColor = "";
 
-        if (compiledRefData.current)
-          compiledRefData.current.innerHTML = res.data.compiled;
+          setCompiledData(res.data.compiled);
       }
       if (cRef.current) {
         if (res.data.cStatus == true)
           cRef.current.style.backgroundColor = "green";
         else cRef.current.style.backgroundColor = "";
 
-        if (cRefData.current) cRefData.current.innerHTML = res.data.c;
+        setCData(res.data.c);
       }
     }
   };
@@ -169,20 +155,20 @@ export default function Form() {
         <button className="btn btn-outline m-5 rounded-xl" type="submit">
           Tahmin Et
         </button>
-        <div ref={divRef}></div>
+        <div>{fetchStatus}</div>
       </form>
       <div className="grid grid-cols-1 m-5 sm:grid-cols-3 gap-4">
         <div ref={yearRef} className="bg-gray-900 rounded-xl h-20 sm:h-50 border">
           Çıkış Yılı
-          <div className="my-3 sm:my-15" ref={yearRefData}></div>
+          <div className="my-3 sm:my-15"> {yearData} {yearData && <br />} {year}</div>
         </div>
         <div ref={compiledRef} className="bg-gray-900 rounded-xl h-20 sm:h-50 border">
           Derlenen/Yorumlanan
-          <div className="my-3 sm:my-15" ref={compiledRefData}></div>
+          <div className="my-3 sm:my-15">{compiledData}</div>
         </div>
         <div ref={cRef} className="bg-gray-900 rounded-xl h-20 sm:h-50 border">
           C türevi mi?
-          <div className="my-3 sm:my-15" ref={cRefData}></div>
+          <div className="my-3 sm:my-15">{cData}</div>
         </div>
       </div>
     </div>
