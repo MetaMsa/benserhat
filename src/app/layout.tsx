@@ -100,7 +100,7 @@ export default function RootLayout({
         <main className="text-center">
           {children}
         </main>
-        <footer className="flex items-center justify-center footer footer-center bg-gray-900 mt-auto p-5 text-lg md:text-2xl border-t">
+        <footer className="flex items-center justify-center footer footer-center bg-gray-900 mt-auto p-5 text-md sm:text-lg md:text-2xl border-t">
           <Link
             className="mx-1 sm:mx-5"
             href={"https://www.youtube.com/@metamsa"}
