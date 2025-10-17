@@ -1,14 +1,14 @@
 {
   "openapi": "3.0.4",
   "info": {
-    "title": "Next.Js API",
+    "title": "BenSerhat API",
     "version": "1.0.0",
     "description": "Kişisel site endpointleri"
   },
   "paths": {
     "/api/comment": {
       "post": {
-        "summary": "Comment Endpoint",
+        "summary": "Yorum ekle",
         "description": "Bir blog sayfasına yorum ekler. Başarılı veya başarısız yönlendirme ile 307 döner.",
         "requestBody": {
           "required": true,

@@ -99,7 +99,7 @@ export default function Three() {
           lastYmobile = e.touches[0].clientY;
         }, {passive: false});
 
-        mountRef.current?.addEventListener("tocuhend", (e) => {
+        mountRef.current?.addEventListener("touchend", (e) => {
           e.preventDefault();
 
           mouseDownMobile = false;
