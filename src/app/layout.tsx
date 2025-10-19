@@ -19,8 +19,10 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Serhat",
-  description: "Ben Serhat, Fullstack Developer. C++, PHP, Next.js, Node.js, ASP.NET ve modern web teknolojileriyle projeler geliştiren yazılımcı. Portföyümü inceleyin.",
-  keywords: "Serhat,Yazılımcı,Fullstack Developer,Türkiye,Web Developer,Portföy,C++ Developer,Next.js Developer,Node.js Developer"
+  description:
+    "Ben Serhat, Fullstack Developer. C++, PHP, Next.js, Node.js, ASP.NET ve modern web teknolojileriyle projeler geliştiren yazılımcı. Portföyümü inceleyin.",
+  keywords:
+    "Serhat,Yazılımcı,Fullstack Developer,Türkiye,Web Developer,Portföy,C++ Developer,Next.js Developer,Node.js Developer",
 };
 
 export const viewport: Viewport = {
@@ -97,9 +99,7 @@ export default function RootLayout({
             </div>
           </nav>
         </header>
-        <main className="text-center">
-          {children}
-        </main>
+        <main className="text-center">{children}</main>
         <footer className="flex items-center justify-center footer footer-center bg-gray-900 mt-auto p-5 text-md sm:text-lg md:text-2xl border-t">
           <Link
             className="mx-1 sm:mx-5"
@@ -110,13 +110,14 @@ export default function RootLayout({
           <Link className="mx-1 sm:mx-5" href={"https://github.com/MetaMsa"}>
             <i className="fa-brands fa-github"></i>
           </Link>
-          <Link className="mx-1 sm:mx-5"
-            href={"/cv.pdf"}>
-            <i className="fa-solid fa-file"></i>
+          <Link className="mx-1 sm:mx-5" href={"/cv.pdf"}>
+            cv
           </Link>
-          <Link className="mx-1 sm:mx-5"
-            href={"/gdpr"}>
-            <i className="fa-solid fa-file-contract"></i>
+          <Link className="mx-1 sm:mx-5" href={"/gdpr"}>
+            gdpr
+          </Link>
+          <Link className="mx-1 sm:mx-5" href={"/docs"}>
+          api
           </Link>
           <Link
             className="mx-1 sm:mx-5"
@@ -130,11 +131,6 @@ export default function RootLayout({
           >
             <i className="fa-solid fa-envelope"></i>
           </Link>
-          <Link
-            className="mx-1 sm:mx-5"
-            href={"/docs"}>
-              <i className="fa-solid fa-gear"></i>
-            </Link>
         </footer>
       </body>
     </html>

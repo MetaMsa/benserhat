@@ -43,7 +43,7 @@ export default function CommentsWithReplies({ comments, pageId }) {
                 <textarea
                   className="border text-sm w-50 rounded"
                   name="text"
-                  placeholder="Yanıtınızı girin"
+                  placeholder="Yanıtınızı girin..."
                   required
                 />
                 <br />
@@ -57,7 +57,7 @@ export default function CommentsWithReplies({ comments, pageId }) {
                   type="email"
                   className="border text-sm w-50 rounded"
                   name="email"
-                  placeholder="E-Postanızı girin"
+                  placeholder="E-Postanızı girin..."
                   required
                 />
                 <br />
@@ -65,7 +65,7 @@ export default function CommentsWithReplies({ comments, pageId }) {
                   type="text"
                   className="border text-sm w-50 rounded"
                   name="author"
-                  placeholder="Kullanıcı adınızı girin"
+                  placeholder="Kullanıcı adınızı girin..."
                   required
                 />
                 <br />
