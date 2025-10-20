@@ -10,7 +10,7 @@ import CommentsWithReplies from "./commentswithreplies";
 
 export async function generateMetadata({ params }) {
   const resolvedParams = await params;
-  await connectDb();
+  if (mongoose.connection.readyState === 0) await connectDb();
 
   if (!mongoose.Types.ObjectId.isValid(resolvedParams.id)) return notFound();
 
@@ -82,7 +82,7 @@ export default async function BlogText({ params }) {
       <div
         className="break-words text-xs sm:text-sm p-5 mx-auto my-5 text-left bg-gray-900 rounded-xl border"
         dangerouslySetInnerHTML={{
-          __html: text.content.replace(/<img(.*?)>/g, '<img loading="lazy"$1 alt="Blog Image">'), // lazy load ve alt text
+          __html: text.content.replace(/<img(.*?)>/g, '<img loading="lazy"$1 alt="Blog Image" />'), // lazy load ve alt text
         }}
       ></div>
       <div className="mt-auto">

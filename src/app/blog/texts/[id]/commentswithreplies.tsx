@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import ReplyButton from "./replybutton";
 
 export default function CommentsWithReplies({ comments, pageId }) {
@@ -8,6 +8,8 @@ export default function CommentsWithReplies({ comments, pageId }) {
   const [visibleReplyCount, setVisibleReplyCount] = useState<{
     [key: string]: number;
   }>({});
+
+  const modalRef = useRef<(HTMLDialogElement | null)[]>([]);
 
   const visibleComments = comments.slice(0, visibleCount);
 
@@ -17,6 +19,21 @@ export default function CommentsWithReplies({ comments, pageId }) {
       [commentId]: (prev[commentId] || 2) + 2,
     }));
   };
+
+  const showReplyModal = (index) => {
+    modalRef.current[index]?.showModal();
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", () => {
+      const { scrollTop, scrollHeight, clientHeight } =
+        document.documentElement;
+
+      if (scrollHeight - scrollTop <= clientHeight + 1) {
+        setVisibleCount((prev) => prev + 2);
+      }
+    });
+  });
 
   return (
     <div>
@@ -35,42 +52,62 @@ export default function CommentsWithReplies({ comments, pageId }) {
             <br />
             {comment.text}
             <div className="my-5">
-              <form
-                action={"../../../api/reply"}
-                className="text-left"
-                method="post"
+              <button
+                onClick={() => showReplyModal(index)}
+                className="btn btn-outline px-4 py-2 rounded mt-4 mx-auto"
               >
-                <textarea
-                  className="border text-sm w-50 rounded"
-                  name="text"
-                  placeholder="Yanıtınızı girin..."
-                  required
-                />
-                <br />
-                <input type="hidden" name="page" value={pageId} />
-                <input
-                  type="hidden"
-                  name="reply"
-                  value={comment._id.toString()}
-                />
-                <input
-                  type="email"
-                  className="border text-sm w-50 rounded"
-                  name="email"
-                  placeholder="E-Postanızı girin..."
-                  required
-                />
-                <br />
-                <input
-                  type="text"
-                  className="border text-sm w-50 rounded"
-                  name="author"
-                  placeholder="Kullanıcı adınızı girin..."
-                  required
-                />
-                <br />
-                <ReplyButton />
-              </form>
+                Yanıtla
+              </button>
+
+              <dialog
+                ref={(el) => {modalRef.current[index] = el}}
+                id="status_modal"
+                className="modal"
+              >
+                <div className="modal-box bg-gray-900">
+                  <h1 className="text-center m-1">Yanıt Formu</h1>
+                  <form
+                    action={"../../../api/reply"}
+                    className="text-center"
+                    method="post"
+                  >
+                    <textarea
+                      className="border text-sm w-50 rounded"
+                      name="text"
+                      placeholder="Yanıtınızı girin..."
+                      required
+                    />
+                    <br />
+                    <input type="hidden" name="page" value={pageId} />
+                    <input
+                      type="hidden"
+                      name="reply"
+                      value={comment._id.toString()}
+                    />
+                    <input
+                      type="email"
+                      className="border text-sm w-50 rounded"
+                      name="email"
+                      placeholder="E-Postanızı girin..."
+                      required
+                    />
+                    <br />
+                    <input
+                      type="text"
+                      className="border text-sm w-50 rounded"
+                      name="author"
+                      placeholder="Kullanıcı adınızı girin..."
+                      required
+                    />
+                    <br />
+                    <ReplyButton />
+                  </form>
+                </div>
+
+                <form method="dialog" className="modal-backdrop">
+                  <button>Kapat</button>
+                </form>
+              </dialog>
 
               {comment.replies.slice(0, replyVisible).map((reply, rIndex) => (
                 <div key={rIndex} className="mx-auto border-b my-5">
@@ -87,22 +124,13 @@ export default function CommentsWithReplies({ comments, pageId }) {
                   onClick={() => handleVisibleReplyCount(comment._id)}
                   className="btn btn-outline px-4 py-2 rounded mt-4 mx-auto"
                 >
-                  Daha fazla yükle
+                  Daha fazla göster
                 </button>
               )}
             </div>
           </div>
         );
       })}
-
-      {visibleCount < comments.length && (
-        <button
-          onClick={() => setVisibleCount(visibleCount + 2)}
-          className="btn btn-outline px-4 py-2 rounded mt-4 mx-auto"
-        >
-          Daha fazla yükle
-        </button>
-      )}
     </div>
   );
 }

@@ -29,7 +29,7 @@ export default function Form() {
       setFetchStatus(null);
     });
 
-    setTried(tried + 1);
+    setTried((prev) => prev + 1);
 
     if (
       yearRef.current &&
