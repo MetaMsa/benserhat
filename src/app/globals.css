@@ -22,3 +22,35 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+.opblock-tag-section span{
+  color: white;
+}
+
+.opblock-summary-description{
+  color: white !important;
+}
+
+h2.title{
+  color: white !important;
+}
+
+.renderedMarkdown p{
+  color: white !important;
+}
+
+.required{
+  color: white !important;
+}
+
+.opblock td{
+  color: white !important;
+}
+
+.tablinks{
+  color: white !important;
+}
+
+.opblock-description-wrapper p{
+  color: white !important;
+}
