@@ -10,6 +10,7 @@ export default function CommentsWithReplies({ comments, pageId }) {
   }>({});
 
   const modalRef = useRef<(HTMLDialogElement | null)[]>([]);
+  const lastCommentRef = useRef<HTMLDivElement>(null);
 
   const visibleComments = comments.slice(0, visibleCount);
 
@@ -23,29 +24,44 @@ export default function CommentsWithReplies({ comments, pageId }) {
   const showReplyModal = (index) => {
     modalRef.current[index]?.showModal();
   };
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const { scrollTop, scrollHeight, clientHeight } =
-        document.documentElement;
-
-      if (scrollHeight - scrollTop <= clientHeight + 1) {
-        setVisibleCount((prev) => prev + 2);
+  
+  useEffect(() => { 
+    if(!lastCommentRef.current)
+      return;
+    const observer = new IntersectionObserver(
+      (ent) => {
+        if(ent[0].isIntersecting){
+          setVisibleCount((prev) => {
+            if(prev < comments.length)
+              return prev + 2;
+            return prev;
+          })
+        }
+      },
+      {
+        threshold:1
       }
+    )
+
+    observer.observe(lastCommentRef.current);
+
+    return () => {
+      if(lastCommentRef.current)
+        observer.unobserve(lastCommentRef.current);
     };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [visibleCount, comments.length]);
 
   return (
     <div>
       {visibleComments.map((comment, index) => {
         const replyVisible = visibleReplyCount[comment._id] || 2;
+        const isLastComment = index === visibleComments.length - 1;
 
         return (
           <div
             key={index}
             className="mx-auto bg-gray-900 rounded-xl mt-5 p-5 text-left border"
+            ref={isLastComment ? lastCommentRef : null}
           >
             <div className="font-bold">{comment.author}</div>
             <div className="text-sm">
