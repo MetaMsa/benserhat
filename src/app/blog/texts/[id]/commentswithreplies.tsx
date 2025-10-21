@@ -25,15 +25,17 @@ export default function CommentsWithReplies({ comments, pageId }) {
   };
 
   useEffect(() => {
-    window.addEventListener("scroll", () => {
+    const handleScroll = () => {
       const { scrollTop, scrollHeight, clientHeight } =
         document.documentElement;
 
       if (scrollHeight - scrollTop <= clientHeight + 1) {
         setVisibleCount((prev) => prev + 2);
       }
-    });
-  });
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <div>
@@ -61,7 +63,6 @@ export default function CommentsWithReplies({ comments, pageId }) {
 
               <dialog
                 ref={(el) => {modalRef.current[index] = el}}
-                id="status_modal"
                 className="modal"
               >
                 <div className="modal-box bg-gray-900">
