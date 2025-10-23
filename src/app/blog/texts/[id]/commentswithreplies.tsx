@@ -63,12 +63,12 @@ export default function CommentsWithReplies({ comments, pageId }) {
             className="mx-auto bg-gray-900 rounded-xl mt-5 p-5 text-left border"
             ref={isLastComment ? lastCommentRef : null}
           >
-            <div className="font-bold">{comment.author}</div>
+            <div className="font-bold">{comment.author ?? " "}</div>
             <div className="text-sm">
-              {new Date(comment.createdAt).toLocaleString("tr-TR")}
+              {new Date(comment.createdAt ?? " ").toLocaleString("tr-TR")}
             </div>
             <br />
-            {comment.text}
+            {comment.text ?? " "}
             <div className="my-5">
               <button
                 onClick={() => showReplyModal(index)}
@@ -99,7 +99,7 @@ export default function CommentsWithReplies({ comments, pageId }) {
                     <input
                       type="hidden"
                       name="reply"
-                      value={comment._id.toString()}
+                      value={comment._id.toString() ?? " "}
                     />
                     <input
                       type="email"
@@ -132,7 +132,7 @@ export default function CommentsWithReplies({ comments, pageId }) {
                   <div className="text-sm mb-5">
                     {new Date(reply.createdAt).toLocaleString("tr-TR")}
                   </div>
-                  {reply.text}
+                  {reply.text ?? " "}
                 </div>
               ))}
 
