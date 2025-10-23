@@ -12,7 +12,7 @@ export default function CommentsWithReplies({ comments, pageId }) {
   const modalRef = useRef<(HTMLDialogElement | null)[]>([]);
   const lastCommentRef = useRef<HTMLDivElement>(null);
 
-  const visibleComments = comments.slice(0, visibleCount);
+  const visibleComments = (comments ?? []).slice(0, visibleCount);
 
   const handleVisibleReplyCount = (commentId: string) => {
     setVisibleReplyCount((prev) => ({
@@ -21,54 +21,55 @@ export default function CommentsWithReplies({ comments, pageId }) {
     }));
   };
 
-  const showReplyModal = (index) => {
+  const showReplyModal = (index: number) => {
     modalRef.current[index]?.showModal();
   };
-  
-  useEffect(() => { 
-    if(!lastCommentRef.current)
-      return;
+
+  useEffect(() => {
+    if (!lastCommentRef.current) return;
+
     const observer = new IntersectionObserver(
       (ent) => {
-        if(ent[0].isIntersecting){
+        if (ent[0].isIntersecting) {
           setVisibleCount((prev) => {
-            if(prev < comments.length)
-              return prev + 2;
+            if (prev < comments.length) return prev + 2;
             return prev;
-          })
+          });
         }
       },
-      {
-        threshold:1
-      }
-    )
+      { threshold: 1 }
+    );
 
     observer.observe(lastCommentRef.current);
 
     return () => {
-      if(lastCommentRef.current)
-        observer.unobserve(lastCommentRef.current);
+      const ref = lastCommentRef.current;
+      if (ref) observer.unobserve(ref);
     };
   }, [visibleCount, comments.length]);
 
   return (
     <div>
       {visibleComments.map((comment, index) => {
-        const replyVisible = visibleReplyCount[comment._id] || 2;
+        const replyVisible = visibleReplyCount[comment?._id] || 2;
         const isLastComment = index === visibleComments.length - 1;
+        const replies = Array.isArray(comment?.replies) ? comment.replies : [];
 
         return (
           <div
-            key={index}
+            key={comment?._id ?? index}
             className="mx-auto bg-gray-900 rounded-xl mt-5 p-5 text-left border"
             ref={isLastComment ? lastCommentRef : null}
           >
-            <div className="font-bold">{comment.author ?? " "}</div>
+            <div className="font-bold">{String(comment?.author ?? "")}</div>
             <div className="text-sm">
-              {new Date(comment.createdAt ?? " ").toLocaleString("tr-TR")}
+              {comment?.createdAt
+                ? new Date(comment.createdAt).toLocaleString("tr-TR")
+                : ""}
             </div>
             <br />
-            {comment.text ?? " "}
+            {String(comment?.text ?? "")}
+
             <div className="my-5">
               <button
                 onClick={() => showReplyModal(index)}
@@ -78,13 +79,15 @@ export default function CommentsWithReplies({ comments, pageId }) {
               </button>
 
               <dialog
-                ref={(el) => {modalRef.current[index] = el}}
+                ref={(el) => {
+                  modalRef.current[index] = el;
+                }}
                 className="modal"
               >
                 <div className="modal-box bg-gray-900">
                   <h1 className="text-center m-1">Yanıt Formu</h1>
                   <form
-                    action={"../../../api/reply"}
+                    action="../../../api/reply"
                     className="text-center"
                     method="post"
                   >
@@ -95,11 +98,11 @@ export default function CommentsWithReplies({ comments, pageId }) {
                       required
                     />
                     <br />
-                    <input type="hidden" name="page" value={pageId} />
+                    <input type="hidden" name="page" value={pageId ?? ""} />
                     <input
                       type="hidden"
                       name="reply"
-                      value={comment._id.toString() ?? " "}
+                      value={comment?._id?.toString() ?? ""}
                     />
                     <input
                       type="email"
@@ -126,17 +129,19 @@ export default function CommentsWithReplies({ comments, pageId }) {
                 </form>
               </dialog>
 
-              {comment.replies.slice(0, replyVisible).map((reply, rIndex) => (
-                <div key={rIndex} className="mx-auto border-b my-5">
-                  <div className="font-bold">{reply.author}</div>
+              {replies.slice(0, replyVisible).map((reply, rIndex) => (
+                <div key={reply?._id ?? rIndex} className="mx-auto border-b my-5">
+                  <div className="font-bold">{String(reply?.author ?? "")}</div>
                   <div className="text-sm mb-5">
-                    {new Date(reply.createdAt).toLocaleString("tr-TR")}
+                    {reply?.createdAt
+                      ? new Date(reply.createdAt).toLocaleString("tr-TR")
+                      : ""}
                   </div>
-                  {reply.text ?? " "}
+                  {String(reply?.text ?? "")}
                 </div>
               ))}
 
-              {replyVisible < comment.replies.length && (
+              {replyVisible < replies.length && (
                 <button
                   onClick={() => handleVisibleReplyCount(comment._id)}
                   className="btn btn-outline px-4 py-2 rounded mt-4 mx-auto"
