@@ -16,10 +16,10 @@ export default function Home() {
     <div className="grid grid-cols-1 sm:grid-col-2 md:grid-cols-3 mx-5 my-20 p-10 bg-gray-900 rounded-xl border">
       <div>
         <Image
-          className="rounded-xl mx-auto"
-          src="/3b584ae8-d108-4483-85db-d8c79c29d2ce.jpg"
-          width={100}
-          height={100}
+          className="rounded-full mx-auto"
+          src="/1761389402143.jpeg"
+          width={150}
+          height={150}
           alt="Portrait"
         ></Image>
       </div>
