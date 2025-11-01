@@ -1,6 +1,6 @@
 export default function Loading()
 {
     return (
-        <div className="spinner">Yükleniyor..</div>
+        <div className="loading loading-dots loading-xl"></div>
     );
 }
