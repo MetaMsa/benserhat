@@ -5,7 +5,7 @@ import { notFound } from "next/navigation";
 import mongoose from "mongoose";
 import { ObjectId } from "mongodb";
 import Modal from "./modal";
-import Button from "./button";
+import CommentForm from "./commentForm";
 import CommentsWithReplies from "./commentswithreplies";
 
 export async function generateMetadata({ params }) {
@@ -86,37 +86,7 @@ export default async function BlogText({ params }) {
         }}
       ></div>
       <div className="mt-auto">
-        <form
-          action="../../../api/comment"
-          method="post"
-          className="bg-gray-900 w-60 py-5 mx-auto rounded-xl border"
-        >
-          <textarea
-            className="border text-sm w-50 rounded"
-            placeholder="Yorumunuzu girin..."
-            name="text"
-            required
-          ></textarea>{" "}
-          <br />
-          <input
-            className="border text-sm w-50 rounded"
-            type="email"
-            name="email"
-            placeholder="E-Postanızı girin..."
-            required
-          />{" "}
-          <br />
-          <input
-            className="border text-sm w-50 rounded"
-            type="text"
-            name="author"
-            placeholder="Kullanıcı adınızı girin..."
-            required
-          />{" "}
-          <br />
-          <input type="hidden" name="page" value={resolvedParams.id} />
-          <Button></Button>
-        </form>
+        <CommentForm pageId={resolvedParams.id}></CommentForm>
       </div>
       <CommentsWithReplies comments={commentsWithReplies} pageId={resolvedParams.id}></CommentsWithReplies>
     </div>

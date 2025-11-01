@@ -1,9 +1,9 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import ReplyButton from "./replybutton";
 
 export default function CommentsWithReplies({ comments, pageId }) {
+  const [disabled, setDisabled] = useState(false);
   const [visibleCount, setVisibleCount] = useState(2);
   const [visibleReplyCount, setVisibleReplyCount] = useState<{
     [key: string]: number;
@@ -90,6 +90,9 @@ export default function CommentsWithReplies({ comments, pageId }) {
                     action="../../../api/reply"
                     className="text-center"
                     method="post"
+                    onSubmit={() => {
+                      setDisabled(true);
+                    }}
                   >
                     <textarea
                       className="border text-sm w-50 rounded"
@@ -120,7 +123,13 @@ export default function CommentsWithReplies({ comments, pageId }) {
                       required
                     />
                     <br />
-                    <ReplyButton />
+                    <button
+                      className="btn btn-outline mt-3 rounded"
+                      type="submit"
+                      disabled={disabled}
+                    >
+                      Gönder
+                    </button>
                   </form>
                 </div>
 
@@ -130,7 +139,10 @@ export default function CommentsWithReplies({ comments, pageId }) {
               </dialog>
 
               {replies.slice(0, replyVisible).map((reply, rIndex) => (
-                <div key={reply?._id ?? rIndex} className="mx-auto border-b my-5">
+                <div
+                  key={reply?._id ?? rIndex}
+                  className="mx-auto border-b my-5"
+                >
                   <div className="font-bold">{String(reply?.author ?? "")}</div>
                   <div className="text-sm mb-5">
                     {reply?.createdAt
