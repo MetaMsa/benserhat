@@ -9,12 +9,12 @@ import CommentForm from "./commentForm";
 import CommentsWithReplies from "./commentswithreplies";
 
 export async function generateMetadata({ params }) {
-  const resolvedParams = await params;
+  const { id } = params;
   if (mongoose.connection.readyState === 0) await connectDb();
 
-  if (!mongoose.Types.ObjectId.isValid(resolvedParams.id)) return notFound();
+  if (!mongoose.Types.ObjectId.isValid(id)) return notFound();
 
-  const text = await _Blog.findById(resolvedParams.id);
+  const text = await _Blog.findById(id);
 
   if (!text) return notFound();
 
@@ -24,18 +24,18 @@ export async function generateMetadata({ params }) {
 }
 
 export default async function BlogText({ params }) {
-  const resolvedParams = await params;
+  const { id } = params;
 
   await connectDb();
 
-  if (!mongoose.Types.ObjectId.isValid(resolvedParams.id)) return notFound();
+  if (!mongoose.Types.ObjectId.isValid(id)) return notFound();
 
-  const text = await _Blog.findById(resolvedParams.id, "title content createdAt");
+  const text = await _Blog.findById(id, "title content createdAt");
 
   if (!text) return notFound();
 
   const commentsWithRepliesRaw = await _Comments.aggregate([
-    { $match: { page: new ObjectId(resolvedParams.id) } },
+    { $match: { page: new ObjectId(id) } },
     { $sort: { createdAt: -1 } },
     {
       $lookup: {
@@ -86,9 +86,9 @@ export default async function BlogText({ params }) {
         }}
       ></div>
       <div className="mt-auto">
-        <CommentForm pageId={resolvedParams.id}></CommentForm>
+        <CommentForm pageId={id}></CommentForm>
       </div>
-      <CommentsWithReplies comments={commentsWithReplies} pageId={resolvedParams.id}></CommentsWithReplies>
+      <CommentsWithReplies comments={commentsWithReplies} pageId={id}></CommentsWithReplies>
     </div>
   );
 }
