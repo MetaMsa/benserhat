@@ -68,6 +68,7 @@ export default function RootLayout({
                 width={500}
                 height={500}
                 alt="Logo"
+                priority
               />
             </Link>
             <NavText />
