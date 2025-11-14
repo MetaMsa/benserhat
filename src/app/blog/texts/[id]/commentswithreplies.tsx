@@ -2,7 +2,30 @@
 
 import { useState, useEffect, useRef } from "react";
 
-export default function CommentsWithReplies({ comments, pageId }) {
+type Reply = {
+  _id?: string;
+  author?: string;
+  createdAt?: string;
+  text?: string;
+};
+
+type Comment = {
+  _id?: string;
+  author?: string;
+  createdAt?: string;
+  text?: string;
+  replies?: Reply[];
+};
+
+interface CommentsWithRepliesProps {
+  comments?: Comment[];
+  pageId?: string;
+}
+
+export default function CommentsWithReplies({
+  comments,
+  pageId,
+}: CommentsWithRepliesProps) {
   const [disabled, setDisabled] = useState(false);
   const [visibleCount, setVisibleCount] = useState(2);
   const [visibleReplyCount, setVisibleReplyCount] = useState<{
@@ -13,8 +36,11 @@ export default function CommentsWithReplies({ comments, pageId }) {
   const lastCommentRef = useRef<HTMLDivElement>(null);
 
   const visibleComments = (comments ?? []).slice(0, visibleCount);
+  const totalComments = comments?.length ?? 0;
 
-  const handleVisibleReplyCount = (commentId: string) => {
+  const handleVisibleReplyCount = (commentId?: string) => {
+    if (!commentId) return;
+
     setVisibleReplyCount((prev) => ({
       ...prev,
       [commentId]: (prev[commentId] || 2) + 2,
@@ -26,13 +52,14 @@ export default function CommentsWithReplies({ comments, pageId }) {
   };
 
   useEffect(() => {
-    if (!lastCommentRef.current) return;
+    const currentTarget = lastCommentRef.current;
+    if (!currentTarget) return;
 
     const observer = new IntersectionObserver(
       (ent) => {
         if (ent[0].isIntersecting) {
           setVisibleCount((prev) => {
-            if (prev < comments.length) return prev + 2;
+            if (prev < totalComments) return prev + 2;
             return prev;
           });
         }
@@ -40,13 +67,12 @@ export default function CommentsWithReplies({ comments, pageId }) {
       { threshold: 1 }
     );
 
-    observer.observe(lastCommentRef.current);
+    observer.observe(currentTarget);
 
     return () => {
-      const ref = lastCommentRef.current;
-      if (ref) observer.unobserve(ref);
+      observer.unobserve(currentTarget);
     };
-  }, [visibleCount, comments.length]);
+  }, [visibleCount, totalComments]);
 
   return (
     <div>
