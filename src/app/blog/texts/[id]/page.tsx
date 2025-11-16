@@ -9,7 +9,7 @@ import CommentForm from "./commentForm";
 import CommentsWithReplies from "./commentswithreplies";
 
 export async function generateMetadata({ params }) {
-  const { id } = params;
+  const { id } = await params;
 
   if (mongoose.connection.readyState === 0) await connectDb();
 
@@ -24,7 +24,7 @@ export async function generateMetadata({ params }) {
 }
 
 export default async function BlogText({ params }) {
-  const { id } = params;
+  const { id } = await params;
 
   await connectDb();
 
