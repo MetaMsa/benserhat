@@ -4,7 +4,7 @@ import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 
 export default async function AdminLogin({ params }) {
-  const resolvedParams = await params;
+  const resolvedParams = params;
   const secretSlug = process.env.URL;
   const cookieStore = cookies();
   const token = (await cookieStore).get("token")?.value;
