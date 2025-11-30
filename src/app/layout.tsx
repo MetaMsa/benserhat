@@ -115,7 +115,7 @@ export default function RootLayout({
             cv
           </Link>
           <Link className="mx-1 sm:mx-5" href={"/gdpr"}>
-            gdpr
+            Gizlilik Politikası
           </Link>
           <Link className="mx-1 sm:mx-5" href={"/docs"}>
           api
