@@ -3,14 +3,14 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import Three from "./three";
+import axios from "axios";
 
 export default function Home() {
   const [data, setData] = useState<string | number>(Number);
 
   useEffect(() => {
-    fetch("api/yt")
-      .then((response) => response.json())
-      .then((data) => setData(data.items[0].statistics.subscriberCount));
+    axios.get("api/yt")
+      .then((response) => setData(response.data.items[0].statistics.subscriberCount));
   }, []);
   return (
     <div className="grid grid-cols-1 sm:grid-col-2 md:grid-cols-3 mx-5 my-20 p-10 bg-gray-900 rounded-xl border">
