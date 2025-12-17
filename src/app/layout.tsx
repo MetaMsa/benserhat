@@ -56,10 +56,10 @@ export default function RootLayout({
       >
         <Analytics />
         <SpeedInsights />
-        <header className="bg-gray-900 border-b">
+        <header className="flex justify-center mb-50 md:mb-25">
           <nav
             aria-label="Global"
-            className="navbar navbar-center mx-auto flex flex-col md:flex-row max-w-7xl items-center justify-between p-3"
+            className="fixed navbar navbar-center mx-auto flex flex-col md:flex-row items-center justify-between p-3 border-b bg-gray-900 z-10"
           >
             <Link href={"/"} className="size-20">
               <Image
