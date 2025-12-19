@@ -23,6 +23,7 @@ export default async function Blog() {
               className={"w-50 xl:w-100 mx-auto p-3 bg-gray-900 rounded-xl border border-amber-50"
               }
               href={"/blog/texts/" + blog._id}
+              target="_blank"
             >
               <h1 className="font-extrabold">{blog.title}</h1>
               <div className="truncate">{blog.content.replace(/<[^>]+>/g, "")}</div>
