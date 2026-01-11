@@ -24,7 +24,7 @@ export default function Projects() {
 
   return (
     <div className="m-5 p-5 text-xs sm:text-sm">
-      <h1 className="m-5 p-5 bg-gray-900 rounded-2xl border">Projelerim</h1>
+      <h1 className="m-5 font-bold bg-gray-900 border rounded-xl p-5">PROJELERİM</h1>
       <div className="grid grid-cols-3 gap-5 justify-items-center bg-gray-900 rounded-2xl border p-5">
         {data.map((project) => (
           <div key={project.id} className="card bg-base-100 w-96 shadow-sm border">
