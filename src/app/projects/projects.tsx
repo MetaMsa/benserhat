@@ -16,25 +16,55 @@ interface Project {
 
 export default function Projects() {
   const [data, setData] = useState<Project[]>([]);
+  const [allData, setAllData] = useState<Project[]>([]);
+  const [languages, setLanguages] = useState<string[]>([]);
+  const [language, setLanguage] = useState<string>("");
 
   useEffect(() => {
-    axios.get("api/projects").then((response) => setData(response.data));
+    axios.get("api/projects").then((response) => {
+      setAllData(response.data);
+      setData(response.data);
+
+      const uniqueLanguages = Array.from(
+        new Set(response.data.map((p: Project) => p.language).filter(Boolean))
+      ) as string[];
+      setLanguages(uniqueLanguages);
+    });
   }, []);
 
-  console.log(data);
+  useEffect(() => {
+    if (language === "") {
+      setData(allData);
+    } else {
+      setData(allData.filter((p) => p.language === language));
+    }
+  }, [language, allData]);
 
   return (
     <div className="text-xs sm:text-sm">
-      <h1 className="m-5 p-5 font-bold bg-gray-900 border rounded-xl5 rounded-2xl">
-        PROJELERİM
-      </h1>
+      <div className="m-5 p-5 font-bold bg-gray-900 border rounded-xl5 rounded-2xl">
+        <h1>PROJELERİM</h1>
+        <select
+          value={language}
+          className="select select-secondary mt-2"
+          title="Diller"
+          onChange={(e) => setLanguage(e.target.value)}
+        >
+          <option value="">Dil Seçiniz...</option>
+          {languages.map((lang) => (
+            <option key={lang} value={lang}>
+              {lang}
+            </option>
+          ))}
+        </select>
+      </div>
       <div className="m-5 p-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 justify-items-center bg-gray-900 rounded-2xl border">
         {data.map((project) => (
           <div key={project.id} className="card bg-base-100 shadow-sm border">
             <figure>
               <Image
                 src={`https://opengraph.githubassets.com/54545/metamsa/${project.name}`}
-                alt="Shoes"
+                alt={project.name}
                 width={500}
                 height={300}
                 priority
@@ -44,7 +74,9 @@ export default function Projects() {
               <h2 className="card-title">{project.name}</h2>
               <p>{project.description}</p>
               <div className="card-actions justify-end">
-                <div className="badge badge-outline my-auto">{project.language}</div>
+                <div className="badge badge-outline my-auto">
+                  {project.language}
+                </div>
                 <Link className="btn btn-primary" href={project.html_url}>
                   Projeye git
                 </Link>
