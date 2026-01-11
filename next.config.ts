@@ -5,6 +5,14 @@ const nextConfig: NextConfig = {
   experimental: {
     
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'opengraph.githubassets.com',
+      },
+    ],
+  },
 };
 
 export default nextConfig;

@@ -93,6 +93,11 @@ export default function RootLayout({
                           CoDle
                         </Link>
                       </li>
+                      <li>
+                        <Link href={"/projects"} className="m-auto">
+                          Projeler
+                        </Link>
+                      </li>
                     </ul>
                   </details>
                 </li>
