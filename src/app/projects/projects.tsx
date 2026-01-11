@@ -25,9 +25,9 @@ export default function Projects() {
   return (
     <div className="text-xs sm:text-sm">
       <h1 className="m-5 p-5 font-bold bg-gray-900 border rounded-xl5 rounded-2xl">PROJELERİM</h1>
-      <div className="m-5 p-5 grid grid-cols-3 gap-5 justify-items-center bg-gray-900 rounded-2xl border">
+      <div className="m-5 p-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 justify-items-center bg-gray-900 rounded-2xl border">
         {data.map((project) => (
-          <div key={project.id} className="card bg-base-100 w-96 shadow-sm border">
+          <div key={project.id} className="card bg-base-100 shadow-sm border">
             <figure>
               <Image
                 src={`https://opengraph.githubassets.com/54545/metamsa/${project.name}`}
