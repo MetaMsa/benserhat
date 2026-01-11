@@ -42,7 +42,7 @@ export default function Projects() {
 
   return (
     <div className="text-xs sm:text-sm">
-      <div className="m-5 p-5 font-bold bg-gray-900 border rounded-xl5 rounded-2xl">
+      <div className="m-5 p-5 font-bold bg-gray-900 border rounded-2xl">
         <h1>PROJELERİM</h1>
         <select
           value={language}
