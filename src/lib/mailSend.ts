@@ -7,7 +7,7 @@ export async function NewsMailSend(
     apiKey: process.env.MAILERSEND_API_KEY || "",
   });
 
-  const sentFrom = new Sender("MS_Agq6XW@benserhat.live", "benserhat");
+  const sentFrom = new Sender("MS_VJYnSt@benserhat.com", "benserhat");
 
   const uniqueClients = Array.from(
     new Map(_clients.map((c) => [c.email, c])).values()
@@ -40,7 +40,7 @@ export async function ReplyMailSend(
     apiKey: process.env.MAILERSEND_API_KEY || "",
   });
 
-  const sentFrom = new Sender("MS_Agq6XW@benserhat.live", "benserhat");
+  const sentFrom = new Sender("MS_VJYnSt@benserhat.com", "benserhat");
 
   const recipients = [new Recipient(_clientMail)];
 
