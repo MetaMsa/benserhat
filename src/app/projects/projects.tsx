@@ -73,7 +73,7 @@ export default function Projects() {
             <div className="card-body">
               <h2 className="card-title">{project.name}</h2>
               <p>{project.description}</p>
-              <div className="card-actions justify-end">
+              <div className="card-actions flex justify-between">
                 <div className="badge badge-outline my-auto">
                   {project.language}
                 </div>
