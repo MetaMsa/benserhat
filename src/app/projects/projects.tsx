@@ -11,6 +11,7 @@ interface Project {
   description: string;
   html_url: string;
   stargazers_count: number;
+  language: string;
 }
 
 export default function Projects() {
@@ -24,7 +25,9 @@ export default function Projects() {
 
   return (
     <div className="text-xs sm:text-sm">
-      <h1 className="m-5 p-5 font-bold bg-gray-900 border rounded-xl5 rounded-2xl">PROJELERİM</h1>
+      <h1 className="m-5 p-5 font-bold bg-gray-900 border rounded-xl5 rounded-2xl">
+        PROJELERİM
+      </h1>
       <div className="m-5 p-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 justify-items-center bg-gray-900 rounded-2xl border">
         {data.map((project) => (
           <div key={project.id} className="card bg-base-100 shadow-sm border">
@@ -39,11 +42,12 @@ export default function Projects() {
             </figure>
             <div className="card-body">
               <h2 className="card-title">{project.name}</h2>
-              <p>
-                {project.description}
-              </p>
+              <p>{project.description}</p>
               <div className="card-actions justify-end">
-                <Link className="btn btn-primary" href={project.html_url}>Projeye git</Link>
+                <div className="badge badge-outline my-auto">{project.language}</div>
+                <Link className="btn btn-primary" href={project.html_url}>
+                  Projeye git
+                </Link>
               </div>
             </div>
           </div>
