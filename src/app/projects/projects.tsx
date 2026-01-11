@@ -46,7 +46,7 @@ export default function Projects() {
         <h1>PROJELERİM</h1>
         <select
           value={language}
-          className="select select-secondary mt-2"
+          className="select select-secondary mt-2 bg-gray-900"
           title="Diller"
           onChange={(e) => setLanguage(e.target.value)}
         >
@@ -60,7 +60,7 @@ export default function Projects() {
       </div>
       <div className="m-5 p-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 justify-items-center bg-gray-900 rounded-2xl border">
         {data.map((project) => (
-          <div key={project.id} className="card bg-base-100 shadow-sm border">
+          <div key={project.id} className="card bg-gray-900 shadow-sm border">
             <figure>
               <Image
                 src={`https://opengraph.githubassets.com/54545/metamsa/${project.name}`}
