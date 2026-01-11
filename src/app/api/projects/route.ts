@@ -3,7 +3,7 @@ import axios from "axios";
 export async function GET() {
   const github_token = process.env.GITHUB_TOKEN;
   const response = await axios(
-    "https://api.github.com/user/repos?visibility=public&sort=pushed",
+    "https://api.github.com/user/repos?visibility=public&affiliation=owner",
     {
       headers: {
         Authorization: `Bearer ${github_token}`,
