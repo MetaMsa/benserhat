@@ -74,14 +74,18 @@ export default function Projects() {
             <div className="card-body">
               <h2 className="card-title">{project.name}</h2>
               <p>{project.description}</p>
-              <div className="card-actions flex justify-between">
-                <LikeButton type={"portfolio"} slug={project.id} />
+              <div className="card-actions grid grid-cols-2 justify-items-center">
+                <div>
+                  <LikeButton type={"portfolio"} slug={project.id} />
+                </div>
                 <div className="badge badge-outline my-auto">
                   {project.language}
                 </div>
-                <Link className="btn btn-primary" href={project.html_url}>
-                  Projeye git
-                </Link>
+                <div className="col-span-2">
+                  <Link className="btn btn-primary" href={project.html_url}>
+                    Projeye git
+                  </Link>
+                </div>
               </div>
             </div>
           </div>
