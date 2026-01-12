@@ -156,7 +156,7 @@ export default function CommentsWithReplies({ comments, pageId }) {
                   </div>
                   {String(reply?.text ?? "")}
                   <span className="m-5">
-                    <LikeButton type={"reply"} slug={comment._id}></LikeButton>
+                    <LikeButton type={"reply"} slug={reply._id}></LikeButton>
                   </span>
                 </div>
               ))}
