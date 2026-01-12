@@ -5,11 +5,14 @@ import { rateLimit } from "@/lib/ratelimit";
 export async function POST(req: NextRequest) {
   const { slug, type } = await req.json();
 
-  if (!slug) {
-    return NextResponse.json({ error: "slug yok" }, { status: 400 });
+  if (!slug || !type) {
+    return NextResponse.json({ error: "slug veya type yok" }, { status: 400 });
   }
 
-  const ip = req.headers.get("x-forwarded-for")?.split(",")[0] ?? "unknown";
+  const ip =
+    req.headers.get("x-forwarded-for")?.split(",")[0] ??
+    req.headers.get("x-real-ip") ??
+    "unknown";
 
   if (!(await rateLimit(ip))) {
     return NextResponse.json(
@@ -18,13 +21,20 @@ export async function POST(req: NextRequest) {
     );
   }
 
-  const cookieKey = `liked_${slug}`;
-  if (req.cookies.get(cookieKey)) {
+  const cookieKey = `liked_${type}_${slug}`;
+  const ipKey = `like:ip:${type}:${slug}`;
+
+  const ipLiked = await redis.sismember(ipKey, ip);
+
+  if (req.cookies.get(cookieKey) || ipLiked) {
     return NextResponse.json({ error: "Zaten like atılmış" }, { status: 409 });
   }
 
   const likeKey = `like:${type}:${slug}`;
   const likes = await redis.incr(likeKey);
+
+  await redis.sadd(ipKey, ip);
+  await redis.expire(ipKey, 60 * 60 * 24 * 30);
 
   const res = NextResponse.json({ likes });
 
