@@ -3,6 +3,7 @@ import { connectDb } from "@/lib/connectDb";
 import { _Blog, _Comments } from "@/Model/Blog";
 import mongoose from "mongoose";
 import { ObjectId } from "mongodb";
+import LikeButton from "@/app/components/LikeButton";
 
 import Modal from "./modal";
 import CommentForm from "./commentForm";
@@ -44,35 +45,31 @@ export default async function BlogText({ params }) {
           {
             $match: {
               $expr: {
-                $eq: [
-                  { $toString: "$reply" },
-                  { $toString: "$$commentId" }
-                ]
-              }
-            }
-          }
+                $eq: [{ $toString: "$reply" }, { $toString: "$$commentId" }],
+              },
+            },
+          },
         ],
-        as: "replies"
-      }
-    }
+        as: "replies",
+      },
+    },
   ]);
 
-  const commentsWithReplies = commentsRaw.map(comment => ({
+  const commentsWithReplies = commentsRaw.map((comment) => ({
     ...comment,
     _id: comment._id.toString(),
     page: comment.page.toString(),
-    replies: comment.replies.map(r => ({
+    replies: comment.replies.map((r) => ({
       ...r,
       _id: r._id.toString(),
-      page: r.page?.toString() ?? null
-    }))
+      page: r.page?.toString() ?? null,
+    })),
   }));
 
-  const safeHTML =
-    (text.content || "").replace(
-      /<img(.*?)>/g,
-      '<img loading="lazy"$1 alt="Blog Image" />'
-    );
+  const safeHTML = (text.content || "").replace(
+    /<img(.*?)>/g,
+    '<img loading="lazy"$1 alt="Blog Image" />'
+  );
 
   return (
     <div className="m-5 object-contain">
@@ -90,6 +87,10 @@ export default async function BlogText({ params }) {
         className="break-words text-xs sm:text-sm p-5 mx-auto my-5 text-left bg-gray-900 rounded-xl border"
         dangerouslySetInnerHTML={{ __html: safeHTML }}
       />
+
+      <div className="flex justify-end mb-5">
+        <LikeButton type={"blog"} slug={id}></LikeButton>
+      </div>
 
       <div className="mt-auto">
         <CommentForm pageId={id} />

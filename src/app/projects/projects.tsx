@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import Link from "next/link";
+import LikeButton from "../components/LikeButton";
 
 interface Project {
   id: number;
@@ -74,6 +75,7 @@ export default function Projects() {
               <h2 className="card-title">{project.name}</h2>
               <p>{project.description}</p>
               <div className="card-actions flex justify-between">
+                <LikeButton type={"portfolio"} slug={project.id} />
                 <div className="badge badge-outline my-auto">
                   {project.language}
                 </div>

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+import LikeButton from "@/app/components/LikeButton";
 
 export default function CommentsWithReplies({ comments, pageId }) {
   const [disabled, setDisabled] = useState(false);
@@ -69,6 +70,10 @@ export default function CommentsWithReplies({ comments, pageId }) {
             </div>
             <br />
             {String(comment?.text ?? "")}
+
+            <span className="m-5">
+              <LikeButton type={"blog"} slug={comment._id}></LikeButton>
+            </span>
 
             <div className="my-5">
               <button
@@ -150,6 +155,9 @@ export default function CommentsWithReplies({ comments, pageId }) {
                       : ""}
                   </div>
                   {String(reply?.text ?? "")}
+                  <span className="m-5">
+                    <LikeButton type={"reply"} slug={comment._id}></LikeButton>
+                  </span>
                 </div>
               ))}
 
