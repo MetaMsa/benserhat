@@ -34,7 +34,7 @@ export async function POST(req: NextRequest) {
   const likes = await redis.incr(likeKey);
 
   await redis.sadd(ipKey, ip);
-  await redis.expire(ipKey, 60 * 60 * 24 * 30);
+  await redis.expire(ipKey, 60 * 60 * 24 * 365);
 
   const res = NextResponse.json({ likes });
 
