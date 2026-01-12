@@ -258,6 +258,77 @@
           }
         }
       }
+    },
+    "/api/like": {
+      "post": {
+        "summary": "Blog beğeni ekle",
+        "description": "Belirtilen bloga, yoruma veya projeye bir beğeni ekler ve güncellenmiş beğeni sayısını döner.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "slug": { "type": "string", "description": "Beğenilecek öğenin ID'si" },
+                  "type": { "type": "string", "description": "Beğenilecek öğe türü (portfolio ,blog, comment, reply)" }
+                },
+                "required": ["blogId"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Güncellenmiş beğeni sayısı",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "likes": { "type": "number", "description": "Güncellenmiş beğeni sayısı" }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "summary": "Blog beğeni sayısını al",
+        "description": "Belirtilen blogun mevcut beğeni sayısını döner.",
+        "parameters": [
+          {
+            "name": "slug",
+            "in": "query",
+            "required": true,
+            "schema": { "type": "string" },
+            "description": "Beğeni sayısı alınacak öğenin ID'si"
+          },
+          {
+            "name": "type",
+            "in": "query",
+            "required": true,
+            "schema": { "type": "string" },
+            "description": "Beğeni sayısı alınacak öğe türü (portfolio ,blog, comment, reply)"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Mevcut beğeni sayısı",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "likes": { "type": "number", "description": "Mevcut beğeni sayısı" }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {

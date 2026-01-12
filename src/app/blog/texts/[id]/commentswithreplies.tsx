@@ -72,7 +72,7 @@ export default function CommentsWithReplies({ comments, pageId }) {
             {String(comment?.text ?? "")}
 
             <span className="m-5">
-              <LikeButton type={"blog"} slug={comment._id}></LikeButton>
+              <LikeButton type={"comment"} slug={comment._id}></LikeButton>
             </span>
 
             <div className="my-5">
