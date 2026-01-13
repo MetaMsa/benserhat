@@ -191,9 +191,9 @@
       }
     },
     "/api/yesterDay": {
-      "post": {
+      "get": {
         "summary": "Dünün dilini döner",
-        "description": "LangJson dizisinden gün sayısına göre dönen dili verir. Request body yok.",
+        "description": "LangJson dizisinden gün sayısına göre dönen dili verir.",
         "responses": {
           "200": {
             "description": "Dünün dili",

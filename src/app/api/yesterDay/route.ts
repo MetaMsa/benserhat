@@ -1,6 +1,6 @@
 import LangJson from "../../../../lang.json";
 
-export async function POST() {
+export async function GET() {
   const time = new Date("2024-05-23");
   const today = new Date();
   const timestamp = Math.floor((+today - +time) / (1000 * 60 * 60 * 24)) - 1;

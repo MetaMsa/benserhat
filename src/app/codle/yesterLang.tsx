@@ -10,7 +10,7 @@ export default function YesterLang() {
 
   useEffect(() => {
     const fetch = async () => {
-      const res = await axios.post("/api/yesterDay");
+      const res = await axios.get("/api/yesterDay");
       setImgUrl(res.data.image);
       setName(res.data.name);
     };
