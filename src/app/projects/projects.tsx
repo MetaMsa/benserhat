@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import Link from "next/link";
 import LikeButton from "../components/LikeButton";
+import { set } from "mongoose";
 
 interface Project {
   id: number;
@@ -20,17 +21,24 @@ export default function Projects() {
   const [allData, setAllData] = useState<Project[]>([]);
   const [languages, setLanguages] = useState<string[]>([]);
   const [language, setLanguage] = useState<string>("");
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    axios.get("api/projects").then((response) => {
-      setAllData(response.data);
-      setData(response.data);
+    setLoading(true);
+    axios
+      .get("api/projects")
+      .then((response) => {
+        setAllData(response.data);
+        setData(response.data);
 
-      const uniqueLanguages = Array.from(
-        new Set(response.data.map((p: Project) => p.language).filter(Boolean))
-      ) as string[];
-      setLanguages(uniqueLanguages);
-    });
+        const uniqueLanguages = Array.from(
+          new Set(response.data.map((p: Project) => p.language).filter(Boolean))
+        ) as string[];
+        setLanguages(uniqueLanguages);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
   }, []);
 
   useEffect(() => {
@@ -60,6 +68,16 @@ export default function Projects() {
         </select>
       </div>
       <div className="m-5 p-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 justify-items-center bg-gray-900 rounded-2xl border">
+        {loading && (
+          <div className="col-span-3">
+            <div className="flex w-52 flex-col gap-4">
+              <div className="skeleton h-32 w-full bg-gray-500"></div>
+              <div className="skeleton h-4 w-28 bg-gray-500"></div>
+              <div className="skeleton h-4 w-full bg-gray-500"></div>
+              <div className="skeleton h-4 w-full bg-gray-500"></div>
+            </div>
+          </div>
+        )}
         {data.map((project) => (
           <div key={project.id} className="card bg-gray-900 shadow-sm border">
             <figure>
