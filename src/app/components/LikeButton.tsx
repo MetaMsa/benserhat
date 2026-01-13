@@ -4,23 +4,26 @@ import { useEffect, useState } from "react";
 
 export default function LikeButton({ slug, type }: { slug: number, type: string }) {
   const [likes, setLikes] = useState<number | null>(null);
-  const [liked, setLiked] = useState(false);
+  const [liked, setLiked] = useState<boolean>(false);
+
+  const fetchLikes = async () => {
+    const res = await fetch(`/api/like?type=${type}&slug=${slug}`);
+    if (res.ok) {
+      const data = await res.json();
+      setLikes(data.likes);
+      setLiked(data.liked);
+    }
+  };
 
   useEffect(() => {
-    async function fetchLikes() {
-      const res = await fetch(`/api/like?type=${type}&slug=${slug}`);
-      if (res.ok) {
-        const data = await res.json();
-        setLikes(data.likes);
-      }
-    }
     fetchLikes();
   }, [type, slug]);
 
   const handleLike = async () => {
-    if (liked) return;
+    const method = liked ? "DELETE" : "POST";
+
     const res = await fetch("/api/like", {
-      method: "POST",
+      method,
       headers: {
         "Content-Type": "application/json",
       },
@@ -28,15 +31,13 @@ export default function LikeButton({ slug, type }: { slug: number, type: string 
     });
 
     if (res.ok) {
-      const data = await res.json();
-      setLikes(data.likes);
-      setLiked(true);
+      fetchLikes();
     }
   };
 
   return (
     <button onClick={handleLike} className="btn btn-ghost">
-        <i className="fa fa-thumbs-up"></i> {likes ?? 0}
+        <i className={`fa${liked ? "" : "-regular"} fa-thumbs-up`}></i> {likes ?? 0}
     </button>
   );
 }

@@ -261,8 +261,8 @@
     },
     "/api/like": {
       "post": {
-        "summary": "Blog beğeni ekle",
-        "description": "Belirtilen bloga, yoruma veya projeye bir beğeni ekler ve güncellenmiş beğeni sayısını döner.",
+        "summary": "Beğeni ekle",
+        "description": "",
         "requestBody": {
           "required": true,
           "content": {
@@ -280,13 +280,12 @@
         },
         "responses": {
           "200": {
-            "description": "Güncellenmiş beğeni sayısı",
+            "description": "",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "likes": { "type": "number", "description": "Güncellenmiş beğeni sayısı" }
                   }
                 }
               }
@@ -295,8 +294,8 @@
         }
       },
       "get": {
-        "summary": "Blog beğeni sayısını al",
-        "description": "Belirtilen blogun mevcut beğeni sayısını döner.",
+        "summary": "Öğenin beğeni bilgilerini al",
+        "description": "Belirtilen blogun, yorumun, yanıtın veya projenin beğeni bilgisini döner.",
         "parameters": [
           {
             "name": "slug",
@@ -321,7 +320,41 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "likes": { "type": "number", "description": "Mevcut beğeni sayısı" }
+                    "likes": { "type": "number", "description": "Mevcut beğeni sayısı" },
+                    "liked": { "type": "boolean", "description": "Kullanıcının beğenip beğenmediği", "default": false }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Beğeni kaldır",
+        "description": "Belirtilen blog, yorum, yanıt veya projenin beğenisini kaldırır.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "slug": { "type": "string", "description": "Beğenisi kaldırılacak öğenin ID'si" },
+                  "type": { "type": "string", "description": "Beğenisi kaldırılacak öğe türü (portfolio ,blog, comment, reply)" }
+                },
+                "required": ["blogId"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
                   }
                 }
               }
