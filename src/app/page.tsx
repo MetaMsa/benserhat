@@ -34,7 +34,7 @@ export default function Home() {
           Youtube Abone Sayacı: {data} <br />
           <progress
             className="progress progress-accent w-20"
-            value={data}
+            {...(Number(data) && { value: Number(data) })}
             max="10"
           ></progress>
         </p>
