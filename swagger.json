@@ -329,6 +329,33 @@
           }
         }
       }
+    },
+    "/api/projects": {
+      "get": {
+        "summary": "Projeleri al",
+        "description": "Tüm projeleri döner.",
+        "responses": {
+          "200": {
+            "description": "Projeler listesi",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": { "type": "string" },
+                      "name": { "type": "string" },
+                      "description": { "type": "string" },
+                      "url": { "type": "string", "format": "uri" }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
