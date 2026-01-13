@@ -104,9 +104,13 @@ export async function DELETE(req: NextRequest) {
   const ipKey = `like:ip:${type}:${slug}`;
 
   const current = parseInt((await redis.get(likeKey)) || "0", 10);
-  if (current > 0) await redis.decr(likeKey);
 
-  await redis.srem(ipKey, ip);
+  const hasLiked = await redis.sismember(ipKey, ip);
+
+  if (hasLiked && current > 0) {
+    await redis.decr(likeKey);
+    await redis.srem(ipKey, ip);
+  }
 
   const res = NextResponse.json({});
 
