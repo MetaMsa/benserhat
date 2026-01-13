@@ -28,7 +28,7 @@ export async function POST(req: NextRequest) {
     req.cookies.get(cookieKey) || (await redis.sismember(ipKey, ip));
 
   if (alreadyLiked) {
-    return NextResponse.json({ action: "like" });
+    return NextResponse.json({});
   }
 
   const likeKey = `like:${type}:${slug}`;
