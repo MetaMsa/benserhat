@@ -148,5 +148,5 @@ export default function Three() {
     };
   }, []);
 
-  return <div ref={mountRef} className="w-full h-50 overflow-hidden cursor-grab" />;
+  return <div ref={mountRef} className="w-full h-48 overflow-hidden cursor-grab" />;
 }
