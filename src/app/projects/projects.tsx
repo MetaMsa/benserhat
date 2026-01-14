@@ -79,7 +79,7 @@ export default function Projects() {
           </div>
         )}
         {data.map((project) => (
-          <div key={project.id} className="card bg-gray-900 shadow-sm border">
+          <div key={project.id} className="card bg-gray-900 image-full shadow-sm border">
             <figure>
               <Image
                 src={`https://opengraph.githubassets.com/54545/metamsa/${project.name}`}
