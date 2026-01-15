@@ -26,7 +26,7 @@ export default function Home() {
           alt="Portrait"
         ></Image>
       </div>
-      <div className="w-full">
+      <div className="w-full" title="Mehmet Serhat ASLAN">
         <Three />
       </div>
       <div className="col-span-1 sm:col-span-2 md:col-span-1 my-10">

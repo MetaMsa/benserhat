@@ -22,7 +22,7 @@ export const metadata: Metadata = {
   description:
     "Ben Serhat, Fullstack Developer. C++, PHP, Next.js, Node.js, ASP.NET ve modern web teknolojileriyle projeler geliştiren yazılımcı. Portföyümü inceleyin.",
   keywords:
-    "Serhat,Yazılımcı,Fullstack Developer,Türkiye,Web Developer,Portföy,C++ Developer,Next.js Developer,Node.js Developer",
+    "Mehmet Serhat ASLAN,Serhat,Yazılımcı,Fullstack Developer,Türkiye,Web Developer,Portföy,C++ Developer,Next.js Developer,Node.js Developer",
 };
 
 export const viewport: Viewport = {
