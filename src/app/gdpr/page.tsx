@@ -16,7 +16,7 @@ export default function Gdpr() {
       </p>
 
       <p>
-        Bu Gizlilik Politikası, benserhat.live (“Web Sitesi”) üzerinden sunulan
+        Bu Gizlilik Politikası, benserhat.com (“Web Sitesi”) üzerinden sunulan
         hizmetler kapsamında toplanan kişisel verilerin hangi amaçlarla
         işlendiğini ve nasıl korunduğunu açıklamaktadır.
       </p>
