@@ -4,12 +4,12 @@ import LikeButton from "@/app/components/LikeButton";
 import Modal from "./modal";
 import CommentForm from "./commentForm";
 import CommentsWithReplies from "./commentswithreplies";
+import Sanitized from "./sanitized";
 
 import {
   getBlogById,
   getCommentsWithReplies,
 } from "@/lib/services/blog.service";
-import { sanitizeHTML } from "@/lib/sanitize";
 
 export async function generateMetadata({ params }) {
   const { id } = await params;
@@ -38,8 +38,6 @@ export default async function BlogText({ params }) {
     '<img loading="lazy"$1 alt="Blog Image" />',
   );
 
-  const safeHTML = sanitizeHTML(HTML);
-
   return (
     <div className="m-5 object-contain">
       <h1 className="text-xl font-bold m-5 p-1 mx-auto rounded-xl w-50 bg-gray-900 border">
@@ -51,10 +49,7 @@ export default async function BlogText({ params }) {
 
       <Modal />
 
-      <div
-        className="break-words text-xs sm:text-sm p-5 mx-auto my-5 text-left bg-gray-900 rounded-xl border"
-        dangerouslySetInnerHTML={{ __html: safeHTML }}
-      />
+      <Sanitized html={HTML} />
 
       <div className="flex justify-end mb-5">
         <LikeButton type={"blog"} slug={id} />
