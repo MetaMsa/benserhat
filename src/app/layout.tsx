@@ -100,7 +100,7 @@ export default function RootLayout({
                       </li>
                       <li>
                         <Link href={"https://tatilmi.benserhat.com/"} className="m-auto">
-                          Tatil Mi?
+                          TatilMi?
                         </Link>
                       </li>
                     </ul>
