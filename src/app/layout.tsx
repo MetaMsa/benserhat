@@ -98,6 +98,11 @@ export default function RootLayout({
                           Projeler
                         </Link>
                       </li>
+                      <li>
+                        <Link href={"https://tatilmi.benserhat.com/"} className="m-auto">
+                          Tatil Mi?
+                        </Link>
+                      </li>
                     </ul>
                   </details>
                 </li>
