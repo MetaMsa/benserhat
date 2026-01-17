@@ -1,23 +1,24 @@
 import { notFound } from "next/navigation";
-import { connectDb } from "@/lib/connectDb";
-import { _Blog, _Comments } from "@/Model/Blog";
-import mongoose from "mongoose";
-import { ObjectId } from "mongodb";
 import LikeButton from "@/app/components/LikeButton";
 
 import Modal from "./modal";
 import CommentForm from "./commentForm";
 import CommentsWithReplies from "./commentswithreplies";
 
-export async function generateMetadata({ params }) {
-  await connectDb();
+import {
+  getBlogById,
+  getCommentsWithReplies,
+} from "@/lib/services/blog.service";
+import { sanitizeHTML } from "@/lib/sanitize";
 
+export async function generateMetadata({ params }) {
   const { id } = await params;
 
-  if (!mongoose.Types.ObjectId.isValid(id)) notFound();
+  const text = await getBlogById(id);
 
-  const text = await _Blog.findById(id, "title");
-  if (!text) notFound();
+  if (!text || Array.isArray(text)) {
+    return notFound();
+  }
 
   return {
     title: text.title,
@@ -25,59 +26,26 @@ export async function generateMetadata({ params }) {
 }
 
 export default async function BlogText({ params }) {
-  await connectDb();
-
   const { id } = await params;
 
-  if (!mongoose.Types.ObjectId.isValid(id)) notFound();
+  const text = await getBlogById(id);
+  if (!text || Array.isArray(text)) notFound();
 
-  const text = await _Blog.findById(id, "title content createdAt");
-  if (!text) notFound();
+  const commentsWithReplies = await getCommentsWithReplies(id);
 
-  const commentsRaw = await _Comments.aggregate([
-    { $match: { page: new ObjectId(id) } },
-    { $sort: { createdAt: -1 } },
-    {
-      $lookup: {
-        from: "replies",
-        let: { commentId: "$_id" },
-        pipeline: [
-          {
-            $match: {
-              $expr: {
-                $eq: [{ $toString: "$reply" }, { $toString: "$$commentId" }],
-              },
-            },
-          },
-        ],
-        as: "replies",
-      },
-    },
-  ]);
-
-  const commentsWithReplies = commentsRaw.map((comment) => ({
-    ...comment,
-    _id: comment._id.toString(),
-    page: comment.page.toString(),
-    replies: comment.replies.map((r) => ({
-      ...r,
-      _id: r._id.toString(),
-      page: r.page?.toString() ?? null,
-    })),
-  }));
-
-  const safeHTML = (text.content || "").replace(
+  const HTML = (text.content || "").replace(
     /<img(.*?)>/g,
-    '<img loading="lazy"$1 alt="Blog Image" />'
+    '<img loading="lazy"$1 alt="Blog Image" />',
   );
+
+  const safeHTML = sanitizeHTML(HTML);
 
   return (
     <div className="m-5 object-contain">
       <h1 className="text-xl font-bold m-5 p-1 mx-auto rounded-xl w-50 bg-gray-900 border">
         {text.title}
         <div className="text-sm">
-          {text.createdAt.getDate()}/{text.createdAt.getMonth() + 1}/
-          {text.createdAt.getFullYear()}
+          {new Date(text.createdAt).toLocaleDateString()}
         </div>
       </h1>
 
@@ -89,7 +57,7 @@ export default async function BlogText({ params }) {
       />
 
       <div className="flex justify-end mb-5">
-        <LikeButton type={"blog"} slug={id}></LikeButton>
+        <LikeButton type={"blog"} slug={id} />
       </div>
 
       <div className="mt-auto">

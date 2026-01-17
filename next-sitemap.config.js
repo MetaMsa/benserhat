@@ -1,4 +1,4 @@
 module.exports = {
-  siteUrl: 'https://benserhat.live',
+  siteUrl: 'https://benserhat.com',
   exclude: ['/' + process.env.URL],
 };

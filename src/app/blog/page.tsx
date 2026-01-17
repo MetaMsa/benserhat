@@ -1,15 +1,14 @@
 import { Metadata } from "next";
-import { connectDb } from "@/lib/connectDb";
-import {_Blog} from "@/Model/Blog";
 import Link from "next/link";
+import { getAllBlogs } from "@/lib/services/blog.service";
 
 export const metadata: Metadata = {
   title: "Blog",
 };
 
 export default async function Blog() {
-  await connectDb();
-  const blogmodel = await _Blog.find().sort({ createdAt: -1 }).lean();
+  const blogmodel = await getAllBlogs();
+  
   return (
     <div>
       <div className="flex justify-center items-center">
@@ -27,7 +26,7 @@ export default async function Blog() {
             >
               <h1 className="font-extrabold">{blog.title}</h1>
               <div className="truncate">{blog.content.replace(/<[^>]+>/g, "")}</div>
-              <h2 className="text-sm">{blog.createdAt.getDate() + "/" + (blog.createdAt.getMonth() + 1) + "/" + blog.createdAt.getFullYear()}</h2>
+              <h2 className="text-sm">{new Date(blog.createdAt).toLocaleDateString()}</h2>
             </Link>
           ))
         )}

@@ -7,6 +7,7 @@ import { NewsMailSend } from "@/lib/mailSend";
 import { cookies } from "next/headers";
 import jwt from "jsonwebtoken";
 import { NextResponse } from "next/server";
+import { revalidateTag } from "next/cache";
 
 const SECRET_KEY = process.env.JWT_SECRET;
 
@@ -50,6 +51,7 @@ export async function POST(req: Request) {
       content: blogData.get("content"),
     });
     await blogText.save();
+    revalidateTag("blog", "default");
   } else {
     await _Blog
       .findOne({ title: blogData.get("title") })
@@ -57,6 +59,7 @@ export async function POST(req: Request) {
         _blog.content = blogData.get("content");
         await _blog.save();
       });
+    revalidateTag("blog", "default");
   }
 
   return redirect("/blog/" + process.env.URL + "/admin");

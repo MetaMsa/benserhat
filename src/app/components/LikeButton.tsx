@@ -27,6 +27,7 @@ export default function LikeButton({ slug, type }: { slug: number, type: string 
       headers: {
         "Content-Type": "application/json",
       },
+      cache: "no-store",
       body: JSON.stringify({ slug, type }),
     });
 
