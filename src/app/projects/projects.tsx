@@ -5,7 +5,6 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import Link from "next/link";
 import LikeButton from "../components/LikeButton";
-import { set } from "mongoose";
 
 interface Project {
   id: number;

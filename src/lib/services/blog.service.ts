@@ -39,7 +39,7 @@ export async function getCommentsWithReplies(blogId: string) {
 
   const commentsRaw = await _Comments.aggregate([
     { $match: { page: new mongoose.Types.ObjectId(blogId) } },
-    { $sort: { createdAt: -1 } },
+    { $sort: { createdAt: 1 } },
     {
       $lookup: {
         from: "replies",
@@ -52,7 +52,7 @@ export async function getCommentsWithReplies(blogId: string) {
               },
             },
           },
-          { $sort: { createdAt: -1 } },
+          { $sort: { createdAt: 1 } },
         ],
         as: "replies",
       },
