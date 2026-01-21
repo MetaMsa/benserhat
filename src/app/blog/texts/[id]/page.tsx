@@ -43,7 +43,7 @@ export default async function BlogText({ params }) {
       <h1 className="text-xl font-bold m-5 p-1 mx-auto rounded-xl w-50 bg-gray-900 border">
         {text.title}
         <div className="text-sm">
-          {new Date(text.createdAt).toLocaleDateString()}
+          {new Date(text.createdAt).toLocaleDateString("tr-TR")}
         </div>
       </h1>
 

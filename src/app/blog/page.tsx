@@ -26,7 +26,7 @@ export default async function Blog() {
             >
               <h1 className="font-extrabold">{blog.title}</h1>
               <div className="truncate">{blog.content.replace(/<[^>]+>/g, "")}</div>
-              <h2 className="text-sm">{new Date(blog.createdAt).toLocaleDateString()}</h2>
+              <h2 className="text-sm">{new Date(blog.createdAt).toLocaleDateString("tr-TR")}</h2>
             </Link>
           ))
         )}
