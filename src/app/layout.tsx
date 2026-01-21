@@ -51,6 +51,18 @@ export default function RootLayout({
           content="ca-pub-2573992278913198"
         ></meta>
         <script data-name="BMC-Widget" data-cfasync="false" src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js" data-id="benserhat" data-description="Support me on Buy me a coffee!" data-message="Dilerseniz bana destek olabilirsiniz." data-color="#BD5FFF" data-position="Right" data-x_margin="18" data-y_margin="80" defer></script>
+
+        {/* Google tag (gtag.js) */}
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-6L7J4TV20Z"></script>
+        <script>
+          {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', 'G-6L7J4TV20Z');
+          `}
+        </script>
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col min-h-screen`}
@@ -129,7 +141,7 @@ export default function RootLayout({
             Gizlilik Politikası
           </Link>
           <Link className="mx-1 sm:mx-5" href={"/docs"}>
-          api
+            api
           </Link>
           <Link
             className="mx-1 sm:mx-5"
