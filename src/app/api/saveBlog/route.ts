@@ -33,11 +33,11 @@ export async function POST(req: Request) {
   const emailsReply = await _Replies.find();
 
   const emailList = [
-    ...emailsComment.map((comment) => ({
+    ...emailsComment.filter((comment) => comment.isSendable == true).map((comment) => ({
       email: comment.email,
       name: comment.author,
     })),
-    ...emailsReply.map((reply) => ({
+    ...emailsReply.filter((reply) => reply.isSendable == true).map((reply) => ({
       email: reply.email,
       name: reply.author,
     })),

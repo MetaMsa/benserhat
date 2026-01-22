@@ -6,12 +6,12 @@ export default function Button({ pageId }) {
   const [disabled, setDisabled] = useState(false);
   return (
     <form
-      action="../../../api/comment"
+      action="/api/comment"
       method="post"
       className="bg-gray-900 w-60 py-5 mx-auto rounded-xl border"
       onSubmit={() => {
-          setDisabled(true);  
-        }}
+        setDisabled(true);
+      }}
     >
       <textarea
         className="border text-sm w-50 rounded"
@@ -35,6 +35,11 @@ export default function Button({ pageId }) {
         placeholder="Kullanıcı adınızı girin..."
         required
       />{" "}
+      <br />
+      <fieldset>
+        <input type="checkbox" className="checkbox" name="isSendable" />
+        <label className="label text-sm m-3">E-Posta bültenine abone ol</label>
+      </fieldset>
       <br />
       <input type="hidden" name="page" value={pageId} />
       <button

@@ -33,6 +33,7 @@ export async function POST(req: Request) {
     text: commentData.get("text"),
     page: commentData.get("page"),
     author: commentData.get("author"),
+    isSendable: commentData.get("isSendable") == "on" ? true : false,
     email: commentData.get("email"),
   });
 

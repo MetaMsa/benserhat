@@ -34,6 +34,10 @@ const Comments = new mongoose.Schema(
         email:{
             type: String,
             required: true
+        },
+        isSendable:{
+            type: Boolean,
+            required: true
         }
     },
     {
@@ -58,6 +62,10 @@ const Replies = new mongoose.Schema(
         },
         email:{
             type: String,
+            required: true
+        },
+        isSendable:{
+            type: Boolean,
             required: true
         },
         reply:{

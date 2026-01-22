@@ -37,6 +37,7 @@ export async function POST(req: Request) {
     text: commentData.get("text"),
     page: commentData.get("page"),
     author: commentData.get("author"),
+    isSendable: commentData.get("isSendable") == "on" ? true : false,
     email: commentData.get("email"),
     reply: commentData.get("reply"),
   });
@@ -44,6 +45,9 @@ export async function POST(req: Request) {
   await commentText.save();
 
   const replyUser = await _Comments.findById(commentData.get("reply"));
+
+  if(replyUser.isSendable == false)
+    return redirect("/blog/texts/" + commentData.get("page") + "?status=success"); 
 
   ReplyMailSend(
     commentData.get("author"),

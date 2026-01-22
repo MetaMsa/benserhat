@@ -38,7 +38,7 @@ export default function CommentsWithReplies({ comments, pageId }) {
           });
         }
       },
-      { threshold: 1 }
+      { threshold: 1 },
     );
 
     observer.observe(lastCommentRef.current);
@@ -126,7 +126,18 @@ export default function CommentsWithReplies({ comments, pageId }) {
                       name="author"
                       placeholder="Kullanıcı adınızı girin..."
                       required
-                    />
+                    />{" "}
+                    <br />
+                    <fieldset>
+                      <input
+                        type="checkbox"
+                        className="checkbox"
+                        name="isSendable"
+                      />
+                      <label className="label text-sm m-3">
+                        E-Posta bültenine abone ol
+                      </label>
+                    </fieldset>
                     <br />
                     <button
                       className="btn btn-outline mt-3 rounded"
