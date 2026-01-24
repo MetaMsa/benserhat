@@ -12,7 +12,7 @@ export default function Gdpr() {
     >
       <h1>Gizlilik Politikası</h1>
       <p>
-        <strong>Son güncelleme:</strong> 12 Ocak 2025
+        <strong>Son güncelleme:</strong> 12 Ocak 2026
       </p>
 
       <p>
