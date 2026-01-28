@@ -6,7 +6,6 @@ import Link from "next/link";
 import NavText from "./navText";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-import Canonical from "./canonical";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -24,6 +23,9 @@ export const metadata: Metadata = {
     "Ben Serhat, Fullstack Developer. C++, PHP, Next.js, Node.js, ASP.NET ve modern web teknolojileriyle projeler geliştiren yazılımcı. Portföyümü inceleyin.",
   keywords:
     "Mehmet Serhat ASLAN,Serhat,Yazılımcı,Fullstack Developer,Türkiye,Web Developer,Portföy,C++ Developer,React,Next.js,Node.js, Developer",
+  alternates: {
+    canonical: "https://benserhat.com",
+  },
 };
 
 export const viewport: Viewport = {
@@ -39,7 +41,6 @@ export default function RootLayout({
   return (
     <html lang="tr">
       <head>
-        <Canonical/>
         <link
           rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"

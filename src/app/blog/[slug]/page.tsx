@@ -1,7 +1,18 @@
 import { notFound } from "next/navigation";
-import { bloglogin } from "@/app/actions/auth"
+import { bloglogin } from "@/app/actions/auth";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
+
+export async function generateMetadata({ params }) {
+  const { slug } = await params;
+
+  return {
+    title: "Admin Giriş",
+    alternates: {
+      canonical: `https://benserhat.com/blog/${slug}`,
+    },
+  };
+}
 
 export default async function AdminLogin({ params }) {
   const resolvedParams = await params;
@@ -13,13 +24,13 @@ export default async function AdminLogin({ params }) {
     return notFound();
   }
 
-  if(token){
+  if (token) {
     redirect("/blog/" + process.env.URL + "/admin");
   }
 
   return (
     <div className="flex flex-col justify-center items-center my-50">
-      <form action={ bloglogin }>
+      <form action={bloglogin}>
         <input
           type="text"
           placeholder="Kullanıcı Adı"
@@ -33,9 +44,10 @@ export default async function AdminLogin({ params }) {
           className="input input-ghost text-center"
           name="password"
           required
-        />  <br />
+        />{" "}
+        <br />
         <button type="submit" className="btn btn-outline rounded-xl">
-            Giriş Yap <i className="fa-solid fa-right-to-bracket"></i>
+          Giriş Yap <i className="fa-solid fa-right-to-bracket"></i>
         </button>
       </form>
     </div>

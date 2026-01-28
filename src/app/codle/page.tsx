@@ -5,6 +5,9 @@ import YesterLang from "./yesterLang";
 
 export const metadata: Metadata = {
   title: "CoDle",
+  alternates: {
+    canonical: "https://benserhat.com/codle",
+  }
 };
 
 export default function Codle() {

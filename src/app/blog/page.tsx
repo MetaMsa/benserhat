@@ -4,6 +4,9 @@ import { getAllBlogs } from "@/lib/services/blog.service";
 
 export const metadata: Metadata = {
   title: "Blog",
+  alternates: {
+    canonical: "https://benserhat.com/blog",
+  }
 };
 
 export default async function Blog() {

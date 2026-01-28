@@ -2,7 +2,10 @@ import Link from "next/link";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Gdpr",
+  title: "Gizlilik Politikası",
+  alternates: {
+    canonical: "https://benserhat.com/gdpr"
+  }
 };
 
 export default function Gdpr() {

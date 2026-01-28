@@ -22,6 +22,9 @@ export async function generateMetadata({ params }) {
 
   return {
     title: text.title,
+    alternates: {
+      canonical: `https://benserhat.com/texts/${id}`,
+    },
   };
 }
 
