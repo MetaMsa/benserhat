@@ -179,7 +179,7 @@ export default function Form() {
             className="rounded-2xl"
           />{" "}
           <br />
-          <button
+          <button type="button"
             onClick={() => editor?.chain().focus().toggleBold().run()}
             disabled={!editorState?.canBold}
             className={
@@ -190,7 +190,7 @@ export default function Form() {
           >
             Kalın
           </button>
-          <button
+          <button type="button"
             onClick={() => editor?.chain().focus().toggleItalic().run()}
             disabled={!editorState?.canItalic}
             className={
@@ -201,7 +201,7 @@ export default function Form() {
           >
             İtalik
           </button>
-          <button
+          <button type="button"
             onClick={() => editor?.chain().focus().toggleStrike().run()}
             disabled={!editorState?.canStrike}
             className={
@@ -212,7 +212,7 @@ export default function Form() {
           >
             Üstü Çizili
           </button>
-          <button
+          <button type="button"
             onClick={() => editor?.chain().focus().toggleCode().run()}
             disabled={!editorState?.canCode}
             className={
@@ -223,19 +223,19 @@ export default function Form() {
           >
             Kod
           </button>
-          <button
+          <button type="button"
             onClick={() => editor?.chain().focus().unsetAllMarks().run()}
             className="btn bg-transparent"
           >
             Tüm Biçimleri Temizle
           </button>
-          <button
+          <button type="button"
             onClick={() => editor?.chain().focus().clearNodes().run()}
             className="btn bg-transparent"
           >
             Tüm Blokları Temizle
           </button>
-          <button
+          <button type="button"
             onClick={() =>
               editor?.chain().focus().toggleHeading({ level: 1 }).run()
             }
@@ -246,7 +246,7 @@ export default function Form() {
           >
             Başlık 1
           </button>
-          <button
+          <button type="button"
             onClick={() =>
               editor?.chain().focus().toggleHeading({ level: 2 }).run()
             }
@@ -257,7 +257,7 @@ export default function Form() {
           >
             Başlık 2
           </button>
-          <button
+          <button type="button"
             onClick={() =>
               editor?.chain().focus().toggleHeading({ level: 3 }).run()
             }
@@ -268,7 +268,7 @@ export default function Form() {
           >
             Başlık 3
           </button>
-          <button
+          <button type="button"
             onClick={() =>
               editor?.chain().focus().toggleHeading({ level: 4 }).run()
             }
@@ -279,7 +279,7 @@ export default function Form() {
           >
             Başlık 4
           </button>
-          <button
+          <button type="button"
             onClick={() =>
               editor?.chain().focus().toggleHeading({ level: 5 }).run()
             }
@@ -290,7 +290,7 @@ export default function Form() {
           >
             Başlık 5
           </button>
-          <button
+          <button type="button"
             onClick={() =>
               editor?.chain().focus().toggleHeading({ level: 6 }).run()
             }
@@ -301,7 +301,7 @@ export default function Form() {
           >
             Başlık 6
           </button>
-          <button
+          <button type="button"
             onClick={() => editor?.chain().focus().toggleCodeBlock().run()}
             className={
               (editorState?.isCodeBlock ? "is-active" : "") +
@@ -310,20 +310,20 @@ export default function Form() {
           >
             Kod Bloğu
           </button>
-          <button
+          <button type="button"
             onClick={() => editor?.chain().focus().setHardBreak().run()}
             className="btn bg-transparent"
           >
             Satır Sonu
           </button>
-          <button
+          <button type="button"
             onClick={() => editor?.chain().focus().undo().run()}
             disabled={!editorState?.canUndo}
             className="btn bg-transparent"
           >
             Geri Al
           </button>
-          <button
+          <button type="button"
             onClick={() => editor?.chain().focus().redo().run()}
             disabled={!editorState?.canRedo}
             className="btn bg-transparent"
@@ -342,7 +342,7 @@ export default function Form() {
         </button>
         <br />
       </form>
-      <button className="btn bg-transparent mb-5" onClick={bloglogout}>
+      <button type="button" className="btn bg-transparent mb-5" onClick={bloglogout}>
         Çıkış Yap
       </button>
     </div>

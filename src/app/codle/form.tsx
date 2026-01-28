@@ -13,29 +13,27 @@ export default function Form() {
   const cRef = useRef<HTMLDivElement>(null);
 
   const [tried, setTried] = useState<number>(0);
-  const [fetchStatus, setFetchStatus] = useState<string|null>(null);
-  const [yearData, setYearData] = useState<string|null>(null);
-  const [year, setYear] = useState<number|null>(null);
-  const [compiledData, setCompiledData] = useState<string|null>(null);
-  const [cData, setCData] = useState<string|null>(null);
+  const [fetchStatus, setFetchStatus] = useState<string | null>(null);
+  const [yearData, setYearData] = useState<string | null>(null);
+  const [year, setYear] = useState<number | null>(null);
+  const [compiledData, setCompiledData] = useState<string | null>(null);
+  const [cData, setCData] = useState<string | null>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     setFetchStatus("Yükleniyor...");
 
     const langName = inputRef.current?.value.toLocaleLowerCase().trim();
-    const res = await axios.post("/api/langApi", { name: langName }).finally(() => {
-      setFetchStatus(null);
-    });
+    const res = await axios
+      .post("/api/langApi", { name: langName })
+      .finally(() => {
+        setFetchStatus(null);
+      });
 
     setTried((prev) => prev + 1);
 
-    if (
-      yearRef.current &&
-      compiledRef.current &&
-      cRef.current
-    ) {
+    if (yearRef.current && compiledRef.current && cRef.current) {
       yearRef.current.style.backgroundColor = "";
       compiledRef.current.style.backgroundColor = "";
       cRef.current.style.backgroundColor = "";
@@ -47,14 +45,10 @@ export default function Form() {
     }
 
     if (res.data == "Böyle bir dil yok") {
-        setFetchStatus(res.data);
-        setYear(null);
+      setFetchStatus(res.data);
+      setYear(null);
     } else if (res.data.status == true) {
-      if (
-        yearRef.current &&
-        compiledRef.current &&
-        cRef.current
-      ) {
+      if (yearRef.current && compiledRef.current && cRef.current) {
         yearRef.current.style.backgroundColor = "green";
         compiledRef.current.style.backgroundColor = "green";
         cRef.current.style.backgroundColor = "green";
@@ -69,21 +63,21 @@ export default function Form() {
       if (yearRef.current) {
         if (res.data.yearStatus == "true") {
           yearRef.current.style.backgroundColor = "green";
-            setYearData("Bu yıl çıkmış başka bir dil");
+          setYearData("Bu yıl çıkmış başka bir dil");
         } else if (res.data.yearStatus == "old") {
-            setYearData("Daha eski bir dil");
+          setYearData("Daha eski bir dil");
         } else if (res.data.yearStatus == "new") {
-            setYearData("Daha yeni bir dil");
+          setYearData("Daha yeni bir dil");
         }
 
-          setYear(res.data.year);
+        setYear(res.data.year);
       }
       if (compiledRef.current) {
         if (res.data.compiledStatus == true)
           compiledRef.current.style.backgroundColor = "green";
         else compiledRef.current.style.backgroundColor = "";
 
-          setCompiledData(res.data.compiled);
+        setCompiledData(res.data.compiled);
       }
       if (cRef.current) {
         if (res.data.cStatus == true)
@@ -101,7 +95,7 @@ export default function Form() {
         className="btn hidden"
         onClick={() => {
           const modal = document.getElementById(
-            "success_modal"
+            "success_modal",
           ) as HTMLDialogElement | null;
           modal?.showModal();
         }}
@@ -116,17 +110,22 @@ export default function Form() {
             Paylaşmak için: <br />
             <button
               className="btn btn-outline rounded-xl"
-              onClick={ async () => {
-
+              onClick={async () => {
                 const shareData = {
                   title: "CoDle",
-                  text: "#Codle# " +
-                  "Ben " +
-                  tried +
-                  " denemede doğru cevaba ulaştım. Peki sen kaç denemede ulaşacaksın? Hemen tıkla ve dene: " +
-                  "https://benserhat.live/codle"
+                  text:
+                    "#Codle# " +
+                    "Ben " +
+                    tried +
+                    " denemede doğru cevaba ulaştım. Peki sen kaç denemede ulaşacaksın? Hemen tıkla ve dene: " +
+                    "https://benserhat.live/codle",
                 };
-                await navigator.share(shareData);
+                if (navigator.share) {
+                  await navigator.share(shareData);
+                } else {
+                  await navigator.clipboard.writeText(shareData.text);
+                  alert("Paylaşma desteklenmiyor, metin panoya kopyalandı.");
+                }
               }}
               ref={copyRef}
             >
@@ -136,7 +135,10 @@ export default function Form() {
           </p>
           <div className="modal-action">
             <form method="dialog">
-              <button className="btn btn-outline rounded-xl" onClick={() => location.reload()}>
+              <button
+                className="btn btn-outline rounded-xl"
+                onClick={() => location.reload()}
+              >
                 Tekrar Oyna
               </button>
             </form>
@@ -158,11 +160,20 @@ export default function Form() {
         <div>{fetchStatus}</div>
       </form>
       <div className="grid grid-cols-1 m-5 sm:grid-cols-3 gap-4">
-        <div ref={yearRef} className="bg-gray-900 rounded-xl h-20 sm:h-50 border">
+        <div
+          ref={yearRef}
+          className="bg-gray-900 rounded-xl h-20 sm:h-50 border"
+        >
           Çıkış Yılı
-          <div className="my-3 sm:my-15"> {yearData} {yearData && <br />} {year}</div>
+          <div className="my-3 sm:my-15">
+            {" "}
+            {yearData} {yearData && <br />} {year}
+          </div>
         </div>
-        <div ref={compiledRef} className="bg-gray-900 rounded-xl h-20 sm:h-50 border">
+        <div
+          ref={compiledRef}
+          className="bg-gray-900 rounded-xl h-20 sm:h-50 border"
+        >
           Derlenen/Yorumlanan
           <div className="my-3 sm:my-15">{compiledData}</div>
         </div>
