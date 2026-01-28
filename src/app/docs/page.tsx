@@ -3,7 +3,7 @@ import "swagger-ui-react/swagger-ui.css";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Gdpr",
+  title: "Swagger",
   alternates: {
     canonical: "https://benserhat.com/docs"
   }
