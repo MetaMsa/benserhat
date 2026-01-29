@@ -75,7 +75,7 @@ export default function RootLayout({
                 priority
               />
             </Link>
-            <NavText />
+            <NavText/>
             <div className="flex-none z-1">
               <ul className="menu menu-horizontal px-1">
                 <li>

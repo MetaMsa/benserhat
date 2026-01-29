@@ -1,31 +1,22 @@
 "use client";
-import { useEffect, useRef } from "react";
+import { TypeAnimation } from "react-type-animation";
 
 export default function NavText() {
-  const divRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const karsilama = "ERHABA";
-    let i = 0;
-
-    if (!divRef.current) return;
-
-    divRef.current.innerText = "M"; 
-
-    const myInterval = setInterval(() => {
-      if (!divRef.current) return;
-
-      divRef.current.innerText += karsilama[i];
-      i++;
-
-      if (i === karsilama.length + 1) {
-        i = 0;
-        divRef.current.innerText = "M"; 
-      }
-    }, 500);
-
-    return () => clearInterval(myInterval);
-  }, []);
-
-  return <div ref={divRef} className="text-center font-serif"></div>;
+  return (
+    <span className="text-center font-serif">
+      <TypeAnimation
+        sequence={[
+          "MERHABA",
+          1000,
+          "",
+          2000,
+        ]}
+        wrapper="span"
+        cursor={true}
+        repeat={Infinity}
+        style={{ fontSize: "2em", display: "inline-block" }}
+        speed={{type: 'keyStrokeDelayInMs', value: 100}}
+      />
+    </span>
+  );
 }
