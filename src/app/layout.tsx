@@ -114,7 +114,7 @@ export default function RootLayout({
             </div>
           </nav>
         </header>
-        <main className="text-center">{children}</main>
+        <main className="text-center m-auto">{children}</main>
         <footer className="w-fit my-5 mx-auto rounded-2xl flex items-center justify-center footer footer-center bg-gray-900 p-5 text-xs sm:text-lg md:text-2xl border">
           <Link
             className="mx-1 sm:mx-5"
