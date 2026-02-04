@@ -3,7 +3,7 @@ import { TypeAnimation } from "react-type-animation";
 
 export default function NavText() {
   return (
-    <span className="text-center font-serif">
+    <span className="text-center font-serif w-72">
       <TypeAnimation
         sequence={[
           "MERHABA",

@@ -60,10 +60,10 @@ export default function RootLayout({
       >
         <Analytics />
         <SpeedInsights />
-        <header className="flex justify-center mb-50 md:mb-25">
+        <header className="flex justify-center mb-55 md:mb-30">
           <nav
             aria-label="Global"
-            className="fixed w-full navbar navbar-center mx-auto flex flex-col md:flex-row items-center justify-between p-3 border-b bg-gray-900 z-10 opacity-90"
+            className="fixed my-3 rounded-2xl w-fit navbar navbar-center mx-auto flex flex-col md:flex-row items-center justify-between border bg-gray-900 z-10 opacity-90 md:gap-x-32 lg:gap-x-64"
           >
             <Link href={"/"} className="size-20">
               <Image
@@ -115,7 +115,7 @@ export default function RootLayout({
           </nav>
         </header>
         <main className="text-center">{children}</main>
-        <footer className="flex items-center justify-center footer footer-center bg-gray-900 mt-auto p-5 text-md sm:text-lg md:text-2xl border-t">
+        <footer className="w-fit my-5 mx-auto rounded-2xl flex items-center justify-center footer footer-center bg-gray-900 p-5 text-xs sm:text-lg md:text-2xl border">
           <Link
             className="mx-1 sm:mx-5"
             href={"https://www.youtube.com/@metamsa"}
