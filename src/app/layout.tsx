@@ -63,14 +63,14 @@ export default function RootLayout({
         <header className="flex justify-center mb-50 md:mb-25">
           <nav
             aria-label="Global"
-            className="fixed navbar navbar-center mx-auto flex flex-col md:flex-row items-center justify-between p-3 border-b bg-gray-900 z-10"
+            className="fixed w-full navbar navbar-center mx-auto flex flex-col md:flex-row items-center justify-between p-3 border-b bg-gray-900 z-10"
           >
             <Link href={"/"} className="size-20">
               <Image
                 className="rounded-xl"
                 src="/3da59a4e-59eb-42ef-ba79-70d24b85147b-_1_.svg"
-                width={500}
-                height={500}
+                width={80}
+                height={80}
                 alt="Logo"
                 priority
               />
