@@ -63,7 +63,7 @@ export default function RootLayout({
         <header className="flex justify-center mb-50 md:mb-25">
           <nav
             aria-label="Global"
-            className="fixed w-full navbar navbar-center mx-auto flex flex-col md:flex-row items-center justify-between p-3 border-b bg-gray-900 z-10"
+            className="fixed w-full navbar navbar-center mx-auto flex flex-col md:flex-row items-center justify-between p-3 border-b bg-gray-900 z-10 opacity-90"
           >
             <Link href={"/"} className="size-20">
               <Image
