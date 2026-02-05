@@ -118,7 +118,7 @@ export default function Form() {
                     "Ben " +
                     tried +
                     " denemede doğru cevaba ulaştım. Peki sen kaç denemede ulaşacaksın? Hemen tıkla ve dene: " +
-                    "https://benserhat.live/codle",
+                    "https://benserhat.com/codle",
                 };
                 if (navigator.share) {
                   await navigator.share(shareData);
