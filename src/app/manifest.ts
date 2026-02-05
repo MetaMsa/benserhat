@@ -7,7 +7,7 @@ export default function manifest(): MetadataRoute.Manifest {
         description: "Ben Serhat, Fullstack Developer. C++, PHP, Next.js, Node.js, ASP.NET ve modern web teknolojileriyle projeler geliştiren yazılımcı. Portföyümü inceleyin.",
         start_url: "/",
         display: "standalone",
-        background_color: "#ffffff",
+        background_color: "#000000",
         theme_color: "#000000",
         icons: [
             {
