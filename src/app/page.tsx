@@ -6,17 +6,17 @@ import Three from "./three";
 import axios from "axios";
 
 export default function Home() {
-  const [data, setData] = useState<string | number>(Number);
+  const [data, setData] = useState<string | number>(0);
 
   useEffect(() => {
     axios
-      .get("api/yt")
+      .get("/api/yt")
       .then((response) =>
         setData(response.data.items[0].statistics.subscriberCount)
       );
   }, []);
   return (
-    <div className="grid grid-cols-1 sm:grid-col-2 md:grid-cols-3 mx-5 my-20 p-10 bg-gray-900 rounded-xl border">
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 mx-5 my-20 p-10 bg-gray-900 rounded-xl border">
       <div>
         <Image
           className="rounded-full mx-auto"
@@ -24,7 +24,7 @@ export default function Home() {
           width={150}
           height={150}
           alt="Portrait"
-        ></Image>
+        />
       </div>
       <div className="w-full" title="Mehmet Serhat ASLAN">
         <Three />
