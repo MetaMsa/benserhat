@@ -4,10 +4,6 @@ import axios from "axios";
 import { useRef, useState } from "react";
 
 export default function Form() {
-  const inputRef = useRef<HTMLInputElement>(null);
-  const modalRef = useRef<HTMLButtonElement>(null);
-  const copyRef = useRef<HTMLButtonElement>(null);
-
   const yearRef = useRef<HTMLDivElement>(null);
   const compiledRef = useRef<HTMLDivElement>(null);
   const cRef = useRef<HTMLDivElement>(null);
@@ -18,13 +14,17 @@ export default function Form() {
   const [year, setYear] = useState<number | null>(null);
   const [compiledData, setCompiledData] = useState<string | null>(null);
   const [cData, setCData] = useState<string | null>(null);
+  const [langName, setLangName] = useState<string>("");
+
+  const [modal, setModal] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
+    if (!langName.trim()) return;
+
     setFetchStatus("Yükleniyor...");
 
-    const langName = inputRef.current?.value.toLocaleLowerCase().trim();
     const res = await axios
       .post("/api/langApi", { name: langName })
       .finally(() => {
@@ -57,8 +57,9 @@ export default function Form() {
         setYear(res.data.year);
         setCompiledData(res.data.compiled);
         setCData(res.data.c);
+
+        setModal(true);
       }
-      modalRef.current?.click();
     } else {
       if (yearRef.current) {
         if (res.data.yearStatus == "true") {
@@ -90,67 +91,55 @@ export default function Form() {
   };
   return (
     <div>
-      <button
-        ref={modalRef}
-        className="btn hidden"
-        onClick={() => {
-          const modal = document.getElementById(
-            "success_modal",
-          ) as HTMLDialogElement | null;
-          modal?.showModal();
-        }}
-      >
-        modal
-      </button>
-      <dialog id="success_modal" className="modal">
-        <div className="modal-box border bg-gray-900">
-          <h3 className="font-bold text-lg">Tebrikler doğru bildiniz</h3>
-          <p className="py-4">
-            Yeni dil için yarını bekleyin. <br />
-            Paylaşmak için: <br />
-            <button
-              className="btn btn-outline rounded-xl"
-              onClick={async () => {
-                const shareData = {
-                  title: "CoDle",
-                  text:
-                    "#Codle# " +
-                    "Ben " +
-                    tried +
-                    " denemede doğru cevaba ulaştım. Peki sen kaç denemede ulaşacaksın? Hemen tıkla ve dene: " +
-                    "https://benserhat.com/codle",
-                };
-                if (navigator.share) {
-                  await navigator.share(shareData);
-                } else {
-                  await navigator.clipboard.writeText(shareData.text);
-                  alert("Paylaşma desteklenmiyor, metin panoya kopyalandı.");
-                }
-              }}
-              ref={copyRef}
-            >
-              Paylaş
-              <i className="fa fa-share"></i>
-            </button>
-          </p>
-          <div className="modal-action">
-            <form method="dialog">
+      {modal && (
+        <dialog className="modal" open>
+          <div className="modal-box border bg-gray-900">
+            <h3 className="font-bold text-lg">Tebrikler doğru bildiniz</h3>
+            <p className="py-4">
+              Yeni dil için yarını bekleyin. <br />
+              Paylaşmak için: <br />
+              <button
+                className="btn btn-outline rounded-xl"
+                onClick={async () => {
+                  const shareData = {
+                    title: "CoDle",
+                    text:
+                      "#Codle# " +
+                      "Ben " +
+                      tried +
+                      " denemede doğru cevaba ulaştım. Peki sen kaç denemede ulaşacaksın? Hemen tıkla ve dene: " +
+                      "https://benserhat.com/codle",
+                  };
+                  if (navigator.share) {
+                    await navigator.share(shareData);
+                  } else {
+                    await navigator.clipboard.writeText(shareData.text);
+                    alert("Paylaşma desteklenmiyor, metin panoya kopyalandı.");
+                  }
+                }}
+              >
+                Paylaş
+                <i className="fa fa-share"></i>
+              </button>
+            </p>
+            <div className="modal-action">
               <button
                 className="btn btn-outline rounded-xl"
                 onClick={() => location.reload()}
               >
                 Tekrar Oyna
               </button>
-            </form>
+            </div>
           </div>
-        </div>
-      </dialog>
+        </dialog>
+      )}
       <form onSubmit={handleSubmit}>
         <input
           type="text"
           placeholder="Bir programlama dili giriniz"
           className="input w-50 bg-gray-900"
-          ref={inputRef}
+          value={langName}
+          onChange={(e) => setLangName(e.target.value)}
           required
         ></input>{" "}
         <br />

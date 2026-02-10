@@ -29,6 +29,8 @@ export default function CommentsWithReplies({ comments, pageId }) {
   useEffect(() => {
     if (!lastCommentRef.current) return;
 
+    const ref = lastCommentRef.current;
+
     const observer = new IntersectionObserver(
       (ent) => {
         if (ent[0].isIntersecting) {
@@ -41,11 +43,10 @@ export default function CommentsWithReplies({ comments, pageId }) {
       { threshold: 1 },
     );
 
-    observer.observe(lastCommentRef.current);
+    observer.observe(ref);
 
     return () => {
-      const ref = lastCommentRef.current;
-      if (ref) observer.unobserve(ref);
+      observer.unobserve(ref);
     };
   }, [visibleCount, comments.length]);
 

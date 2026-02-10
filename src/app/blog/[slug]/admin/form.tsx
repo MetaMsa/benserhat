@@ -1,7 +1,7 @@
 "use client";
 
 import { bloglogout } from "@/app/actions/auth";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { useEditor, EditorContent, useEditorState } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import Image from "@tiptap/extension-image";
@@ -29,7 +29,6 @@ const CustomImage = Image.extend({
 });
 
 export default function Form() {
-  const inputRef = useRef<HTMLInputElement>(null);
   const [content, setContent] = useState("");
 
   const editor = useEditor({
@@ -145,18 +144,12 @@ export default function Form() {
     },
   });
 
-  const handleSubmit = () => {
-    const input = inputRef.current;
-    if (input) input.value = content;
-  };
-
   return (
     <div className="m-5 bg-gray-900 rounded-xl border">
       <h1 className="pt-5">BLOG YÖNETİM PANELİ</h1>
       <form
         method="post"
         action="../../../api/saveBlog"
-        onSubmit={handleSubmit}
       >
         <label htmlFor="title">Blog Başlığı</label> <br />
         <input
@@ -166,7 +159,7 @@ export default function Form() {
           id="title"
           required
         />
-        <input type="hidden" name="content" ref={inputRef} required />
+        <input type="hidden" name="content" value={content} required />
         <div className="p-4">
           <input
             type="color"
