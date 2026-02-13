@@ -3,7 +3,7 @@ import LangJson from "../../../../lang.json";
 export async function POST(req: Request) {
   const body = await req.json();
 
-  const match = LangJson.find((item) => item.name === body.name);
+  const match = LangJson.find((item) => item.name === body.name.toLowerCase().trim());
 
   const time = new Date("2024-05-23");
   const today = new Date();
