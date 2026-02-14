@@ -15,7 +15,7 @@ export default function Codle() {
     <div className="text-center">
       <div className="flex flex-col items-center justify-center">
         <Image
-          src="Adsız-tasarım.svg"
+          src="codle.svg"
           className="h-20"
           width={300}
           height={200}

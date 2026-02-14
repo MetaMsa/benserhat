@@ -68,7 +68,7 @@ export default function RootLayout({
             <Link href={"/"} className="size-20">
               <Image
                 className="rounded-xl"
-                src="/3da59a4e-59eb-42ef-ba79-70d24b85147b-_1_.svg"
+                src="/favicon.svg"
                 width={80}
                 height={80}
                 alt="Logo"

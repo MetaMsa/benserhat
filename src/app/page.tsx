@@ -20,7 +20,7 @@ export default function Home() {
       <div>
         <Image
           className="rounded-full mx-auto"
-          src="/1761389402143.jpeg"
+          src="/portrait.jpeg"
           width={150}
           height={150}
           alt="Portrait"
