@@ -31,7 +31,7 @@ export default function Modal() {
 
   return (
     <dialog className="modal" open>
-      <div className="modal-box bg-gray-900">
+      <div className="modal-box bg-gray-900 border">
         <p className="py-4">{statusMessage}</p>
         <div className="modal-action">
           <button
