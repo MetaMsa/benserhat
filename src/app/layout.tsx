@@ -53,7 +53,19 @@ export default function RootLayout({
           name="google-adsense-account"
           content="ca-pub-2573992278913198"
         ></meta>
-        <script data-name="BMC-Widget" data-cfasync="false" src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js" data-id="benserhat" data-description="Support me on Buy me a coffee!" data-message="Dilerseniz bana destek olabilirsiniz." data-color="#BD5FFF" data-position="Right" data-x_margin="18" data-y_margin="80" defer></script>
+        <script
+          data-name="BMC-Widget"
+          data-cfasync="false"
+          src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js"
+          data-id="benserhat"
+          data-description="Support me on Buy me a coffee!"
+          data-message="Dilerseniz bana destek olabilirsiniz."
+          data-color="#BD5FFF"
+          data-position="Right"
+          data-x_margin="18"
+          data-y_margin="80"
+          defer
+        ></script>
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col min-h-screen`}
@@ -75,43 +87,40 @@ export default function RootLayout({
                 priority
               />
             </Link>
-            <NavText/>
-            <div className="flex-none z-1">
-              <ul className="menu menu-horizontal px-1">
+            <NavText />
+            <details className="dropdown dropdown-center">
+              <summary className="btn btn-ghost m-1">MENÜ</summary>
+              <ul className="menu dropdown-content bg-gray-900 rounded-box z-1 p-2 border shadow-sm">
                 <li>
-                  <details className="dropdown">
-                    <summary className="text-center">MENÜ</summary>
-                    <ul className="bg-gray-900 rounded-t-none p-2">
-                      <li>
-                        <Link href={"/"} className="m-auto">
-                          <i className="fa fa-house"></i>
-                        </Link>
-                      </li>
-                      <li>
-                        <Link href={"/blog"} className="m-auto">
-                          Blog
-                        </Link>
-                      </li>
-                      <li>
-                        <Link href={"/codle"} className="m-auto">
-                          CoDle
-                        </Link>
-                      </li>
-                      <li>
-                        <Link href={"/projects"} className="m-auto">
-                          Projeler
-                        </Link>
-                      </li>
-                      <li>
-                        <Link href={"https://tatilmi.benserhat.com/"} className="m-auto">
-                          TatilMi?
-                        </Link>
-                      </li>
-                    </ul>
-                  </details>
+                  <Link href={"/"} className="m-auto">
+                    <i className="fa fa-house"></i>
+                  </Link>
+                </li>
+                <li>
+                  <Link href={"/blog"} className="m-auto">
+                    Blog
+                  </Link>
+                </li>
+                <li>
+                  <Link href={"/codle"} className="m-auto">
+                    CoDle
+                  </Link>
+                </li>
+                <li>
+                  <Link href={"/projects"} className="m-auto">
+                    Projeler
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href={"https://tatilmi.benserhat.com/"}
+                    className="m-auto"
+                  >
+                    TatilMi?
+                  </Link>
                 </li>
               </ul>
-            </div>
+            </details>
           </nav>
         </header>
         <main className="text-center my-auto">{children}</main>
