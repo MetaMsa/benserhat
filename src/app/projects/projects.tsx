@@ -80,40 +80,38 @@ export default function Projects() {
           </div>
         )}
         {data.map((project) => (
-          <Link href={project.html_url} key={project.id} className="hover-3d">
-            <div className="card bg-gray-900 image-full shadow-sm border">
-              <figure>
-                <Image
-                  src={`https://opengraph.githubassets.com/54545/metamsa/${project.name}`}
-                  alt={project.name}
-                  width={500}
-                  height={300}
-                  priority
-                />
-              </figure>
-              <div className="card-body">
-                <h2 className="card-title">{project.name}</h2>
-                <p>{project.description}</p>
-                <div className="card-actions grid grid-cols-2 justify-items-center">
-                  <div>
-                    <LikeButton type={"portfolio"} slug={project.id} />
-                  </div>
-                  <div className="badge badge-outline my-auto">
+          <div key={project.id}>
+            <Link href={project.html_url} className="hover-3d">
+              <div className="card bg-gray-900 image-full shadow-sm border">
+                <figure>
+                  <Image
+                    src={`https://opengraph.githubassets.com/54545/metamsa/${project.name}`}
+                    alt={project.name}
+                    width={500}
+                    height={300}
+                    priority
+                  />
+                </figure>
+                <div className="card-body">
+                  <h2 className="card-title">{project.name}</h2>
+                  <p>{project.description}</p>
+                  <div className="badge badge-outline mx-auto">
                     {project.language}
                   </div>
                 </div>
               </div>
-            </div>
 
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-          </Link>
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+            </Link>
+            <LikeButton type={"portfolio"} slug={project.id} />
+          </div>
         ))}
       </div>
     </div>
