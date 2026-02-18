@@ -80,7 +80,7 @@ export default function Projects() {
           </div>
         )}
         {data.map((project) => (
-          <div key={project.id}>
+          <div key={project.id} className="tooltip tooltip-open tooltip-bottom">
             <Link href={project.html_url} className="hover-3d">
               <div className="card bg-gray-900 image-full shadow-sm border">
                 <figure>

@@ -37,7 +37,7 @@ export default function LikeButton({ slug, type }: { slug: number, type: string 
   };
 
   return (
-    <button onClick={handleLike} className="btn btn-ghost">
+    <button onClick={handleLike} className="btn btn-ghost tooltip-content pointer-events-auto size-min">
         <i className={`fa${liked ? "" : "-regular"} fa-thumbs-up`}></i> {likes ?? 0}
     </button>
   );
