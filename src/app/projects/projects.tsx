@@ -68,7 +68,7 @@ export default function Projects() {
           ))}
         </select>
       </div>
-      <div className="m-5 p-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 justify-items-center bg-gray-900 rounded-2xl border">
+      <div className="m-5 p-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 justify-items-center rounded-2xl">
         {loading && (
           <div className="col-span-3">
             <div className="flex w-52 flex-col gap-4">
@@ -82,7 +82,7 @@ export default function Projects() {
         {data.map((project) => (
           <div key={project.id} className="tooltip tooltip-open tooltip-bottom">
             <Link href={project.html_url} className="hover-3d">
-              <div className="card bg-gray-900 image-full shadow-sm border">
+              <div className="card image-full shadow-sm border">
                 <figure>
                   <Image
                     src={`https://opengraph.githubassets.com/54545/metamsa/${project.name}`}
