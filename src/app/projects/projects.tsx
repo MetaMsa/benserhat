@@ -15,6 +15,24 @@ interface Project {
   language: string;
 }
 
+const project_names = [
+  "basit-portscanner",
+  "benserhat",
+  "CliCam",
+  "CodleReactNative",
+  "first-winapi-window",
+  "How-Many-Days-Until",
+  "mvc",
+  "myWYSIWYG",
+  "Oto-kurtarma-takip-sistemi",
+  "RastgeleSifreWxWidgets",
+  "Restaurant-Panel-Case",
+  "tatil-mi",
+  "TrTek",
+  "wavpcm",
+  "WpHeadphoneTTS"
+];
+
 export default function Projects() {
   const [data, setData] = useState<Project[]>([]);
   const [allData, setAllData] = useState<Project[]>([]);
@@ -79,7 +97,7 @@ export default function Projects() {
             </div>
           </div>
         )}
-        {data.map((project) => (
+        {data.filter((project) => project_names.includes(project.name)).map((project) => (
           <div key={project.id} className="tooltip tooltip-open tooltip-bottom">
             <Link href={project.html_url} className="hover-3d">
               <div className="card image-full shadow-sm border">
