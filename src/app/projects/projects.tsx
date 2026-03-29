@@ -50,7 +50,7 @@ export default function Projects() {
 
         const uniqueLanguages = Array.from(
           new Set(
-            response.data.map((p: Project) => p.language).filter(Boolean),
+            response.data.filter((project) => project_names.includes(project.name)).map((p: Project) => p.language)
           ),
         ) as string[];
         setLanguages(uniqueLanguages);
