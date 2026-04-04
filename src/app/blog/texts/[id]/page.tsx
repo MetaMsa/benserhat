@@ -1,5 +1,5 @@
-import { notFound } from "next/navigation";
-import LikeButton from "@/app/components/LikeButton";
+import { notFound, redirect } from "next/navigation";
+/*import LikeButton from "@/app/components/LikeButton";
 
 import Modal from "./modal";
 import CommentForm from "./commentForm";
@@ -26,10 +26,12 @@ export async function generateMetadata({ params }) {
       canonical: `https://benserhat.com/texts/${id}`,
     },
   };
-}
+}*/
 
 export default async function BlogText({ params }) {
-  const { id } = await params;
+  redirect("/blog");
+
+  /*const { id } = await params;
 
   const text = await getBlogById(id);
   if (!text || Array.isArray(text)) notFound();
@@ -64,5 +66,5 @@ export default async function BlogText({ params }) {
 
       <CommentsWithReplies comments={commentsWithReplies} pageId={id} />
     </div>
-  );
+  );*/
 }
