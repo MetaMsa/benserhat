@@ -16,14 +16,14 @@ export default function Codle() {
       <div className="flex flex-col items-center justify-center">
         <Image
           src="codle.svg"
-          className="h-20"
+          className="h-16"
           width={300}
           height={200}
           alt="Codle Logo"
         ></Image>
       </div>
       <ClientForm></ClientForm>
-      <div className="flex flex-col items-center justify-center bg-gray-900 mx-auto mb-5 rounded-xl w-32 border">
+      <div className="flex flex-col items-center justify-center bg-gray-900 mx-auto rounded-xl w-32 border">
         <div className="my-1">
           <YesterLang></YesterLang>
           <div>Önceki Günün Dili</div>

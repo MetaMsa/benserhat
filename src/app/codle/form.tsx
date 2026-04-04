@@ -151,7 +151,7 @@ export default function Form() {
       <div className="grid grid-cols-1 m-5 sm:grid-cols-3 gap-4">
         <div
           ref={yearRef}
-          className="bg-gray-900 rounded-xl h-20 sm:h-50 border"
+          className="bg-gray-900 rounded-xl h-24 sm:h-40 border"
         >
           Çıkış Yılı
           <div className="my-3 sm:my-15">
@@ -161,12 +161,12 @@ export default function Form() {
         </div>
         <div
           ref={compiledRef}
-          className="bg-gray-900 rounded-xl h-20 sm:h-50 border"
+          className="bg-gray-900 rounded-xl h-24 sm:h-40 border"
         >
           Derlenen/Yorumlanan
           <div className="my-3 sm:my-15">{compiledData}</div>
         </div>
-        <div ref={cRef} className="bg-gray-900 rounded-xl h-20 sm:h-50 border">
+        <div ref={cRef} className="bg-gray-900 rounded-xl h-24 sm:h-40 border">
           C türevi mi?
           <div className="my-3 sm:my-15">{cData}</div>
         </div>
