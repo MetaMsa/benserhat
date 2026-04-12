@@ -30,7 +30,9 @@ const project_names = [
   "tatil-mi",
   "TrTek",
   "wavpcm",
-  "WpHeadphoneTTS"
+  "WpHeadphoneTTS",
+  "Portr",
+  "Portr-Cli"
 ];
 
 export default function Projects() {
