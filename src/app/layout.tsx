@@ -134,7 +134,7 @@ export default function RootLayout({
           <Link className="mx-1 sm:mx-5" href={"https://github.com/MetaMsa"}>
             <i className="fa-brands fa-github"></i>
           </Link>
-          <Link className="mx-1 sm:mx-5" href={"/cv.pdf"}>
+          <Link className="mx-1 sm:mx-5" href={"/MehmetSerhatASLAN_Developer.pdf"}>
             cv
           </Link>
           <Link className="mx-1 sm:mx-5" href={"/gdpr"}>
