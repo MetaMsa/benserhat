@@ -32,7 +32,9 @@ const project_names = [
   "wavpcm",
   "WpHeadphoneTTS",
   "Portr",
-  "Portr-Cli"
+  "Portr-Cli",
+  "yoruk-api",
+  "yoruk-frontend",
 ];
 
 export default function Projects() {
