@@ -119,6 +119,14 @@ export default function RootLayout({
                     TatilMi?
                   </Link>
                 </li>
+                <li>
+                  <Link
+                    href={"https://yoruk.benserhat.com/"}
+                    className="m-auto"
+                  >
+                    Yörük: Seyahat Yardımcısı
+                  </Link>
+                </li>
               </ul>
             </details>
           </nav>
