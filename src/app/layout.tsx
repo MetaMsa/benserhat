@@ -92,29 +92,29 @@ export default function RootLayout({
               <summary className="btn btn-ghost m-1">MENÜ</summary>
               <ul className="menu dropdown-content bg-gray-900 rounded-box z-1 p-2 border shadow-sm">
                 <li>
-                  <Link href={"/"} className="m-auto">
+                  <Link href={"/"} className="m-auto text-center">
                     <i className="fa fa-house"></i>
                   </Link>
                 </li>
                 <li>
-                  <Link href={"/blog"} className="m-auto">
+                  <Link href={"/blog"} className="m-auto text-center">
                     Blog
                   </Link>
                 </li>
                 <li>
-                  <Link href={"/codle"} className="m-auto">
+                  <Link href={"/codle"} className="m-auto text-center">
                     CoDle
                   </Link>
                 </li>
                 <li>
-                  <Link href={"/projects"} className="m-auto">
+                  <Link href={"/projects"} className="m-auto text-center">
                     Projeler
                   </Link>
                 </li>
                 <li>
                   <Link
                     href={"https://tatilmi.benserhat.com/"}
-                    className="m-auto"
+                    className="m-auto text-center"
                   >
                     TatilMi?
                   </Link>
@@ -122,7 +122,7 @@ export default function RootLayout({
                 <li>
                   <Link
                     href={"https://yoruk.benserhat.com/"}
-                    className="m-auto"
+                    className="m-auto text-center"
                   >
                     Yörük: Seyahat Yardımcısı
                   </Link>
