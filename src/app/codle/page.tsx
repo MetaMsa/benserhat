@@ -23,7 +23,7 @@ export default function Codle() {
         ></Image>
       </div>
       <ClientForm></ClientForm>
-      <div className="flex flex-col items-center justify-center bg-base-300 mx-auto rounded-xl w-32 border">
+      <div className="flex flex-col items-center justify-center bg-base-300 mx-auto rounded-xl w-fit border">
         <div className="my-1">
           <YesterLang></YesterLang>
           <div>Önceki Günün Dili</div>
