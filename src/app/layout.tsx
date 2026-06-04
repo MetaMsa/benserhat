@@ -6,6 +6,7 @@ import Link from "next/link";
 import NavText from "./navText";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import Toggle from "./components/ThemeToggle";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -75,11 +76,11 @@ export default function RootLayout({
         <header className="flex justify-center mb-55 md:mb-30">
           <nav
             aria-label="Global"
-            className="fixed my-3 rounded-2xl w-fit navbar navbar-center mx-auto flex flex-col md:flex-row items-center justify-between border bg-gray-900 z-10 opacity-90 md:gap-x-32 lg:gap-x-64"
+            className="fixed my-3 rounded-2xl w-fit navbar navbar-center mx-auto flex flex-col md:flex-row items-center justify-between border bg-base-300 z-10 opacity-90 md:gap-x-32 lg:gap-x-64"
           >
             <Link href={"/"} className="size-20">
               <Image
-                className="rounded-xl"
+                className="rounded-xl bg-gray-900"
                 src="/favicon.svg"
                 width={80}
                 height={80}
@@ -90,7 +91,7 @@ export default function RootLayout({
             <NavText />
             <details className="dropdown dropdown-center">
               <summary className="btn btn-ghost m-1">MENÜ</summary>
-              <ul className="menu dropdown-content bg-gray-900 rounded-box z-1 p-2 border shadow-sm">
+              <ul className="menu dropdown-content bg-base-300 rounded-box z-1 p-2 border shadow-sm">
                 <li>
                   <Link href={"/"} className="m-auto text-center">
                     <i className="fa fa-house"></i>
@@ -127,12 +128,15 @@ export default function RootLayout({
                     Yörük: Seyahat Yardımcısı
                   </Link>
                 </li>
+                <li>
+                  <Toggle/>
+                </li>
               </ul>
             </details>
           </nav>
         </header>
         <main className="text-center my-auto">{children}</main>
-        <footer className="w-fit my-5 mx-auto rounded-2xl flex items-center justify-center footer footer-center bg-gray-900 p-5 text-xs sm:text-lg md:text-2xl border">
+        <footer className="w-fit my-5 mx-auto rounded-2xl flex items-center justify-center footer footer-center bg-base-300 p-5 text-xs sm:text-lg md:text-2xl border">
           <Link
             className="mx-1 sm:mx-5"
             href={"https://www.youtube.com/@metamsa"}

@@ -16,7 +16,7 @@ export default function Home() {
       );
   }, []);
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 mx-5 my-20 p-10 bg-gray-900 rounded-xl border">
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 mx-5 my-20 p-10 bg-base-300 rounded-xl border">
       <div>
         <Image
           className="rounded-full mx-auto"

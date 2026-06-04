@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 export default function Gdpr() {
   return (
     <div
-      className="m-5 p-5 text-center border text-xs sm:text-sm bg-gray-900 rounded-2xl"
+      className="m-5 p-5 text-center border text-xs sm:text-sm bg-base-300 rounded-2xl"
     >
       <h1>Gizlilik Politikası</h1>
       <p>

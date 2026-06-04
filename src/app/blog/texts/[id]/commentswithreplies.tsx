@@ -60,7 +60,7 @@ export default function CommentsWithReplies({ comments, pageId }) {
         return (
           <div
             key={comment?._id ?? index}
-            className="mx-auto bg-gray-900 rounded-xl mt-5 p-5 text-left border"
+            className="mx-auto bg-base-300 rounded-xl mt-5 p-5 text-left border"
             ref={isLastComment ? lastCommentRef : null}
           >
             <div className="font-bold">{String(comment?.author ?? "")}</div>
@@ -90,7 +90,7 @@ export default function CommentsWithReplies({ comments, pageId }) {
                 }}
                 className="modal"
               >
-                <div className="modal-box bg-gray-900">
+                <div className="modal-box bg-base-300">
                   <h1 className="text-center m-1">Yanıt Formu</h1>
                   <form
                     action="../../../api/reply"

@@ -74,11 +74,11 @@ export default function Projects() {
 
   return (
     <div className="text-xs sm:text-sm">
-      <div className="m-5 p-5 font-bold bg-gray-900 border rounded-2xl">
+      <div className="m-5 p-5 font-bold bg-base-300 border rounded-2xl">
         <h1>PROJELERİM</h1>
         <select
           value={language}
-          className="select select-secondary mt-2 bg-gray-900"
+          className="select select-secondary mt-2 bg-base-300"
           title="Diller"
           onChange={(e) => setLanguage(e.target.value)}
         >
@@ -94,10 +94,10 @@ export default function Projects() {
         {loading && (
           <div className="col-span-3">
             <div className="flex w-52 flex-col gap-4">
-              <div className="skeleton h-32 w-full bg-gray-500"></div>
-              <div className="skeleton h-4 w-28 bg-gray-500"></div>
-              <div className="skeleton h-4 w-full bg-gray-500"></div>
-              <div className="skeleton h-4 w-full bg-gray-500"></div>
+              <div className="skeleton h-32 w-full bg-base-300"></div>
+              <div className="skeleton h-4 w-28 bg-base-300"></div>
+              <div className="skeleton h-4 w-full bg-base-300"></div>
+              <div className="skeleton h-4 w-full bg-base-300"></div>
             </div>
           </div>
         )}

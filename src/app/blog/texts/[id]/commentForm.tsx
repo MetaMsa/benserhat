@@ -8,7 +8,7 @@ export default function Button({ pageId }) {
     <form
       action="/api/comment"
       method="post"
-      className="bg-gray-900 w-60 py-5 mx-auto rounded-xl border"
+      className="bg-base-300 w-60 py-5 mx-auto rounded-xl border"
       onSubmit={() => {
         setDisabled(true);
       }}

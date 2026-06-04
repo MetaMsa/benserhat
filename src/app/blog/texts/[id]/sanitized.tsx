@@ -7,7 +7,7 @@ export default function SanitizedContent({ html }: { html: string }) {
 
   return (
     <div
-      className="break-words text-xs sm:text-sm p-5 mx-auto my-5 text-left bg-gray-900 rounded-xl border"
+      className="wrap-break-word text-xs sm:text-sm p-5 mx-auto my-5 text-left bg-base-300 rounded-xl border"
       dangerouslySetInnerHTML={{ __html: safeHTML }}
     />
   );

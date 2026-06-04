@@ -11,7 +11,7 @@ export default function Three() {
     if (!mount) return;
 
     const scene = new THREE.Scene();
-    scene.background = new THREE.Color(0x101828);
+
     const camera = new THREE.PerspectiveCamera(
       75,
       mount.clientWidth / mount.clientHeight,
@@ -19,8 +19,14 @@ export default function Three() {
       1000
     );
     camera.position.z = 100;
+    
+    const renderer = new THREE.WebGLRenderer({
+      antialias: true,
+      alpha: true,
+    });
 
-    const renderer = new THREE.WebGLRenderer({ antialias: true });
+    renderer.setClearColor(0x000000, 0);
+
     renderer.setSize(mount.clientWidth, mount.clientHeight);
     mount.appendChild(renderer.domElement);
 
@@ -89,21 +95,21 @@ export default function Three() {
           }
         });
 
-        let lastYmobile:number;
-        let mouseDownMobile:boolean;
+        let lastYmobile: number;
+        let mouseDownMobile: boolean;
 
         mountRef.current?.addEventListener("touchstart", (e) => {
           e.preventDefault();
           mouseDownMobile = true;
 
           lastYmobile = e.touches[0].clientY;
-        }, {passive: false});
+        }, { passive: false });
 
         mountRef.current?.addEventListener("touchend", (e) => {
           e.preventDefault();
 
           mouseDownMobile = false;
-        }, {passive: false});
+        }, { passive: false });
 
         mountRef.current?.addEventListener("touchmove", (e) => {
           e.preventDefault();
@@ -119,7 +125,7 @@ export default function Three() {
 
             lastYmobile = currentYmobile;
           }
-        }, {passive: false});
+        }, { passive: false });
 
         const animate = () => {
           requestAnimationFrame(animate);
