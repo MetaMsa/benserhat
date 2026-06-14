@@ -4,7 +4,7 @@ module.exports = {
   siteUrl: 'https://benserhat.com',
   exclude: ['/' + process.env.URL, '/docs'],
 
-  additionalPaths: async (config) => {
+  additionalPaths: async () => {
     const html = await fetch("https://benserhat.com/blog").then(r => r.text());
 
     const urls = [...html.matchAll(/href="([^"]+)"/g)]
