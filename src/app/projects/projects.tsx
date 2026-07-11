@@ -104,8 +104,8 @@ export default function Projects() {
         {data.filter((project) => project_names.includes(project.name)).map((project) => (
           <div key={project.id} className="tooltip tooltip-open tooltip-bottom">
             <Link href={project.html_url} className="hover-3d">
-              <div className="card image-full shadow-sm border grayscale hover:grayscale-0 transition-all duration-300">
-                <figure>
+              <div className="card image-full shadow-sm border">
+                <figure className="grayscale hover:grayscale-0 transition-all duration-300">
                   <Image
                     src={`https://opengraph.githubassets.com/54545/metamsa/${project.name}`}
                     alt={project.name}
