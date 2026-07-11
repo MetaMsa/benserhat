@@ -112,6 +112,7 @@ export default function Projects() {
                     width={500}
                     height={300}
                     priority
+                    className="grayscale hover:grayscale-0 transition-all duration-300"
                   />
                 </figure>
                 <div className="card-body">
