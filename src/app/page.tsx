@@ -40,15 +40,12 @@ export default function Home() {
         </p>
       </div>
       <div className="col-span-1 sm:col-span-2 md:col-span-3">
-        <p className="text-center text-xs md:text-sm">
-          Kocaeli Üniversitesi Bilgisayar Programlama önlisans eğitimimi
-          tamamladım; şu anda İstanbul Üniversitesi Web Tasarımı ve Kodlama
-          programında öğrenimime devam ediyorum. TRtek Medical Software’deki
-          stajımda ASP.NET MVC projeleri geliştirdim. Arc Corp'da FrontEnd
-          Developer olarak profesyonel deneyimim oldu. C++, C#, PHP, Node.js,
-          Next.js ve React ile proje bazlı deneyimim var. Modern web
-          teknolojileriyle ilgileniyorum ve sürekli kendimi geliştirmeye
-          çalışıyorum. Portföyümü inceleyebilirsiniz.
+        <p className="text-center text-xs md:text-sm"> 
+        Küçük yaşlardan beri yazılımla ilgilenmekteyim. Üniversite
+        tercihimi de bu yönde yaptım. Üniversite ve staj döneminde
+        web alanına kaydım. Hem Frontend hem Backend deneyimim
+        var. Full Stack Developer olarak bir kariyer inşa etme
+        niyetindeyim. Portföyümü inceleyebilirsiniz.
         </p>
       </div>
     </div>
