@@ -92,6 +92,7 @@ export default function Projects() {
       </div>
       <div className="m-5 p-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 justify-items-center rounded-2xl">
         {loading && (
+          data.filter((project) => project_names.includes(project.name)).map(() => (
           <div className="col-span-3">
             <div className="flex w-52 flex-col gap-4">
               <div className="skeleton h-32 w-full bg-base-300"></div>
@@ -100,6 +101,7 @@ export default function Projects() {
               <div className="skeleton h-4 w-full bg-base-300"></div>
             </div>
           </div>
+          ))
         )}
         {data.filter((project) => project_names.includes(project.name)).map((project) => (
           <div key={project.id} className="tooltip tooltip-open tooltip-bottom">
