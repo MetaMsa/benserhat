@@ -39,7 +39,7 @@ export default async function AdminLogin({ params }) {
           required
         />
         <input
-          type="text"
+          type="password"
           placeholder="Şifre"
           className="input input-ghost text-center"
           name="password"

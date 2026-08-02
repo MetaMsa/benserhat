@@ -101,7 +101,7 @@ export default function CommentsWithReplies({ comments, pageId }) {
                     }}
                   >
                     <textarea
-                      className="border text-sm w-50 rounded"
+                      className="border text-sm w-50 rounded p-1"
                       name="text"
                       placeholder="Yanıtınızı girin..."
                       required
@@ -115,7 +115,7 @@ export default function CommentsWithReplies({ comments, pageId }) {
                     />
                     <input
                       type="email"
-                      className="border text-sm w-50 rounded"
+                      className="border text-sm w-50 rounded p-1"
                       name="email"
                       placeholder="E-Postanızı girin..."
                       required
@@ -123,7 +123,7 @@ export default function CommentsWithReplies({ comments, pageId }) {
                     <br />
                     <input
                       type="text"
-                      className="border text-sm w-50 rounded"
+                      className="border text-sm w-50 rounded p-1"
                       name="author"
                       placeholder="Kullanıcı adınızı girin..."
                       required

@@ -14,14 +14,14 @@ export default function Button({ pageId }) {
       }}
     >
       <textarea
-        className="border text-sm w-50 rounded"
+        className="border text-sm w-50 rounded p-1"
         placeholder="Yorumunuzu girin..."
         name="text"
         required
       ></textarea>{" "}
       <br />
       <input
-        className="border text-sm w-50 rounded"
+        className="border text-sm w-50 rounded p-1"
         type="email"
         name="email"
         placeholder="E-Postanızı girin..."
@@ -29,7 +29,7 @@ export default function Button({ pageId }) {
       />{" "}
       <br />
       <input
-        className="border text-sm w-50 rounded"
+        className="border text-sm w-50 rounded p-1"
         type="text"
         name="author"
         placeholder="Kullanıcı adınızı girin..."
